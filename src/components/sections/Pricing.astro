@@ -1,0 +1,72 @@
+---
+const pricingPlans = [
+  {
+    name: "Part-time",
+    schedule: "2 DAYS / WEEK",
+    price: "$5,900/m",
+    description: "Best to design most projects in a reasonable timeframe.",
+    link: "#contact"
+  },
+  {
+    name: "Dedicated",
+    schedule: "3 DAYS / WEEK",
+    price: "$8,900/m",
+    description: "Best for bigger projects or tighter deadlines.",
+    link: "#contact"
+  },
+  {
+    name: "Fixed Price",
+    schedule: "CUSTOM",
+    price: "Get a Quote",
+    description: "For Fixed-price projects or more than 3 days / week.",
+    link: "#contact"
+  }
+];
+---
+
+<section id="pricing" class="py-24">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-medium mb-8 text-gray-900">Pricing</h2>
+
+    <p class="text-gray-600 mb-20 max-w-3xl">
+      Engage with me on short-term projects for immediate needs, or embark on a long-term collaboration and enjoy a 10% discount on services.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {pricingPlans.map(plan => (
+        <div class="border border-dashed border-gray-300 rounded-lg p-8">
+          <h3 class="text-xl font-medium text-gray-900 mb-2">{plan.name}</h3>
+          <p class="text-sm text-gray-500 mb-6">{plan.schedule}</p>
+
+          <p class="text-3xl font-medium text-gray-900 mb-6">{plan.price}</p>
+
+          <div class="h-px w-full bg-gray-200 mb-6"></div>
+
+          <p class="text-gray-600 mb-6">{plan.description}</p>
+
+          <a href={plan.link} class="inline-flex items-center text-gray-900 hover:text-gray-700">
+            Book a Call
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-2">
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-20 text-center">
+      <p class="text-gray-600 mb-8">
+        100% Happiness Guarantee. If you're not fully satisfied after the first month, I'll give you a full refund.
+      </p>
+
+      <a href="#contact" class="inline-flex items-center text-gray-900 hover:text-gray-700">
+        Contact Me
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-2">
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

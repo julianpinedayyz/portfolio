@@ -2,41 +2,38 @@
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b border-gray-200 py-4">
-  <div class="container mx-auto flex justify-between items-center px-4">
-    <a href="/" class="text-xl font-bold text-gray-900 flex items-center">
-      <span>Julian Pineda</span>
-    </a>
+<header class="fixed top-0 w-full z-50 bg-white border-b border-gray-100 py-5">
+  <div class="container mx-auto px-6 flex justify-between items-center">
+    <a href="/" class="text-xl font-medium text-gray-900">Julian Pineda</a>
 
-    <div class="flex items-center gap-4">
-      <!-- Mobile menu button -->
-      <button id="menu-toggle" class="md:hidden flex items-center p-2" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-
-      <!-- Desktop navigation -->
-      <nav id="desktop-nav" class="hidden md:flex items-center gap-8">
-        <a href="#about" class="nav-link text-gray-500 hover:text-black">About</a>
-        <a href="#experience" class="nav-link text-gray-500 hover:text-black">Experience</a>
-        <a href="#projects" class="nav-link text-gray-500 hover:text-black">Projects</a>
-        <a href="#contact" class="nav-link text-gray-500 hover:text-black">Contact</a>
-        <a href="/Julian Pineda - 5v4.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-md hover:bg-gray-800 transition">Resume</a>
-      </nav>
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="#work" class="text-gray-500 hover:text-black text-sm">Work</a>
+      <a href="#about" class="text-gray-500 hover:text-black text-sm">About</a>
+      <a href="#services" class="text-gray-500 hover:text-black text-sm">Services</a>
+      <a href="#contact" class="text-gray-500 hover:text-black text-sm">Contact</a>
     </div>
+
+    <!-- Mobile menu button -->
+    <button id="menu-toggle" class="md:hidden" aria-label="Toggle menu">
+      <span class="block w-6 h-0.5 bg-gray-900 mb-1.5"></span>
+      <span class="block w-6 h-0.5 bg-gray-900 mb-1.5"></span>
+      <span class="block w-6 h-0.5 bg-gray-900"></span>
+    </button>
   </div>
 
   <!-- Mobile navigation -->
-  <div id="mobile-nav" class="absolute top-full left-0 w-full bg-white shadow-md py-4 hidden border-t border-gray-200">
-    <nav class="container mx-auto flex flex-col items-center gap-4">
-      <a href="#about" class="nav-link text-gray-500 hover:text-black">About</a>
-      <a href="#experience" class="nav-link text-gray-500 hover:text-black">Experience</a>
-      <a href="#projects" class="nav-link text-gray-500 hover:text-black">Projects</a>
-      <a href="#contact" class="nav-link text-gray-500 hover:text-black">Contact</a>
-      <a href="/Julian Pineda - 5v4.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-md hover:bg-gray-800 transition">Resume</a>
+  <div id="mobile-nav" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center hidden">
+    <button id="close-menu" class="absolute top-6 right-6">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-900">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <nav class="flex flex-col items-center space-y-8">
+      <a href="#work" class="text-gray-900 hover:text-black text-2xl">Work</a>
+      <a href="#about" class="text-gray-900 hover:text-black text-2xl">About</a>
+      <a href="#services" class="text-gray-900 hover:text-black text-2xl">Services</a>
+      <a href="#contact" class="text-gray-900 hover:text-black text-2xl">Contact</a>
     </nav>
   </div>
 </header>
@@ -45,57 +42,26 @@ import ThemeToggle from './ThemeToggle.astro';
   // Mobile menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');
+  const closeMenu = document.getElementById('close-menu');
 
-  if (menuToggle && mobileNav) {
+  if (menuToggle && mobileNav && closeMenu) {
     menuToggle.addEventListener('click', () => {
-      mobileNav.classList.toggle('hidden');
+      mobileNav.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+      document.body.style.overflow = '';
     });
   }
 
   // Close mobile menu when clicking a nav link
-  const mobileNavLinks = mobileNav?.querySelectorAll('.nav-link');
+  const mobileNavLinks = mobileNav?.querySelectorAll('a');
   mobileNavLinks?.forEach(link => {
     link.addEventListener('click', () => {
       mobileNav.classList.add('hidden');
+      document.body.style.overflow = '';
     });
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    if (mobileNav && !mobileNav.classList.contains('hidden') &&
-        !mobileNav.contains(target) &&
-        menuToggle && !menuToggle.contains(target)) {
-      mobileNav.classList.add('hidden');
-    }
-  });
-
-  // Highlight active section in navigation
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.2
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('text-black', 'font-medium');
-          } else {
-            link.classList.remove('text-black', 'font-medium');
-          }
-        });
-      }
-    });
-  }, observerOptions);
-
-  sections.forEach(section => {
-    observer.observe(section);
   });
 </script>

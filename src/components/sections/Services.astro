@@ -1,0 +1,73 @@
+---
+const services = [
+  "User Experience Design",
+  "User Interface Design",
+  "Design Systems",
+  "Web & Mobile Design",
+  "Product Strategy",
+  "B2B SaaS Design",
+  "AI Product Design"
+];
+---
+
+<section id="services" class="py-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-medium mb-20 text-gray-900">Services</h2>
+
+    <div class="grid md:grid-cols-3 gap-16">
+      <!-- Benefits column -->
+      <div class="space-y-12">
+        <div>
+          <h3 class="text-sm text-gray-500 uppercase tracking-wider mb-4">01</h3>
+          <h4 class="text-xl font-medium text-gray-900 mb-3">Easier than in-house</h4>
+          <p class="text-gray-600">Just recruiting a product designer will take you months and cost you at least $20,000.</p>
+        </div>
+
+        <div>
+          <h3 class="text-sm text-gray-500 uppercase tracking-wider mb-4">02</h3>
+          <h4 class="text-xl font-medium text-gray-900 mb-3">Faster turnaround</h4>
+          <p class="text-gray-600">Start a project and receive your first designs in just a few days, not weeks or months.</p>
+        </div>
+
+        <div>
+          <h3 class="text-sm text-gray-500 uppercase tracking-wider mb-4">03</h3>
+          <h4 class="text-xl font-medium text-gray-900 mb-3">Better UX/UI skills</h4>
+          <p class="text-gray-600">Work directly with a senior designer who can create beautiful and functional interfaces.</p>
+        </div>
+      </div>
+
+      <!-- Services list -->
+      <div class="md:col-span-2">
+        <ul class="divide-y divide-gray-200">
+          {services.map(service => (
+            <li class="py-5">
+              <div class="flex justify-between items-center">
+                <span class="text-lg text-gray-900">{service}</span>
+                <button class="text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="plus-icon">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Toggle service details
+  const plusIcons = document.querySelectorAll('.plus-icon');
+
+  plusIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      // Here you would toggle additional content if needed
+      const item = icon.closest('li');
+      // For now, just rotate the icon
+      icon.classList.toggle('rotate-45');
+    });
+  });
+</script>

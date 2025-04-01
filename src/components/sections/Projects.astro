@@ -1,96 +1,94 @@
 ---
 const projects = [
   {
-    title: "Project Management Dashboard",
-    description: "A comprehensive dashboard for managing projects, tasks, and team members with real-time updates and analytics.",
-    tags: ["React", "Node.js", "MongoDB", "Socket.io", "Chart.js"],
-    image: "https://via.placeholder.com/600x400",
-    link: "#",
-    github: "https://github.com/"
+    title: "B2B SaaS Dashboard Redesign",
+    description: "Complete redesign of a complex enterprise platform, focusing on improving UX and user workflows.",
+    image: "https://via.placeholder.com/600x400/f5f5f5/333333?text=SaaS+Dashboard",
+    tags: ["UX/UI Design", "Enterprise", "Dashboard"],
+    link: "#"
   },
   {
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce solution with product management, cart functionality, payment processing, and order tracking.",
-    tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS", "Auth0"],
-    image: "https://via.placeholder.com/600x400",
-    link: "#",
-    github: "https://github.com/"
+    title: "AI-Powered Analytics Tool",
+    description: "Design for an AI analytics platform that simplifies data visualization for non-technical users.",
+    image: "https://via.placeholder.com/600x400/f5f5f5/333333?text=AI+Analytics",
+    tags: ["AI/ML", "Data Visualization", "UX Research"],
+    link: "#"
   },
   {
-    title: "Content Management System",
-    description: "A custom CMS built for content creators with a focus on ease of use, performance, and SEO optimization.",
-    tags: ["TypeScript", "Express", "MongoDB", "React", "AWS S3"],
-    image: "https://via.placeholder.com/600x400",
-    link: "#",
-    github: "https://github.com/"
+    title: "Enterprise Fintech Platform",
+    description: "Helped a B2B fintech company scale design across multiple products for international expansion.",
+    image: "https://via.placeholder.com/600x400/f5f5f5/333333?text=Fintech+Platform",
+    tags: ["Fintech", "Design System", "Enterprise"],
+    link: "#"
   },
   {
-    title: "Personal Finance Tracker",
-    description: "An application to help users track expenses, set budgets, and visualize spending patterns with interactive charts.",
-    tags: ["Vue.js", "Firebase", "Vuetify", "D3.js"],
-    image: "https://via.placeholder.com/600x400",
-    link: "#",
-    github: "https://github.com/"
-  },
-  {
-    title: "Weather Dashboard",
-    description: "A weather application providing real-time weather data and forecasts with a clean, intuitive interface.",
-    tags: ["React", "OpenWeather API", "CSS Modules", "Netlify"],
-    image: "https://via.placeholder.com/600x400",
-    link: "#",
-    github: "https://github.com/"
-  },
-  {
-    title: "Recipe Sharing Platform",
-    description: "A community-driven platform for sharing and discovering recipes with rating and commenting functionality.",
-    tags: ["Django", "PostgreSQL", "JavaScript", "Bootstrap"],
-    image: "https://via.placeholder.com/600x400",
-    link: "#",
-    github: "https://github.com/"
+    title: "Healthcare Management System",
+    description: "Intuitive interface for healthcare providers to manage patient data and streamline workflows.",
+    image: "https://via.placeholder.com/600x400/f5f5f5/333333?text=Healthcare+System",
+    tags: ["Healthcare", "Accessibility", "UX Design"],
+    link: "#"
   }
 ];
 ---
 
-<section id="projects" class="py-20 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-12 text-gray-900">Featured Projects</h2>
+<section id="work" class="py-24">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-medium mb-20 text-gray-900">Case Studies</h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-          <img src={project.image} alt={project.title} class="w-full h-48 object-cover" />
-
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2 text-gray-900">{project.title}</h3>
-
-            <p class="text-gray-600 mb-4">{project.description}</p>
-
-            <div class="flex flex-wrap gap-2 mb-4">
-              {project.tags.map((tag) => (
-                <span class="px-2 py-1 text-xs text-gray-600 bg-gray-100 rounded-full">
-                  {tag}
-                </span>
-              ))}
+    <div class="grid md:grid-cols-2 gap-20">
+      {projects.map((project, index) => (
+        <div class="group">
+          <a href={project.link} class="block">
+            <div class="aspect-video mb-8 bg-gray-100 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </div>
 
-            <div class="flex items-center gap-4">
-              <a href={project.github} target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-              </a>
+            <div class="space-y-4">
+              <h3 class="text-2xl font-medium text-gray-900">{project.title}</h3>
+              <p class="text-gray-600">{project.description}</p>
 
-              <a href={project.link} target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-gray-900 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="text-gray-500 text-sm">{tag}</span>
+                ))}
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       ))}
+    </div>
+
+    <div class="mt-20 text-center">
+      <a href="#contact" class="inline-flex items-center text-gray-900 hover:text-gray-700">
+        See all work
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-2">
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial section -->
+<section class="py-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <blockquote class="text-2xl md:text-3xl text-gray-900 font-medium mb-10 leading-relaxed">
+        "Julian has been instrumental in helping us build our vision for the platform. I have never had a better experience with a design professional."
+      </blockquote>
+
+      <div class="flex items-center justify-center">
+        <div class="w-12 h-12 bg-gray-200 rounded-full mr-4"></div>
+        <div class="text-left">
+          <div class="font-medium text-gray-900">Marc Harris</div>
+          <div class="text-gray-500">CTO, Acme Inc</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
