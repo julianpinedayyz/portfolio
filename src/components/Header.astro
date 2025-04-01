@@ -2,9 +2,11 @@
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<header class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-4 shadow-sm">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 py-4">
   <div class="container mx-auto flex justify-between items-center px-4">
-    <a href="/" class="text-2xl font-bold text-blue-600 dark:text-blue-400">JP</a>
+    <a href="/" class="text-xl font-bold text-gray-900 flex items-center">
+      <span>Julian Pineda</span>
+    </a>
 
     <div class="flex items-center gap-4">
       <!-- Mobile menu button -->
@@ -18,25 +20,23 @@ import ThemeToggle from './ThemeToggle.astro';
 
       <!-- Desktop navigation -->
       <nav id="desktop-nav" class="hidden md:flex items-center gap-8">
-        <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">About</a>
-        <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Experience</a>
-        <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
-        <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
-        <ThemeToggle />
-        <a href="/Julian Pineda - 5v4.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">Resume</a>
+        <a href="#about" class="nav-link text-gray-500 hover:text-black">About</a>
+        <a href="#experience" class="nav-link text-gray-500 hover:text-black">Experience</a>
+        <a href="#projects" class="nav-link text-gray-500 hover:text-black">Projects</a>
+        <a href="#contact" class="nav-link text-gray-500 hover:text-black">Contact</a>
+        <a href="/Julian Pineda - 5v4.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-md hover:bg-gray-800 transition">Resume</a>
       </nav>
     </div>
   </div>
 
   <!-- Mobile navigation -->
-  <div id="mobile-nav" class="absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-md py-4 hidden">
+  <div id="mobile-nav" class="absolute top-full left-0 w-full bg-white shadow-md py-4 hidden border-t border-gray-200">
     <nav class="container mx-auto flex flex-col items-center gap-4">
-      <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">About</a>
-      <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Experience</a>
-      <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
-      <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
-      <ThemeToggle />
-      <a href="/Julian Pineda - 5v4.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">Resume</a>
+      <a href="#about" class="nav-link text-gray-500 hover:text-black">About</a>
+      <a href="#experience" class="nav-link text-gray-500 hover:text-black">Experience</a>
+      <a href="#projects" class="nav-link text-gray-500 hover:text-black">Projects</a>
+      <a href="#contact" class="nav-link text-gray-500 hover:text-black">Contact</a>
+      <a href="/Julian Pineda - 5v4.pdf" target="_blank" class="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-md hover:bg-gray-800 transition">Resume</a>
     </nav>
   </div>
 </header>
@@ -86,9 +86,9 @@ import ThemeToggle from './ThemeToggle.astro';
         const id = entry.target.getAttribute('id');
         navLinks.forEach(link => {
           if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('text-blue-600', 'dark:text-blue-400');
+            link.classList.add('text-black', 'font-medium');
           } else {
-            link.classList.remove('text-blue-600', 'dark:text-blue-400');
+            link.classList.remove('text-black', 'font-medium');
           }
         });
       }

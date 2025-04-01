@@ -8,8 +8,8 @@ export interface Props {
   description?: string;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "Julian Pineda's portfolio website - Full Stack Developer"
 } = Astro.props;
 ---
@@ -32,18 +32,23 @@ const {
         }
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       };
-      
+
       const theme = getThemePreference();
       document.documentElement.classList.add(theme);
-      
+
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body>
+  <body class="text-gray-900 bg-white">
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-opacity duration-300 hover:bg-blue-700" aria-label="Scroll to top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </button>
   </body>
 </html>
