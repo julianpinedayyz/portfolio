@@ -8,7 +8,7 @@
   <div class="site-container flex justify-between items-center">
     <a
       href="/"
-      class="text-sm font-bold tracking-tighter text-gray-900 dark:text-gray-100 flex items-center hover:bg-black hover:text-white focus-visible:bg-white focus-visible:text-black focus-visible:border-black focus-visible:border focus-visible:outline-none p-1 transition-colors"
+      class="text-sm font-bold tracking-tighter text-gray-900 dark:text-gray-100 flex items-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-gray-900 focus-visible:bg-white focus-visible:text-black focus-visible:border-black focus-visible:border focus-visible:outline-none p-1 transition-colors"
     >
       <span>Julian Pineda</span>
     </a>
@@ -42,23 +42,24 @@
       <nav id="desktop-nav" class="hidden md:flex items-center gap-8">
         <a
           href="#about"
-          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
           >About</a
         >
         <a
           href="#experience"
-          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
           >Experience</a
         >
         <a
           href="#services"
-          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
           >Services</a
         >
-        <div class="relative">
+        <div class="relative flex items-center">
           <button
             id="contact-dropdown-toggle"
-            class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+            class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
+            style="line-height: 1; padding-bottom: 2px; margin-bottom: 0;"
             >Contact</button
           >
           <!-- Contact dropdown menu -->
@@ -93,7 +94,7 @@
         <a
           href="/Julian Pineda - 5v4.pdf"
           target="_blank"
-          class="resume-btn px-4 py-2 text-xs font-medium text-gray-900 dark:text-white bg-lime-400 hover:bg-lime-500 dark:bg-purple-400 dark:hover:bg-purple-500 rounded-[0px] transition-colors focus:outline-none focus:border focus:border-black"
+          class="resume-btn px-4 py-2 text-xs font-medium text-gray-900 dark:text-[#101827] bg-lime-400 hover:bg-lime-500 dark:bg-lime-400 dark:hover:bg-lime-500 rounded-[0px] transition-colors focus:outline-none focus:border focus:border-black"
           >Resume</a
         >
       </nav>
@@ -108,23 +109,24 @@
     <nav class="site-container flex flex-col items-center gap-4">
       <a
         href="#about"
-        class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+        class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
         >About</a
       >
       <a
         href="#experience"
-        class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+        class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
         >Experience</a
       >
       <a
         href="#services"
-        class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+        class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
         >Services</a
       >
       <div class="text-center">
         <button
           id="mobile-contact-dropdown-toggle"
-          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-[#fafafa] hover:text-[#262626] dark:hover:text-[#fafafa] focus:outline-none relative pb-[2px] link-hover"
+          style="line-height: 1; padding-bottom: 2px; margin-bottom: 0;"
           >Contact</button
         >
         <!-- Mobile Contact dropdown menu -->
@@ -160,7 +162,7 @@
       <a
         href="/Julian Pineda - 5v4.pdf"
         target="_blank"
-        class="resume-btn px-4 py-2 text-xs font-medium text-gray-900 dark:text-white bg-lime-400 hover:bg-lime-500 dark:bg-purple-400 dark:hover:bg-purple-500 rounded-[0px] transition-colors focus:outline-none focus:border focus:border-black"
+        class="resume-btn px-4 py-2 text-xs font-medium text-gray-900 dark:text-[#101827] bg-lime-400 hover:bg-lime-500 dark:bg-lime-400 dark:hover:bg-lime-500 rounded-[0px] transition-colors focus:outline-none focus:border focus:border-black"
         >Resume</a
       >
     </nav>
@@ -168,45 +170,60 @@
 </header>
 
 <style>
+  /* Base link hover styles */
   .link-hover {
     position: relative;
     display: inline-block;
   }
 
+  /* Underline styling */
   .link-hover::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 1px;
+    height: 2px; /* Increase height to match other underlines */
     bottom: 0;
     left: 0;
-    background-color: black;
+    background-color: #000000;
     transition: width 0.3s ease-in-out;
   }
 
+  /* Ensure all navigation links have the same vertical alignment */
+  .nav-link {
+    vertical-align: baseline;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  /* Special case for contact dropdown */
+  #contact-dropdown-toggle.link-hover::after {
+    width: 0;
+    height: 2px; /* Match other links */
+    left: 0;
+    right: auto;
+    bottom: 0;
+  }
+
+  #contact-dropdown-toggle.link-hover:hover::after {
+    width: 100%;
+  }
+
+  /* Expand underline on hover */
   .link-hover:hover::after {
     width: 100%;
   }
 
-  .dark .link-hover::after {
-    background-color: #a855f7; /* purple-500 */
+  /* Dark mode underline color - using direct color instead of Tailwind classes */
+  html.dark .link-hover::after {
+    background-color: #84cc16;
   }
 
-  /* Explicitly disable color change on hover */
-  .nav-link:hover {
-    color: #262626;
-  }
-
-  .dark .nav-link:hover {
-    color: #9ca3af; /* gray-400 */
-  }
-
-  /* Style for active link */
+  /* Active link styling */
   .active-link::after {
     width: 100%;
   }
 
-  /* Focus ring styles - controlled by JS */
+  /* Focus styles */
   .nav-link:focus {
     outline: none;
   }
@@ -217,11 +234,11 @@
   }
 
   .resume-btn:hover {
-    color: #111827 !important; /* gray-900, maintain text color on hover */
+    color: #111827 !important;
   }
 
   .dark .resume-btn:hover {
-    color: #ffffff !important; /* white, maintain text color on hover in dark mode */
+    color: #101827 !important;
   }
 
   /* Contact dropdown links */
@@ -234,7 +251,7 @@
   }
 
   .dark .contact-link:hover {
-    color: #f3f4f6 !important;
+    color: #fafafa !important;
   }
 </style>
 
