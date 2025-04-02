@@ -1,14 +1,14 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
+
 ---
 
 <header
-  class="sticky top-0 z-50 bg-white dark:bg-charcoal-900 border-b border-gray-200 dark:border-gray-800 py-4"
+  class="sticky top-0 z-50 bg-white/20 dark:bg-charcoal-900/20 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-2.5"
 >
   <div class="site-container flex justify-between items-center">
     <a
       href="/"
-      class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 flex items-center"
+      class="text-sm font-bold tracking-tighter text-gray-900 dark:text-gray-100 flex items-center hover:bg-black hover:text-white focus-visible:bg-white focus-visible:text-black focus-visible:border-black focus-visible:border focus-visible:outline-none p-1 transition-colors"
     >
       <span>Julian Pineda</span>
     </a>
@@ -38,35 +38,62 @@ import ThemeToggle from './ThemeToggle.astro';
         </svg>
       </button>
 
-      <!-- Theme toggle for both mobile and desktop -->
-      <ThemeToggle />
-
       <!-- Desktop navigation -->
       <nav id="desktop-nav" class="hidden md:flex items-center gap-8">
         <a
           href="#about"
-          class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
           >About</a
         >
         <a
           href="#experience"
-          class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
           >Experience</a
         >
         <a
           href="#services"
-          class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
           >Services</a
         >
-        <a
-          href="#contact"
-          class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
-          >Contact</a
-        >
+        <div class="relative">
+          <button
+            id="contact-dropdown-toggle"
+            class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+            >Contact</button
+          >
+          <!-- Contact dropdown menu -->
+          <div
+            id="contact-dropdown"
+            class="hidden absolute top-full right-0 w-auto bg-white dark:bg-gray-900 p-2.5 border border-black dark:border-gray-800"
+          >
+            <div
+              class="flex items-center py-1.5 px-2 border-b border-black dark:border-gray-700"
+            >
+              <span class="font-bold mr-4 text-[0.7rem]">@</span>
+              <a
+                href="mailto:julian@julianpineda.com"
+                class="font-bold text-[0.7rem] text-[#262626] dark:text-gray-100 contact-link"
+                >julian@julianpineda.com</a
+              >
+            </div>
+            <div
+              class="flex items-center justify-between py-1.5 px-2 border-b border-black dark:border-gray-700"
+            >
+              <span class="font-bold mr-4 text-[0.7rem]">L</span>
+              <a
+                href="https://linkedin.com/in/julianpinedayyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-bold text-[0.7rem] text-[#262626] dark:text-gray-100 contact-link flex items-center"
+                >LinkedIn <span class="ml-1">↗</span></a
+              >
+            </div>
+          </div>
+        </div>
         <a
           href="/Julian Pineda - 5v4.pdf"
           target="_blank"
-          class="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white bg-lime-400 hover:bg-lime-500 dark:bg-purple-400 dark:hover:bg-purple-500 rounded-[2px] transition-colors"
+          class="resume-btn px-4 py-2 text-xs font-medium text-gray-900 dark:text-white bg-lime-400 hover:bg-lime-500 dark:bg-purple-400 dark:hover:bg-purple-500 rounded-[0px] transition-colors focus:outline-none focus:border focus:border-black"
           >Resume</a
         >
       </nav>
@@ -76,38 +103,140 @@ import ThemeToggle from './ThemeToggle.astro';
   <!-- Mobile navigation -->
   <div
     id="mobile-nav"
-    class="absolute top-full left-0 w-full bg-white dark:bg-charcoal-900 shadow-md py-4 hidden border-t border-gray-200 dark:border-gray-800"
+    class="absolute top-full left-0 w-full bg-white/20 dark:bg-charcoal-900/20 backdrop-blur-md shadow-md py-4 hidden border-t border-gray-200 dark:border-gray-800"
   >
     <nav class="site-container flex flex-col items-center gap-4">
       <a
         href="#about"
-        class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+        class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
         >About</a
       >
       <a
         href="#experience"
-        class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+        class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
         >Experience</a
       >
       <a
         href="#services"
-        class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+        class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
         >Services</a
       >
-      <a
-        href="#contact"
-        class="nav-link text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
-        >Contact</a
-      >
+      <div class="text-center">
+        <button
+          id="mobile-contact-dropdown-toggle"
+          class="nav-link text-[0.88rem] text-[#262626] dark:text-gray-400 focus:outline-none relative pb-[2px] link-hover"
+          >Contact</button
+        >
+        <!-- Mobile Contact dropdown menu -->
+        <div
+          id="mobile-contact-dropdown"
+          class="hidden mt-0 bg-white dark:bg-gray-900 p-2.5 mx-auto border border-black dark:border-gray-800"
+          style="min-width: 180px;"
+        >
+          <div
+            class="flex items-center py-1.5 px-2 border-b border-black dark:border-gray-700"
+          >
+            <span class="font-bold mr-4 text-[0.7rem]">@</span>
+            <a
+              href="mailto:julian@julianpineda.com"
+              class="font-bold text-[0.7rem] text-[#262626] dark:text-gray-100 contact-link"
+              >julian@julianpineda.com</a
+            >
+          </div>
+          <div
+            class="flex items-center justify-between py-1.5 px-2 border-b border-black dark:border-gray-700"
+          >
+            <span class="font-bold mr-4 text-[0.7rem]">L</span>
+            <a
+              href="https://linkedin.com/in/julianpinedayyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-bold text-[0.7rem] text-[#262626] dark:text-gray-100 contact-link flex items-center"
+              >LinkedIn <span class="ml-1">↗</span></a
+            >
+          </div>
+        </div>
+      </div>
       <a
         href="/Julian Pineda - 5v4.pdf"
         target="_blank"
-        class="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white bg-lime-400 hover:bg-lime-500 dark:bg-purple-400 dark:hover:bg-purple-500 rounded-[2px] transition-colors"
+        class="resume-btn px-4 py-2 text-xs font-medium text-gray-900 dark:text-white bg-lime-400 hover:bg-lime-500 dark:bg-purple-400 dark:hover:bg-purple-500 rounded-[0px] transition-colors focus:outline-none focus:border focus:border-black"
         >Resume</a
       >
     </nav>
   </div>
 </header>
+
+<style>
+  .link-hover {
+    position: relative;
+    display: inline-block;
+  }
+
+  .link-hover::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .link-hover:hover::after {
+    width: 100%;
+  }
+
+  .dark .link-hover::after {
+    background-color: #a855f7; /* purple-500 */
+  }
+
+  /* Explicitly disable color change on hover */
+  .nav-link:hover {
+    color: #262626;
+  }
+
+  .dark .nav-link:hover {
+    color: #9ca3af; /* gray-400 */
+  }
+
+  /* Style for active link */
+  .active-link::after {
+    width: 100%;
+  }
+
+  /* Focus ring styles - controlled by JS */
+  .nav-link:focus {
+    outline: none;
+  }
+
+  /* Resume button styles */
+  .resume-btn {
+    transition: background-color 0.3s ease;
+  }
+
+  .resume-btn:hover {
+    color: #111827 !important; /* gray-900, maintain text color on hover */
+  }
+
+  .dark .resume-btn:hover {
+    color: #ffffff !important; /* white, maintain text color on hover in dark mode */
+  }
+
+  /* Contact dropdown links */
+  .contact-link {
+    text-decoration: none;
+  }
+
+  .contact-link:hover {
+    color: #262626 !important;
+  }
+
+  .dark .contact-link:hover {
+    color: #f3f4f6 !important;
+  }
+</style>
 
 <script>
   // Mobile menu toggle
@@ -142,6 +271,86 @@ import ThemeToggle from './ThemeToggle.astro';
     }
   });
 
+  // Handle focus and smooth scrolling for anchor links
+  document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+
+      if (targetElement) {
+        // Scroll to target
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+
+        // Add temporary focus style
+        this.classList.add('focus-visible');
+
+        // Remove focus after 2 seconds
+        setTimeout(() => {
+          this.classList.remove('focus-visible');
+          // Ensure the underline stays if this is the active section
+          if (this.classList.contains('active-link')) {
+            this.classList.add('active-link');
+          }
+        }, 2000);
+      }
+    });
+  });
+
+  // Contact dropdown toggle functionality
+  const contactToggle = document.getElementById('contact-dropdown-toggle');
+  const contactDropdown = document.getElementById('contact-dropdown');
+
+  if (contactToggle && contactDropdown) {
+    contactToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      contactDropdown.classList.toggle('hidden');
+    });
+  }
+
+  // Mobile contact dropdown toggle
+  const mobileContactToggle = document.getElementById(
+    'mobile-contact-dropdown-toggle',
+  );
+  const mobileContactDropdown = document.getElementById(
+    'mobile-contact-dropdown',
+  );
+
+  if (mobileContactToggle && mobileContactDropdown) {
+    mobileContactToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileContactDropdown.classList.toggle('hidden');
+    });
+  }
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+
+    // Desktop dropdown
+    if (
+      contactDropdown &&
+      !contactDropdown.classList.contains('hidden') &&
+      !contactDropdown.contains(target) &&
+      contactToggle &&
+      !contactToggle.contains(target)
+    ) {
+      contactDropdown.classList.add('hidden');
+    }
+
+    // Mobile dropdown
+    if (
+      mobileContactDropdown &&
+      !mobileContactDropdown.classList.contains('hidden') &&
+      !mobileContactDropdown.contains(target) &&
+      mobileContactToggle &&
+      !mobileContactToggle.contains(target)
+    ) {
+      mobileContactDropdown.classList.add('hidden');
+    }
+  });
+
   // Highlight active section in navigation
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -158,17 +367,11 @@ import ThemeToggle from './ThemeToggle.astro';
         const id = entry.target.getAttribute('id');
         navLinks.forEach((link) => {
           if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add(
-              'text-lime-400',
-              'dark:text-purple-400',
-              'font-medium',
-            );
+            link.classList.add('font-medium');
+            link.classList.add('active-link');
           } else {
-            link.classList.remove(
-              'text-lime-400',
-              'dark:text-purple-400',
-              'font-medium',
-            );
+            link.classList.remove('font-medium');
+            link.classList.remove('active-link');
           }
         });
       }
