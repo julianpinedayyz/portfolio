@@ -1,58 +1,123 @@
 ---
 const services = [
-  "User Experience Design",
-  "User Interface Design",
-  "Design Systems",
-  "Web & Mobile Design",
-  "Product Strategy",
-  "B2B SaaS Design",
-  "AI Product Design"
+  {
+    title: 'Digital Transformation Strategy',
+    description:
+      'Development of comprehensive digital transformation roadmaps for organizations looking to modernize their digital presence and operations.',
+  },
+  {
+    title: 'Technology Leadership',
+    description:
+      'Interim and consulting CTO services to help organizations build and scale their technology teams and infrastructure.',
+  },
+  {
+    title: 'UI/UX Design & Development',
+    description:
+      'Creation of user-centered digital experiences with a focus on accessibility, usability, and conversion optimization.',
+  },
+  {
+    title: 'Accessibility Implementation',
+    description:
+      'Implementation of web accessibility standards (WCAG) to ensure digital products are usable by people of all abilities.',
+  },
+  {
+    title: 'AI & ML Integration',
+    description:
+      'Strategic integration of artificial intelligence and machine learning solutions to enhance product capabilities and user experiences.',
+  },
+  {
+    title: 'Enterprise Platform Development',
+    description:
+      'End-to-end development of scalable enterprise platforms with robust architecture and optimized performance.',
+  },
+];
+
+const keyValues = [
+  {
+    number: '01',
+    title: 'Strategic Vision',
+    description:
+      'Developing forward-thinking strategies that align technology initiatives with business objectives and industry trends.',
+  },
+  {
+    number: '02',
+    title: 'Technical Excellence',
+    description:
+      'Bringing technical fluency and hands-on expertise to deliver high-quality digital solutions that scale effectively.',
+  },
+  {
+    number: '03',
+    title: 'User-Centered Approach',
+    description:
+      'Focusing on creating accessible, intuitive digital experiences that prioritize user needs and business outcomes.',
+  },
 ];
 ---
 
-<section id="services" class="py-24 bg-gray-50">
-  <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-medium mb-20 text-gray-900">Services</h2>
+<section id="services" class="py-24 bg-gray-50 dark:bg-charcoal-800">
+  <div class="site-container">
+    <h2
+      class="text-4xl font-bold tracking-tight mb-20 text-gray-900 dark:text-gray-100"
+    >
+      Services
+    </h2>
 
     <div class="grid md:grid-cols-3 gap-16">
-      <!-- Benefits column -->
+      <!-- Key values column -->
       <div class="space-y-12">
-        <div>
-          <h3 class="text-sm text-gray-500 uppercase tracking-wider mb-4">01</h3>
-          <h4 class="text-xl font-medium text-gray-900 mb-3">Easier than in-house</h4>
-          <p class="text-gray-600">Just recruiting a product designer will take you months and cost you at least $20,000.</p>
-        </div>
-
-        <div>
-          <h3 class="text-sm text-gray-500 uppercase tracking-wider mb-4">02</h3>
-          <h4 class="text-xl font-medium text-gray-900 mb-3">Faster turnaround</h4>
-          <p class="text-gray-600">Start a project and receive your first designs in just a few days, not weeks or months.</p>
-        </div>
-
-        <div>
-          <h3 class="text-sm text-gray-500 uppercase tracking-wider mb-4">03</h3>
-          <h4 class="text-xl font-medium text-gray-900 mb-3">Better UX/UI skills</h4>
-          <p class="text-gray-600">Work directly with a senior designer who can create beautiful and functional interfaces.</p>
-        </div>
+        {
+          keyValues.map((value) => (
+            <div>
+              <h3 class="text-sm text-lime-400 dark:text-purple-400 uppercase tracking-wider mb-4">
+                {value.number}
+              </h3>
+              <h4 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
+                {value.title}
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400">
+                {value.description}
+              </p>
+            </div>
+          ))
+        }
       </div>
 
       <!-- Services list -->
       <div class="md:col-span-2">
-        <ul class="divide-y divide-gray-200">
-          {services.map(service => (
-            <li class="py-5">
-              <div class="flex justify-between items-center">
-                <span class="text-lg text-gray-900">{service}</span>
-                <button class="text-gray-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="plus-icon">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
+        <div class="space-y-1">
+          {
+            services.map((service, index) => (
+              <div class="border-b border-gray-200 dark:border-gray-700">
+                <button
+                  class="service-toggle w-full py-5 flex justify-between items-center text-left"
+                  data-index={index}
+                >
+                  <span class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
+                    {service.title}
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="plus-icon text-lime-400 dark:text-purple-400 transition-transform"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
                   </svg>
                 </button>
+                <div class="service-content py-2 pb-6 hidden">
+                  <p class="text-gray-600 dark:text-gray-400">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -60,14 +125,28 @@ const services = [
 
 <script>
   // Toggle service details
-  const plusIcons = document.querySelectorAll('.plus-icon');
+  const serviceToggles = document.querySelectorAll('.service-toggle');
 
-  plusIcons.forEach(icon => {
-    icon.addEventListener('click', () => {
-      // Here you would toggle additional content if needed
-      const item = icon.closest('li');
-      // For now, just rotate the icon
+  serviceToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling as HTMLElement;
+      const icon = toggle.querySelector('.plus-icon');
+
+      // Toggle this item
+      content.classList.toggle('hidden');
       icon.classList.toggle('rotate-45');
+
+      // Optional: Close other items when opening a new one
+      const index = toggle.getAttribute('data-index');
+      serviceToggles.forEach((otherToggle) => {
+        if (otherToggle !== toggle) {
+          const otherContent = otherToggle.nextElementSibling as HTMLElement;
+          const otherIcon = otherToggle.querySelector('.plus-icon');
+
+          otherContent.classList.add('hidden');
+          otherIcon.classList.remove('rotate-45');
+        }
+      });
     });
   });
 </script>

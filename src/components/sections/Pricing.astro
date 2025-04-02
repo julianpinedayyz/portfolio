@@ -1,68 +1,154 @@
 ---
 const pricingPlans = [
   {
-    name: "Part-time",
-    schedule: "2 DAYS / WEEK",
-    price: "$5,900/m",
-    description: "Best to design most projects in a reasonable timeframe.",
-    link: "#contact"
+    name: 'Strategic Consulting',
+    schedule: 'SHORT-TERM',
+    price: 'Custom Quote',
+    description:
+      'Targeted consultation on specific technical challenges or digital transformation initiatives.',
+    features: [
+      'Technology stack assessment',
+      'Digital transformation roadmap',
+      'Team structure optimization',
+      'Accessibility compliance review',
+      'User experience evaluation',
+    ],
+    link: '#contact',
   },
   {
-    name: "Dedicated",
-    schedule: "3 DAYS / WEEK",
-    price: "$8,900/m",
-    description: "Best for bigger projects or tighter deadlines.",
-    link: "#contact"
+    name: 'Interim Leadership',
+    schedule: 'MEDIUM-TERM',
+    price: 'Custom Quote',
+    description:
+      'Temporary technology leadership to guide your team through critical projects or transitions.',
+    features: [
+      'Fractional CTO/Director services',
+      'Technical team mentorship',
+      'Product development oversight',
+      'Technology platform selection',
+      'Project management implementation',
+    ],
+    link: '#contact',
   },
   {
-    name: "Fixed Price",
-    schedule: "CUSTOM",
-    price: "Get a Quote",
-    description: "For Fixed-price projects or more than 3 days / week.",
-    link: "#contact"
-  }
+    name: 'Implementation',
+    schedule: 'PROJECT-BASED',
+    price: 'Custom Quote',
+    description:
+      'Hands-on development and implementation of digital solutions and platforms.',
+    features: [
+      'Enterprise web application development',
+      'User interface implementation',
+      'Accessibility remediation',
+      'Performance optimization',
+      'Integration with existing systems',
+    ],
+    link: '#contact',
+  },
 ];
 ---
 
-<section id="pricing" class="py-24">
-  <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-medium mb-8 text-gray-900">Pricing</h2>
+<section id="pricing" class="py-24 dark:bg-gray-900">
+  <div class="site-container">
+    <h2
+      class="text-4xl font-bold tracking-tight mb-8 text-gray-900 dark:text-gray-100"
+    >
+      Engagement Models
+    </h2>
 
-    <p class="text-gray-600 mb-20 max-w-3xl">
-      Engage with me on short-term projects for immediate needs, or embark on a long-term collaboration and enjoy a 10% discount on services.
+    <p class="text-gray-600 dark:text-gray-400 mb-20 max-w-3xl">
+      Flexible engagement options tailored to your organization's specific
+      needs, timelines, and objectives.
     </p>
 
     <div class="grid md:grid-cols-3 gap-6">
-      {pricingPlans.map(plan => (
-        <div class="border border-dashed border-gray-300 rounded-lg p-8">
-          <h3 class="text-xl font-medium text-gray-900 mb-2">{plan.name}</h3>
-          <p class="text-sm text-gray-500 mb-6">{plan.schedule}</p>
+      {
+        pricingPlans.map((plan) => (
+          <div class="border border-gray-200 dark:border-gray-700 bg-white dark:bg-charcoal-900 rounded-[4px] p-8 transition-transform hover:scale-105 hover:shadow-xl">
+            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-2">
+              {plan.name}
+            </h3>
+            <p class="text-sm text-purple-400 dark:text-purple-400 mb-6">
+              {plan.schedule}
+            </p>
 
-          <p class="text-3xl font-medium text-gray-900 mb-6">{plan.price}</p>
+            <p class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-6">
+              {plan.price}
+            </p>
 
-          <div class="h-px w-full bg-gray-200 mb-6"></div>
+            <div class="h-px w-full bg-gray-200 dark:bg-gray-700 mb-6" />
 
-          <p class="text-gray-600 mb-6">{plan.description}</p>
+            <p class="text-gray-600 dark:text-gray-400 mb-6">
+              {plan.description}
+            </p>
 
-          <a href={plan.link} class="inline-flex items-center text-gray-900 hover:text-gray-700">
-            Book a Call
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-2">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-      ))}
+            <ul class="space-y-3 mb-8">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-lime-400 dark:text-purple-400 flex-shrink-0 mt-0.5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span class="text-gray-600 dark:text-gray-400 text-sm">
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={plan.link}
+              class="inline-flex items-center text-gray-900 dark:text-gray-100 hover:text-purple-400 dark:hover:text-purple-400 transition-colors"
+            >
+              Get in touch
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                class="ml-2"
+              >
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        ))
+      }
     </div>
 
     <div class="mt-20 text-center">
-      <p class="text-gray-600 mb-8">
-        100% Happiness Guarantee. If you're not fully satisfied after the first month, I'll give you a full refund.
+      <p class="text-gray-600 dark:text-gray-400 mb-8">
+        All engagements include regular progress updates, knowledge transfer,
+        and documentation to ensure long-term success.
       </p>
 
-      <a href="#contact" class="inline-flex items-center text-gray-900 hover:text-gray-700">
+      <a
+        href="#contact"
+        class="inline-flex items-center text-gray-900 dark:text-gray-100 hover:text-purple-400 dark:hover:text-purple-400 transition-colors"
+      >
         Contact Me
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          class="ml-2"
+        >
           <path d="M5 12h14"></path>
           <path d="M12 5l7 7-7 7"></path>
         </svg>

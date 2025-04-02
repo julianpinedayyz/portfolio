@@ -1,61 +1,126 @@
 ---
 const skills = [
-  "JavaScript (ES6+)",
-  "TypeScript",
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "PostgreSQL",
-  "GraphQL",
-  "Docker",
-  "AWS",
-  "Figma",
-  "Git"
+  'Digital Transformation',
+  'Technology Leadership',
+  'UI/UX Strategy',
+  'Web Accessibility',
+  'Enterprise Architecture',
+  'Legacy System Modernization',
+  'Technical Project Management',
+  'Strategic Technology Planning',
+  'Team Building & Mentorship',
+  'Agile Development',
+  'Product Strategy',
+  'Client Relationship Management',
 ];
 ---
 
-<section id="about" class="py-24">
-  <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-medium mb-20 text-gray-900">About</h2>
+<section id="about" class="py-24 bg-white dark:bg-charcoal-900">
+  <div class="site-container">
+    <h2
+      class="text-4xl font-bold tracking-tight mb-20 text-gray-900 dark:text-gray-100"
+    >
+      About
+    </h2>
 
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+    <div class="grid md:grid-cols-7 gap-12 items-start">
+      <!-- Image column -->
+      <div class="md:col-span-3">
+        <div
+          class="aspect-[4/5] bg-gray-100 dark:bg-charcoal-800 rounded-[4px] overflow-hidden"
+        >
           <img
-            src="https://via.placeholder.com/600x600/f5f5f5/333333?text=Portrait"
-            alt="Julian Pineda's portrait"
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+            alt="Julian Pineda"
             class="w-full h-full object-cover"
           />
         </div>
       </div>
 
-      <div class="space-y-6">
-        <p class="text-xl text-gray-900">
-          Hi there, I'm Julian, an independent product designer.
-        </p>
+      <!-- Text column -->
+      <div class="md:col-span-4">
+        <div class="space-y-6">
+          <p
+            class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
+          >
+            Hi there, I'm Julian, a transformative leader in digital ecosystems.
+          </p>
 
-        <p class="text-gray-600">
-          I started my design practice to tackle a widespread issue in the startup and B2B space: complex and unappealing design. In a world where everyone's software is full of features, taste is the new competitive advantage.
-        </p>
+          <p class="text-gray-600 dark:text-gray-400">
+            With a strong track record of aligning strategic initiatives with
+            business goals, I drive innovation and deliver meaningful impact
+            across government, retail, consulting, fintech, and marketing
+            sectors.
+          </p>
 
-        <p class="text-gray-600">
-          Great design screams "We care!". It signals trust and competence, showing people that this same attention to detail applies to all aspects of your company.
-        </p>
+          <p class="text-gray-600 dark:text-gray-400">
+            I've successfully led digital transformation projects impacting
+            millions of users, optimizing user experience and improving key
+            engagement and customer retention metrics.
+          </p>
 
-        <p class="text-gray-600">
-          From small startups to enterprise companies, businesses succeed by embedding design into their DNA. These businesses inspire confidence, foster loyalty, and attract talent. They show that taste and function can not only coexist but thrive together.
-        </p>
+          <p class="text-gray-600 dark:text-gray-400">
+            My expertise spans product development, user-centered design, and
+            data-driven optimization, ensuring seamless digital experiences that
+            drive business growth. I excel at collaborating with
+            cross-functional teams, shaping technical strategies, and enhancing
+            operational efficiency.
+          </p>
 
-        <p class="text-gray-600">
-          With years of experience and a diverse portfolio, I bring more than just clean design to the table. I offer practical advice on product strategy, growth, and building products that stand out in the market.
-        </p>
+          <p class="text-gray-600 dark:text-gray-400">
+            I thrive in roles that require a blend of strategic vision and
+            technical fluency, ensuring that products are not only well-executed
+            but also scalable and future-ready in an AI-driven world.
+          </p>
 
-        <div class="pt-4">
-          <div class="font-medium text-gray-900">Julian Pineda</div>
-          <div class="flex gap-4 mt-2">
-            <a href="https://twitter.com/julianpineda" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900">Twitter</a>
-            <a href="https://linkedin.com/in/julianpineda" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-900">LinkedIn</a>
+          <div class="grid grid-cols-2 gap-2 mt-6">
+            {
+              skills.map((skill) => (
+                <div class="flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 text-lime-400 dark:text-purple-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">
+                    {skill}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="pt-4">
+            <div
+              class="font-bold tracking-tight text-gray-900 dark:text-gray-100"
+            >
+              Julian Pineda
+            </div>
+            <div class="flex gap-4 mt-2">
+              <a
+                href="https://twitter.com/julianpineda"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-500 hover:text-lime-400 dark:text-gray-400 dark:hover:text-purple-400 transition-colors"
+                >Twitter</a
+              >
+              <a
+                href="https://linkedin.com/in/julianpinedayyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-500 hover:text-lime-400 dark:text-gray-400 dark:hover:text-purple-400 transition-colors"
+                >LinkedIn</a
+              >
+            </div>
           </div>
         </div>
       </div>
