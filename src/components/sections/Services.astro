@@ -54,45 +54,30 @@ const keyValues = [
 ];
 ---
 
-<section id="services" class="py-24 bg-gray-50 dark:bg-charcoal-800">
+<section id="services" class="py-24" style="background-color: #DCDCDC;">
   <div class="site-container">
-    <h2
-      class="text-4xl font-bold tracking-tight mb-20 text-gray-900 dark:text-gray-100"
-    >
-      Services
-    </h2>
-
-    <div class="grid md:grid-cols-3 gap-16">
-      <!-- Key values column -->
-      <div class="space-y-12">
-        {
-          keyValues.map((value) => (
-            <div>
-              <h3 class="text-sm text-lime-400 dark:text-purple-400 uppercase tracking-wider mb-4">
-                {value.number}
-              </h3>
-              <h4 class="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-3">
-                {value.title}
-              </h4>
-              <p class="text-gray-600 dark:text-gray-400">
-                {value.description}
-              </p>
-            </div>
-          ))
-        }
+    <div class="lg:flex lg:flex-wrap">
+      <!-- Title container with fixed width -->
+      <div class="w-full lg:w-[600px] mb-12 lg:mb-0">
+        <h2 class="text-4xl font-bold tracking-tight" style="color: #333333;">
+          Services
+        </h2>
       </div>
 
-      <!-- Services list -->
-      <div class="md:col-span-2">
+      <!-- Services list container -->
+      <div class="w-full lg:flex-1">
         <div class="space-y-1">
           {
             services.map((service, index) => (
-              <div class="border-b border-gray-200 dark:border-gray-700">
+              <div class="border-b" style="border-color: #999999;">
                 <button
                   class="service-toggle w-full py-5 flex justify-between items-center text-left"
                   data-index={index}
                 >
-                  <span class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
+                  <span
+                    class="text-lg font-bold tracking-tight"
+                    style="color: #333333;"
+                  >
                     {service.title}
                   </span>
                   <svg
@@ -101,18 +86,16 @@ const keyValues = [
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
+                    stroke="#C22929"
                     stroke-width="2"
-                    class="plus-icon text-lime-400 dark:text-purple-400 transition-transform"
+                    class="plus-icon transition-transform"
                   >
                     <line x1="12" y1="5" x2="12" y2="19" />
                     <line x1="5" y1="12" x2="19" y2="12" />
                   </svg>
                 </button>
                 <div class="service-content py-2 pb-6 hidden">
-                  <p class="text-gray-600 dark:text-gray-400">
-                    {service.description}
-                  </p>
+                  <p style="color: #333333;">{service.description}</p>
                 </div>
               </div>
             ))
