@@ -20,36 +20,20 @@ import Contact from '../components/sections/Contact.astro';
 </Layout>
 
 <script>
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // Add smooth scrolling behavior for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
+
       const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: 'smooth'
-        });
+      if (targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+          });
+        }
       }
     });
   });
-
-  // Add scroll to top button visibility behavior
-  const scrollToTopBtn = document.getElementById('scroll-to-top');
-  if (scrollToTopBtn) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollToTopBtn.classList.add('visible');
-      } else {
-        scrollToTopBtn.classList.remove('visible');
-      }
-    });
-
-    scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
 </script>
