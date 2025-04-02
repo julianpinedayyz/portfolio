@@ -10,7 +10,7 @@ export interface Props {
 
 const {
   title,
-  description = "Julian Pineda's portfolio website - Full Stack Developer"
+  description = "Julian Pineda's portfolio website - Technology Leader & Digital Transformation Specialist"
 } = Astro.props;
 ---
 
@@ -24,6 +24,10 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
 
+    <!-- Preload fonts for better performance -->
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     <!-- Theme detection script -->
     <script is:inline>
       const getThemePreference = () => {
@@ -34,21 +38,84 @@ const {
       };
 
       const theme = getThemePreference();
-      document.documentElement.classList.add(theme);
+      document.documentElement.classList.toggle('dark', theme === 'dark');
 
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body class="text-gray-900 bg-white">
+  <body class="text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-900 font-sans antialiased">
     <Header />
     <main>
       <slot />
     </main>
     <Footer />
-    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-opacity duration-300 hover:bg-blue-700" aria-label="Scroll to top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 19V5M5 12l7-7 7 7"/>
-      </svg>
-    </button>
   </body>
 </html>
+
+<style is:global>
+  /* Set base styles for the site */
+  :root {
+    --color-text: #111827;
+    --color-bg: #ffffff;
+    --color-primary: #B2F042;
+    --color-primary-light: #C5F56C;
+    --color-accent: #B286FC;
+    --border-radius-sm: 2px;
+    --border-radius-md: 4px;
+    --border-radius-lg: 6px;
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+
+  @supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+  }
+
+  .dark {
+    --color-text: #f3f4f6;
+    --color-bg: #262626;
+    --color-primary: #10b981;
+    --color-primary-light: #34d399;
+    --color-accent: #B286FC;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  /* Add custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
+  }
+</style>
