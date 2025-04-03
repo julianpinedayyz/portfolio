@@ -1,0 +1,116 @@
+---
+const promotionalCards = [
+  {
+    title: 'Find the perfect sofa',
+    description:
+      'Whether you are looking for a large relaxed modular sofa or a slender and sculptural seat, we offer a broad range of contemporary sofas for the modern home. Explore our guide to discover the style, comfort, and material that is right for you.',
+    backgroundColor: '#6B602A',
+    textColor: '#F3EEB3',
+    imagePosition: 'bottom',
+    imageSrc:
+      'https://images.pexels.com/photos/6489123/pexels-photo-6489123.jpeg',
+    imageAlt:
+      'A modern light-colored sofa with textured grey cushions, a dark grey knitted throw blanket, and an open magazine',
+  },
+  {
+    title: 'Milan Design Week 2025',
+    description:
+      'Join us at Milan Design Week 2025 for an exclusive look into the Muuto Apartment, showcasing our new perspectives on Scandinavian designs.',
+    backgroundColor: '#C73E0A',
+    textColor: '#FFFFFF',
+    imagePosition: 'top',
+    imageSrc:
+      'https://images.pexels.com/photos/3680200/pexels-photo-3680200.jpeg',
+    imageAlt:
+      'Abstract background featuring bright yellow and pale pink/red blurred shapes',
+  },
+];
+---
+
+<section class="py-[50px]">
+  <!-- Standard container that should be used in all sections -->
+  <div class="site-container">
+    <div class="lg:flex lg:flex-wrap">
+      <!-- Title container with fixed width -->
+      <div class="w-full lg:w-[400px] mb-12 lg:mb-0">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 font-sans">
+          FEATURED
+        </h2>
+      </div>
+
+      <!-- Cards container -->
+      <div class="w-full lg:flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- First Card - Sofa Promo -->
+          <div class="flex flex-col h-full">
+            <div
+              class="flex flex-col h-full"
+              style={`background-color: ${promotionalCards[0].backgroundColor};`}
+            >
+              <div class="p-8 flex-grow">
+                <h3
+                  class="text-4xl font-bold mb-4"
+                  style={`color: ${promotionalCards[0].textColor};`}
+                >
+                  {promotionalCards[0].title}
+                </h3>
+                <p
+                  class="text-base"
+                  style={`color: ${promotionalCards[0].textColor};`}
+                >
+                  {promotionalCards[0].description}
+                </p>
+              </div>
+              <div class="h-[250px] overflow-hidden">
+                <img
+                  src={promotionalCards[0].imageSrc}
+                  alt={promotionalCards[0].imageAlt}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Card - Milan Design Week -->
+          <div class="flex flex-col h-full">
+            <div class="flex flex-col h-full">
+              <div class="h-[250px] overflow-hidden">
+                <img
+                  src={promotionalCards[1].imageSrc}
+                  alt={promotionalCards[1].imageAlt}
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div
+                class="p-8 flex-grow"
+                style={`background-color: ${promotionalCards[1].backgroundColor};`}
+              >
+                <h3
+                  class="text-4xl font-bold mb-4"
+                  style={`color: ${promotionalCards[1].textColor};`}
+                >
+                  {promotionalCards[1].title}
+                </h3>
+                <p
+                  class="text-base"
+                  style={`color: ${promotionalCards[1].textColor};`}
+                >
+                  {promotionalCards[1].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Optional: Add any additional styling here */
+  img {
+    display: block;
+    max-height: 350px;
+    object-fit: cover;
+  }
+</style>
