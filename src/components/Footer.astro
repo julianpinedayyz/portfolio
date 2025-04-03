@@ -1,20 +1,13 @@
 ---
 const currentYear = new Date().getFullYear();
-import ThemeToggle from './ThemeToggle.astro';
 ---
 
-<footer
-  class="py-12 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-charcoal-900"
->
+<footer class="py-12 border-t border-gray-100 bg-white">
   <div class="site-container">
     <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="text-2xl font-medium text-gray-900 dark:text-gray-100">
-        Julian Pineda
-      </div>
+      <div class="text-2xl font-medium text-gray-900">Julian Pineda</div>
 
-      <div
-        class="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm"
-      >
+      <div class="flex items-center gap-2 text-gray-500 text-sm">
         <span>&copy; {currentYear}</span>
         <span>Worldwide → Canada</span>
       </div>
@@ -25,7 +18,7 @@ import ThemeToggle from './ThemeToggle.astro';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Twitter"
-          class="text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+          class="text-gray-500 hover:text-lime-400 transition-colors"
         >
           Twitter
         </a>
@@ -35,7 +28,7 @@ import ThemeToggle from './ThemeToggle.astro';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          class="text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+          class="text-gray-500 hover:text-lime-400 transition-colors"
         >
           LinkedIn
         </a>
@@ -45,13 +38,10 @@ import ThemeToggle from './ThemeToggle.astro';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          class="text-gray-500 dark:text-gray-400 hover:text-lime-400 dark:hover:text-purple-400 transition-colors"
+          class="text-gray-500 hover:text-lime-400 transition-colors"
         >
           GitHub
         </a>
-
-        <!-- Theme toggle in footer -->
-        <ThemeToggle />
       </div>
     </div>
   </div>
@@ -63,7 +53,3 @@ import ThemeToggle from './ThemeToggle.astro';
     visibility: visible;
   }
 </style>
-
-<script>
-  // Theme toggle functionality is now handled in ThemeToggle.astro
-</script>
