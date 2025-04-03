@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -44,32 +43,6 @@ module.exports = {
               '&:hover': {
                 color: '#10b981',
               },
-            },
-          },
-        },
-        dark: {
-          css: {
-            color: '#f3f4f6',
-            a: {
-              color: '#34d399',
-              '&:hover': {
-                color: '#10b981',
-              },
-            },
-            h1: {
-              color: '#f3f4f6',
-            },
-            h2: {
-              color: '#f3f4f6',
-            },
-            h3: {
-              color: '#f3f4f6',
-            },
-            h4: {
-              color: '#f3f4f6',
-            },
-            strong: {
-              color: '#f3f4f6',
             },
           },
         },

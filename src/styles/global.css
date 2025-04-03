@@ -16,12 +16,7 @@
   --white: #ffffff;
 }
 
-:root.dark {
-  --background-color: var(--black);
-  --text-color: var(--white);
-}
-
-:root.light {
+:root {
   --background-color: var(--white);
   --text-color: var(--black);
 }
