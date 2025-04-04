@@ -44,12 +44,12 @@ const promotionalCards = [
           <!-- First Card - Sofa Promo -->
           <div class="flex flex-col h-full md:mt-[80px]">
             <div
-              class="flex flex-col h-full"
+              class="flex flex-col justify-between h-[420px]"
               style={`background-color: ${promotionalCards[0].backgroundColor};`}
             >
-              <div class="p-6 flex-grow">
+              <div class="p-8">
                 <h3
-                  class="text-4xl font-bold mb-3"
+                  class="text-4xl font-bold mb-4"
                   style={`color: ${promotionalCards[0].textColor};`}
                 >
                   {promotionalCards[0].title}
@@ -61,11 +61,11 @@ const promotionalCards = [
                   {promotionalCards[0].description}
                 </p>
               </div>
-              <div class="h-[187px] overflow-hidden">
+              <div class="mt-auto">
                 <img
                   src={promotionalCards[0].imageSrc}
                   alt={promotionalCards[0].imageAlt}
-                  class="w-full h-full object-cover"
+                  class="w-full h-auto"
                 />
               </div>
             </div>
@@ -73,8 +73,8 @@ const promotionalCards = [
 
           <!-- Second Card - Milan Design Week -->
           <div class="flex flex-col h-full">
-            <div class="flex flex-col h-full">
-              <div class="h-[187px] overflow-hidden">
+            <div class="flex flex-col justify-between h-[420px]">
+              <div class="h-1/2">
                 <img
                   src={promotionalCards[1].imageSrc}
                   alt={promotionalCards[1].imageAlt}
@@ -82,11 +82,11 @@ const promotionalCards = [
                 />
               </div>
               <div
-                class="p-6 flex-grow"
+                class="p-8 h-1/2"
                 style={`background-color: ${promotionalCards[1].backgroundColor};`}
               >
                 <h3
-                  class="text-4xl font-bold mb-3"
+                  class="text-4xl font-bold mb-4"
                   style={`color: ${promotionalCards[1].textColor};`}
                 >
                   {promotionalCards[1].title}
@@ -110,7 +110,7 @@ const promotionalCards = [
   /* Optional: Add any additional styling here */
   img {
     display: block;
-    max-height: 265px;
+    max-height: 260px;
     object-fit: cover;
   }
 </style>
