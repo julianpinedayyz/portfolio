@@ -63,16 +63,16 @@ const experiences = [
 ];
 ---
 
-<section id="experience" class="py-24 bg-white dark:bg-charcoal-900">
+<section id="experience" class="py-24 bg-white">
   <div class="site-container">
-    <h2 class="text-4xl font-bold tracking-tight mb-12 text-gray-900 dark:text-gray-100">Selected Work</h2>
+    <h2 class="text-4xl font-bold tracking-tight mb-12 text-gray-900">Selected Work</h2>
 
     <div class="space-y-12">
       {experiences.map((experience, index) => (
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <!-- Project image or graphic -->
           <div class={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
-            <div class="aspect-[4/3] bg-gray-100 dark:bg-charcoal-800 rounded-[4px] overflow-hidden">
+            <div class="aspect-[4/3] bg-gray-100 rounded-[4px] overflow-hidden">
               <img
                 src={experience.image || "https://placehold.co/800x600/e2e8f0/64748b?text=" + encodeURIComponent(experience.title)}
                 alt={experience.title}
@@ -83,13 +83,13 @@ const experiences = [
 
           <!-- Project details -->
           <div class={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
-            <h3 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-2">{experience.title}</h3>
-            <p class="text-purple-400 dark:text-purple-400 mb-6">{experience.company} · {experience.period}</p>
-            <p class="text-gray-600 dark:text-gray-400 mb-6">{experience.description}</p>
+            <h3 class="text-2xl font-bold tracking-tight text-gray-900 mb-2">{experience.title}</h3>
+            <p class="text-purple-400 mb-6">{experience.company} · {experience.period}</p>
+            <p class="text-gray-600 mb-6">{experience.description}</p>
 
             <div class="flex flex-wrap gap-2 pt-2">
               {experience.skills.map((skill) => (
-                <span class="px-3 py-1 text-xs bg-gray-100 dark:bg-charcoal-700 text-gray-600 dark:text-gray-400 rounded-[2px]">{skill}</span>
+                <span class="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded-[2px]">{skill}</span>
               ))}
             </div>
           </div>
@@ -100,15 +100,15 @@ const experiences = [
 </section>
 
 <!-- Testimonial section -->
-<section class="py-24 bg-gray-50 dark:bg-charcoal-800">
+<section class="py-24 bg-gray-50">
   <div class="site-container">
     <div class="max-w-3xl mx-auto text-center">
-      <blockquote class="text-2xl md:text-3xl text-gray-900 dark:text-gray-100 font-bold tracking-tight mb-10 leading-relaxed">
+      <blockquote class="text-2xl md:text-3xl text-gray-900 font-bold tracking-tight mb-10 leading-relaxed">
         "Julian has been instrumental in helping us build our vision for the platform. I have never had a better experience with a technology professional."
       </blockquote>
 
       <div class="flex items-center justify-center">
-        <div class="w-12 h-12 bg-gray-200 dark:bg-charcoal-700 rounded-[2px] mr-4 overflow-hidden">
+        <div class="w-12 h-12 bg-gray-200 rounded-[2px] mr-4 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
             alt="Testimonial avatar"
@@ -116,8 +116,8 @@ const experiences = [
           />
         </div>
         <div class="text-left">
-          <div class="font-bold tracking-tight text-gray-900 dark:text-gray-100">Marc Harris</div>
-          <div class="text-gray-500 dark:text-gray-400">CTO, Acme Inc</div>
+          <div class="font-bold tracking-tight text-gray-900">Marc Harris</div>
+          <div class="text-gray-500">CTO, Acme Inc</div>
         </div>
       </div>
     </div>
