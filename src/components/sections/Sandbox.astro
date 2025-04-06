@@ -3,7 +3,34 @@ import Palette from './Palette.astro';
 import StatsCards from './StatsCards.astro';
 ---
 
-<section class="py-12 bg-white border-b border-gray-200" id="sandbox">
+<!-- Fixed Toggle Button -->
+<button
+  id="sandbox-toggle"
+  class="fixed right-4 bottom-4 z-50 flex items-center justify-center w-12 h-12 bg-[#AAC0AA] rounded-full shadow-lg hover:bg-opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-[#7DA1BF]"
+  aria-expanded="false"
+  aria-controls="sandbox-section"
+>
+  <span class="sr-only">Toggle UI Sandbox</span>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6 text-[#24272B]"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+    ></path>
+  </svg>
+</button>
+
+<section
+  id="sandbox-section"
+  class="py-12 bg-white border-b border-gray-200 hidden"
+>
   <div class="site-container">
     <h2 class="text-3xl font-bold mb-6 text-gray-800">UI Sandbox</h2>
 
@@ -380,8 +407,78 @@ import StatsCards from './StatsCards.astro';
 </section>
 
 <script>
-  // Tab functionality
   document.addEventListener('DOMContentLoaded', () => {
+    // Toggle Sandbox Visibility
+    const toggleButton = document.getElementById('sandbox-toggle');
+    const sandboxSection = document.getElementById('sandbox-section');
+
+    // Function to update button icon based on state
+    const updateToggleButton = (isVisible) => {
+      toggleButton.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+
+      // Change icon based on state
+      if (isVisible) {
+        toggleButton.innerHTML = `
+          <span class="sr-only">Hide UI Sandbox</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#24272B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        `;
+      } else {
+        toggleButton.innerHTML = `
+          <span class="sr-only">Show UI Sandbox</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#24272B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        `;
+      }
+    };
+
+    // Function to save preference
+    const saveSandboxPreference = (isVisible) => {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('sandboxVisible', isVisible ? 'true' : 'false');
+      }
+    };
+
+    // Function to load preference
+    const loadSandboxPreference = () => {
+      if (typeof localStorage !== 'undefined') {
+        const isVisible = localStorage.getItem('sandboxVisible') === 'true';
+
+        if (isVisible) {
+          sandboxSection.classList.remove('hidden');
+        } else {
+          sandboxSection.classList.add('hidden');
+        }
+
+        updateToggleButton(isVisible);
+        return isVisible;
+      }
+      return false;
+    };
+
+    // Toggle functionality
+    toggleButton.addEventListener('click', () => {
+      const isCurrentlyVisible = !sandboxSection.classList.contains('hidden');
+      const newVisibility = !isCurrentlyVisible;
+
+      if (newVisibility) {
+        sandboxSection.classList.remove('hidden');
+        // Scroll to sandbox
+        sandboxSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        sandboxSection.classList.add('hidden');
+      }
+
+      updateToggleButton(newVisibility);
+      saveSandboxPreference(newVisibility);
+    });
+
+    // Initialize with saved preference
+    loadSandboxPreference();
+
+    // Tab functionality
     const tabs = document.querySelectorAll('[role="tab"]');
     const tabPanels = document.querySelectorAll('[role="tabpanel"]');
 
