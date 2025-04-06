@@ -11,8 +11,6 @@
   --black: #13151a;
   --gray: #4b5563;
   --gray-light: #9ca3af;
-  --gray-dark: #1f2937;
-  --gray-darkest: #111827;
   --white: #ffffff;
 }
 
@@ -30,7 +28,6 @@ body {
   padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
