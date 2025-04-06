@@ -1,0 +1,253 @@
+---
+// ProjectsTable.astro - A component displaying projects in a table format using the Bauhaus palette
+
+// Bauhaus palette from Palette.astro
+const bauhausColors = {
+  deepNavy: '#0E0E2C',
+  crimsonRed: '#C8102E',
+  ochreYellow: '#F4A100',
+  forestGreen: '#004851',
+  warmBeige: '#D6C6A5',
+  pureWhite: '#FFFFFF',
+};
+
+// Project data from image analysis
+const projects = [
+  {
+    year: '2023',
+    project: 'Emerson Collective',
+    madeAt: 'Upstatement',
+    builtWith: ['Next.js', 'TypeScript', 'SCSS', 'Contentful'],
+    link: 'emersoncollective.com',
+  },
+  {
+    year: '2023',
+    project: 'Harvard Business School Next.js Site',
+    madeAt: 'Upstatement',
+    builtWith: ['React', 'TypeScript', 'Next.js', 'Contentful'],
+    link: 'hbs.edu',
+  },
+  {
+    year: '2022',
+    project: 'Harvard Business School Design System',
+    madeAt: 'Upstatement',
+    builtWith: ['Storybook', 'React', 'TypeScript'],
+    link: '',
+  },
+  {
+    year: '2022',
+    project: 'Threadable',
+    madeAt: 'Upstatement',
+    builtWith: ['React Native', 'Ruby on Rails', 'Firebase'],
+    link: 'apps.apple.com',
+  },
+  {
+    year: '2022',
+    project: 'Pratt',
+    madeAt: 'Upstatement',
+    builtWith: [
+      'WordPress',
+      'Timber',
+      'WordPress Multisite',
+      'Gutenberg',
+      'JavaScript',
+    ],
+    link: 'pratt.edu',
+  },
+  {
+    year: '2022',
+    project: 'Everytown Gun Law Rankings',
+    madeAt: 'Upstatement',
+    builtWith: ['React', 'Next.js', 'D3.js'],
+    link: 'everytownresearch.org/rankings',
+  },
+  {
+    year: '2021',
+    project: 'Koala Health',
+    madeAt: 'Upstatement',
+    builtWith: ['React', 'TypeScript', 'Tailwind'],
+    link: 'koala.health',
+  },
+  {
+    year: '2021',
+    project: 'Philadelphia Inquirer Sports Scoreboards',
+    madeAt: 'Upstatement',
+    builtWith: ['React', 'D3.js', 'GraphQL'],
+    link: 'inquirer.com/sports',
+  },
+  {
+    year: '2021',
+    project: 'Vanderbilt Design System',
+    madeAt: 'Upstatement',
+    builtWith: ['Storybook', 'React', 'SCSS'],
+    link: 'vanderbilt.edu',
+  },
+  {
+    year: '2020',
+    project: 'Michelle Wu for Boston Grassroots Toolkit',
+    madeAt: 'Upstatement',
+    builtWith: ['Gatsby', 'React', 'Netlify'],
+    link: 'michelleforboston.com',
+  },
+  {
+    year: '2020',
+    project: 'The 19th News',
+    madeAt: 'Upstatement',
+    builtWith: ['WordPress', 'React', 'Tailwind'],
+    link: '19thnews.org',
+  },
+];
+---
+
+<section
+  style={`background-color: ${bauhausColors.deepNavy}; color: ${bauhausColors.pureWhite};`}
+  class="py-20"
+>
+  <div class="site-container">
+    <!-- Projects heading -->
+    <h2 class="text-5xl font-bold mb-16">All Projects</h2>
+
+    <!-- Projects table -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr style={`border-bottom: 1px solid ${bauhausColors.crimsonRed};`}>
+            <th class="py-4 text-left font-medium">Year</th>
+            <th class="py-4 text-left font-medium">Project</th>
+            <th class="py-4 text-left font-medium md:table-cell hidden"
+              >Made at</th
+            >
+            <th class="py-4 text-left font-medium md:table-cell hidden"
+              >Built with</th
+            >
+            <th class="py-4 text-left font-medium sm:table-cell hidden">Link</th
+            >
+            <th class="py-4 text-left font-medium sm:hidden"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            projects.map((project) => (
+              <tr
+                style={`border-bottom: 1px solid rgba(255, 255, 255, 0.1);`}
+                class="hover:bg-opacity-10 hover:bg-white transition-colors"
+              >
+                <td class="py-6 pr-4 align-top whitespace-nowrap">
+                  {project.year}
+                </td>
+                <td class="py-6 pr-4 align-top font-medium">
+                  {project.project}
+                </td>
+                <td class="py-6 pr-4 align-top whitespace-nowrap md:table-cell hidden">
+                  {project.madeAt}
+                </td>
+                <td class="py-6 pr-4 align-top md:table-cell hidden">
+                  <div class="flex flex-wrap gap-2">
+                    {project.builtWith.map((tech) => (
+                      <span
+                        class="inline-block px-3 py-1 text-xs rounded-full"
+                        style={`background-color: ${bauhausColors.forestGreen}; color: ${bauhausColors.pureWhite};`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </td>
+                <td class="py-6 align-top sm:table-cell hidden">
+                  {project.link && (
+                    <a
+                      href={`https://${project.link}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center hover:underline"
+                      style={`color: ${bauhausColors.ochreYellow};`}
+                    >
+                      {project.link}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ml-1"
+                      >
+                        <path d="M7 17L17 7M7 7h10v10" />
+                      </svg>
+                    </a>
+                  )}
+                </td>
+                <td class="py-6 align-top text-right sm:hidden">
+                  {project.link && (
+                    <a
+                      href={`https://${project.link}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${project.project} website`}
+                      style={`color: ${bauhausColors.ochreYellow};`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M7 17L17 7M7 7h10v10" />
+                      </svg>
+                    </a>
+                  )}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Additional styles can be added here if needed */
+  th {
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    td,
+    th {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 580px) {
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .site-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    td,
+    th {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+  }
+</style>
