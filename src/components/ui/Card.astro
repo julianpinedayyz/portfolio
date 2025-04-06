@@ -1,54 +1,45 @@
 ---
 export interface Props {
   title?: string;
+  subtitle?: string;
   class?: string;
-  href?: string;
-  target?: string;
-  rel?: string;
-  clickable?: boolean;
+  noPadding?: boolean;
 }
 
 const {
   title,
+  subtitle,
   class: className = '',
-  href,
-  target,
-  rel,
-  clickable = false,
+  noPadding = false,
 } = Astro.props;
 
-const baseClasses =
-  'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-all duration-300';
-const clickableClasses = clickable
-  ? 'hover:shadow-lg cursor-pointer transform hover:-translate-y-1'
-  : '';
-const combinedClasses = `${baseClasses} ${clickableClasses} ${className}`;
+// Combine the default card styles with any custom classes passed in
+const cardClasses = `${
+  className
+} bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300`;
+
+// Determine if we should add padding to the content
+const contentPadding = noPadding ? '' : 'p-4';
 ---
 
 {
-  href ? (
-    <a href={href} target={target} rel={rel} class={combinedClasses}>
-      {title && (
-        <div class="p-4 font-bold text-lg text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-700">
-          {title}
-        </div>
-      )}
-      <div class="p-4">
+  title ? (
+    <div class={cardClasses}>
+      <div class="p-4 font-bold text-lg text-gray-900 border-b border-gray-100">
+        {title}
+        {subtitle && (
+          <div class="text-sm font-normal text-gray-500 mt-1">{subtitle}</div>
+        )}
+      </div>
+      <div class={contentPadding}>
         <slot />
       </div>
-      <slot name="footer" />
-    </a>
+    </div>
   ) : (
-    <div class={combinedClasses}>
-      {title && (
-        <div class="p-4 font-bold text-lg text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-700">
-          {title}
-        </div>
-      )}
-      <div class="p-4">
+    <div class={cardClasses}>
+      <div class={contentPadding}>
         <slot />
       </div>
-      <slot name="footer" />
     </div>
   )
 }
