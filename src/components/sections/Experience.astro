@@ -134,11 +134,15 @@ const experiences = [
       'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Royal+Bank+of+Canada',
   },
 ];
+
+// LinkedIn URL and resume file path
+const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
+const resumeFilePath = '/resume.txt';
 ---
 
 <section id="experience" class="bg-[#1A1A1A] py-10 text-white">
   <div class="max-w-[1480px] mx-auto px-6 my-[50px]">
-    <h2 class="text-3xl font-bold" style="color: #DCDCDC;">Experience</h2>
+    <h2 class="text-3xl font-bold mb-12 text-white">Experience</h2>
 
     <ul class="item-list">
       {
@@ -215,6 +219,29 @@ const experiences = [
         ))
       }
     </ul>
+
+    <!-- Experience Footer -->
+    <div class="experience-footer">
+      <div class="footer-buttons">
+        <a
+          href={resumeFilePath}
+          target="_blank"
+          class="footer-button resume-button"
+        >
+          <span>Download Resume</span>
+          <span class="button-icon">↗</span>
+        </a>
+        <a
+          href={linkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-button linkedin-button"
+        >
+          <span>LinkedIn Profile</span>
+          <span class="button-icon">↗</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -519,6 +546,65 @@ const experiences = [
 
     .item-image,
     .expanded-details {
+      width: 100%;
+    }
+  }
+
+  /* Footer Styles */
+  .experience-footer {
+    margin-top: 80px;
+    border-top: 1px solid var(--color-divider);
+    padding-top: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-buttons {
+    display: flex;
+    gap: 40px;
+  }
+
+  .footer-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: transparent;
+    border: 1px solid var(--color-text-primary);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background-color var(--transition-speed),
+      color var(--transition-speed);
+    text-decoration: none;
+  }
+
+  .resume-button:hover,
+  .resume-button:focus {
+    background-color: var(--color-status-green);
+    border-color: var(--color-status-green);
+    color: var(--color-background);
+  }
+
+  .linkedin-button:hover,
+  .linkedin-button:focus {
+    background-color: var(--color-status-yellow);
+    border-color: var(--color-status-yellow);
+    color: var(--color-background);
+  }
+
+  .button-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  /* Responsive Footer */
+  @media (max-width: 576px) {
+    .footer-buttons {
+      flex-direction: column;
+      gap: 20px;
       width: 100%;
     }
   }
