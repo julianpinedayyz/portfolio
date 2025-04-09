@@ -63,6 +63,15 @@ import StatsCards from './StatsCards.astro';
       >
         Stats Cards
       </button>
+      <button
+        id="tab-inter-font"
+        class="px-4 py-2 font-medium text-gray-500 hover:text-gray-800 border-b-2 border-transparent"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-inter-font"
+      >
+        Inter Font Styles
+      </button>
     </div>
 
     <!-- UI Elements Tab Panel -->
@@ -403,36 +412,292 @@ import StatsCards from './StatsCards.astro';
         </div>
       </div>
     </div>
+
+    <!-- Inter Font Styles Tab Panel -->
+    <div
+      id="panel-inter-font"
+      role="tabpanel"
+      aria-labelledby="tab-inter-font"
+      class="hidden"
+    >
+      <div class="bg-white p-6 shadow-sm border border-gray-200 space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">
+            Inter Font Styles
+          </h3>
+          <p class="mb-6 text-gray-600">
+            Examples of the Inter typeface weights and italic styles. Loaded via <code
+              class="bg-gray-100 px-1 py-0.5 rounded text-sm"
+              >@import url('https://rsms.me/inter/inter.css');</code>
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          <!-- Regular Weights -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-medium text-gray-700 border-b pb-1">
+              Regular Weights
+            </h4>
+            <p class="font-thin">Thin 100 - Salient gazelle eyes</p>
+            <p class="font-extralight">ExtraLight 200 - Internationalization</p>
+            <p class="font-light">Light 300 - Millimeter waves</p>
+            <p class="font-normal">Regular 400 - Assimilation engine</p>
+            <p class="font-medium">Medium 500 - Botanica Francisco</p>
+            <p class="font-semibold">SemiBold 600 - Spontaneous apes</p>
+            <p class="font-bold">Bold 700 - 15 Mango Avenue</p>
+            <p class="font-extrabold">ExtraBold 800 - Comedy Morning</p>
+            <p class="font-black">Black 900 - Hamburgefonstiv</p>
+          </div>
+
+          <!-- Italic Weights -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-medium text-gray-700 border-b pb-1">
+              Italic Weights
+            </h4>
+            <p class="font-thin italic">Thin Italic 100 - Inorganic compound</p>
+            <p class="font-extralight italic">
+              ExtraLight Italic 200 - Extravaganza Lime
+            </p>
+            <p class="font-light italic">
+              Light Italic 300 - Rectangular ellipse
+            </p>
+            <p class="font-normal italic">
+              Regular Italic 400 - 3 hours till midnight
+            </p>
+            <p class="font-medium italic">
+              Medium Italic 500 - Artificial Intelligence
+            </p>
+            <p class="font-semibold italic">
+              SemiBold Italic 600 - Sulfur hexafluoride
+            </p>
+            <p class="font-bold italic">
+              Bold Italic 700 - Hospital helicopter
+            </p>
+            <p class="font-extrabold italic">
+              ExtraBold Italic 800 - Encyclopedia Abc
+            </p>
+            <p class="font-black italic">Black Italic 900 - United Martians</p>
+          </div>
+        </div>
+
+        <!-- Letter Spacing (Tracking) -->
+        <div class="pt-6 border-t">
+          <h4 class="text-lg font-medium text-gray-700 mb-4">
+            Letter Spacing (Tracking)
+          </h4>
+          <div class="space-y-3">
+            <p class="tracking-tighter">Tracking Tighter (-0.05em)</p>
+            <p class="tracking-tight">Tracking Tight (-0.025em)</p>
+            <p class="tracking-normal">Tracking Normal (0em)</p>
+            <p class="tracking-wide">Tracking Wide (0.025em)</p>
+            <p class="tracking-wider">Tracking Wider (0.05em)</p>
+            <p class="tracking-widest">Tracking Widest (0.1em)</p>
+          </div>
+        </div>
+
+        <!-- Line Height (Leading) -->
+        <div class="pt-6 border-t">
+          <h4 class="text-lg font-medium text-gray-700 mb-4">
+            Line Height (Leading)
+          </h4>
+          <div class="space-y-4 max-w-md">
+            <p class="leading-none">
+              Leading None (1): Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
+            <p class="leading-tight">
+              Leading Tight (1.25): Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
+            <p class="leading-snug">
+              Leading Snug (1.375): Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
+            <p class="leading-normal">
+              Leading Normal (1.5): Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
+            <p class="leading-relaxed">
+              Leading Relaxed (1.625): Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
+            <p class="leading-loose">
+              Leading Loose (2): Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            </p>
+          </div>
+        </div>
+
+        <!-- Circled / Squared Characters -->
+        <div class="pt-6 border-t">
+          <h4 class="text-lg font-medium text-gray-700 mb-4">
+            Circled / Squared Characters
+          </h4>
+          <p class="text-gray-600 mb-3">
+            Inter uses standard Unicode characters for circled or squared
+            numbers/letters rather than CSS classes or OpenType features. You
+            can copy and paste these directly:
+          </p>
+          <div class="flex flex-wrap gap-4 text-xl">
+            <span>① ② ③ ④ ⑤</span>
+            <span>⑴ ⑵ ⑶ ⑷ ⑸</span>
+            <span>⓵ ⓶ ⓷ ⓸ ⓹</span>
+            <span>Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ</span>
+            <span>🅐 🅑 🅒 🅓 🅔</span>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">
+            Note: Display depends on system/browser font support for these
+            Unicode characters.
+          </p>
+        </div>
+
+        <!-- Example Text Block -->
+        <div class="mt-8 pt-4 border-t">
+          <h4 class="text-lg font-medium text-gray-700 mb-2">
+            Example Text (Regular 400)
+          </h4>
+          <p class="font-normal text-gray-800 leading-relaxed">
+            One of the most famous lighthouses of antiquity, as I have already
+            pointed out, was the pharos of Alexandria, which ancient writers
+            included among the Seven Wonders of the World. It might naturally be
+            supposed that the founder of so remarkable a monument of
+            architectural skill would be well known; yet while Strabo and Pliny,
+            Eusebius, Suidas, and Lucian ascribe its erection to Ptolemæus
+            Philadelphus, the wisest and most benevolent of the Ptolemean kings
+            of Egypt, by Tzetzes and Ammianus Marcellinus the honour is given to
+            Cleopatra; <em
+              >and other authorities even attribute it to Alexander the Great.</em
+            >
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Toggle Sandbox Visibility
+    // Toggle Sandbox Visibility with smooth transition
     const toggleButton = document.getElementById('sandbox-toggle');
     const sandboxSection = document.getElementById('sandbox-section');
+
+    // Add transition classes to sandbox section
+    sandboxSection.classList.add(
+      'transition-all',
+      'duration-300',
+      'ease-in-out',
+    );
 
     // Function to update button icon based on state
     const updateToggleButton = (isVisible) => {
       toggleButton.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
 
-      // Change icon based on state
+      // Apply transition before changing visibility
       if (isVisible) {
-        toggleButton.innerHTML = `
-          <span class="sr-only">Hide UI Sandbox</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#24272B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        `;
+        sandboxSection.style.opacity = '0';
+        sandboxSection.classList.remove('hidden');
+        // Force reflow to ensure transition applies correctly
+        void sandboxSection.offsetWidth;
+        sandboxSection.style.opacity = '1';
       } else {
-        toggleButton.innerHTML = `
-          <span class="sr-only">Show UI Sandbox</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#24272B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        `;
+        sandboxSection.style.opacity = '0';
+        setTimeout(() => {
+          sandboxSection.classList.add('hidden');
+        }, 300); // Match transition duration
+      }
+
+      // Update button icon
+      toggleButton.innerHTML = isVisible
+        ? `<span class="sr-only">Hide UI Sandbox</span>
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#24272B] transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+           </svg>`
+        : `<span class="sr-only">Show UI Sandbox</span>
+           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#24272B] transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+           </svg>`;
+    };
+
+    // Tab System Enhancement
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+
+    // Function to switch tabs
+    const switchTab = (oldTab, newTab) => {
+      newTab.focus();
+      newTab.setAttribute('aria-selected', 'true');
+      oldTab.setAttribute('aria-selected', 'false');
+
+      // Update tab styles
+      oldTab.classList.remove('text-gray-800', 'border-gray-800');
+      oldTab.classList.add('text-gray-500', 'hover:text-gray-800');
+      newTab.classList.remove('text-gray-500', 'hover:text-gray-800');
+      newTab.classList.add('text-gray-800', 'border-gray-800');
+
+      const newPanelId = newTab.getAttribute('aria-controls');
+      const newPanel = document.getElementById(newPanelId);
+
+      // Hide all panels initially with transition
+      panels.forEach((panel) => {
+        panel.style.opacity = '0';
+        panel.classList.add(
+          'hidden',
+          'transition-opacity',
+          'duration-200',
+          'ease-in-out',
+        );
+      });
+
+      // Show the new panel with transition
+      if (newPanel) {
+        newPanel.classList.remove('hidden');
+        // Force reflow before changing opacity for transition
+        void newPanel.offsetWidth;
+        newPanel.style.opacity = '1';
       }
     };
+
+    // Add click events to tabs
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        const currentTab = document.querySelector(
+          '[role="tab"][aria-selected="true"]',
+        );
+        if (e.currentTarget !== currentTab) {
+          switchTab(currentTab, e.currentTarget);
+        }
+      });
+
+      // Add keyboard navigation
+      tab.addEventListener('keydown', (e) => {
+        let index = Array.from(tabs).indexOf(e.currentTarget);
+        let newIndex;
+
+        if (e.key === 'ArrowRight') {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (e.key === 'Home') {
+          newIndex = 0;
+        } else if (e.key === 'End') {
+          newIndex = tabs.length - 1;
+        } else {
+          return; // Ignore other keys
+        }
+
+        const currentTab = document.querySelector(
+          '[role="tab"][aria-selected="true"]',
+        );
+        switchTab(currentTab, tabs[newIndex]);
+        e.preventDefault(); // Prevent page scroll on arrow keys
+      });
+    });
 
     // Function to save preference
     const saveSandboxPreference = (isVisible) => {
@@ -448,13 +713,20 @@ import StatsCards from './StatsCards.astro';
 
         if (isVisible) {
           sandboxSection.classList.remove('hidden');
+          // Ensure initial opacity is set for transition
+          sandboxSection.style.opacity = '1';
         } else {
           sandboxSection.classList.add('hidden');
+          sandboxSection.style.opacity = '0';
         }
 
         updateToggleButton(isVisible);
         return isVisible;
       }
+      // Default to hidden if localStorage is not available or preference not set
+      sandboxSection.classList.add('hidden');
+      sandboxSection.style.opacity = '0';
+      updateToggleButton(false);
       return false;
     };
 
@@ -463,78 +735,25 @@ import StatsCards from './StatsCards.astro';
       const isCurrentlyVisible = !sandboxSection.classList.contains('hidden');
       const newVisibility = !isCurrentlyVisible;
 
-      if (newVisibility) {
-        sandboxSection.classList.remove('hidden');
-        // Scroll to sandbox
-        sandboxSection.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        sandboxSection.classList.add('hidden');
-      }
+      updateToggleButton(newVisibility); // Update button first
+      saveSandboxPreference(newVisibility); // Save preference
 
-      updateToggleButton(newVisibility);
-      saveSandboxPreference(newVisibility);
+      // If opening, scroll into view after transition starts
+      if (newVisibility) {
+        sandboxSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
 
     // Initialize with saved preference
     loadSandboxPreference();
 
-    // Tab functionality
-    const tabs = document.querySelectorAll('[role="tab"]');
-    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        // Deactivate all tabs
-        tabs.forEach((t) => {
-          t.setAttribute('aria-selected', 'false');
-          t.classList.remove('border-gray-800', 'text-gray-800');
-          t.classList.add('text-gray-500');
-        });
-
-        // Activate clicked tab
-        tab.setAttribute('aria-selected', 'true');
-        tab.classList.remove('text-gray-500');
-        tab.classList.add('border-b-2', 'border-gray-800', 'text-gray-800');
-
-        // Hide all panels
-        tabPanels.forEach((panel) => {
-          panel.classList.add('hidden');
-        });
-
-        // Show corresponding panel
-        const panelId = tab.getAttribute('aria-controls');
-        document.getElementById(panelId).classList.remove('hidden');
-      });
-    });
-
-    // Optional: Store active tab in localStorage
-    const setActiveTab = (tabId) => {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('activeSandboxTab', tabId);
-      }
-    };
-
-    // Load saved tab preference
-    const loadActiveTab = () => {
-      if (typeof localStorage !== 'undefined') {
-        const activeTab = localStorage.getItem('activeSandboxTab');
-        if (activeTab) {
-          const tab = document.getElementById(activeTab);
-          if (tab) {
-            tab.click();
-          }
-        }
-      }
-    };
-
-    // Save tab selection
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        setActiveTab(tab.id);
-      });
-    });
-
-    // Initialize with saved preference
-    loadActiveTab();
+    // Initialize the first tab (UI Elements) as active
+    const firstTab = document.getElementById('tab-elements');
+    const firstPanel = document.getElementById('panel-elements');
+    if (firstTab && firstPanel) {
+      firstTab.setAttribute('aria-selected', 'true');
+      firstPanel.classList.remove('hidden');
+      firstPanel.style.opacity = '1'; // Ensure the first panel is visible
+    }
   });
 </script>
