@@ -153,21 +153,9 @@ const resumeFilePath = '/resume.txt';
             aria-expanded={index === 0 ? 'true' : 'false'}
           >
             <div class="item-main">
-              <div class="item-year font-extralight italic tracking-tighter text-2xl">
-                {job.year}
-              </div>
-              <div class="item-model font-bold text-4xl">{job.role}</div>
+              <div class="item-year">{job.year}</div>
+              <div class="item-model">{job.role}</div>
               <div class="item-country">{job.company}</div>
-              <div class="item-status font-light text-m">
-                <span
-                  class={`status-badge ${
-                    job.status.type === 'active'
-                      ? 'status-green'
-                      : 'status-yellow'
-                  }`}
-                />
-                <span>{job.status.label}</span>
-              </div>
             </div>
             <div class="item-expanded">
               <div class="item-expanded-content">
@@ -254,9 +242,6 @@ const resumeFilePath = '/resume.txt';
     --color-divider: #333333;
     --color-expanded-bg: #f0f0f0;
     --color-expanded-text: #333333;
-    --color-status-green: #4caf50;
-    --color-status-red: #f44336;
-    --color-status-yellow: #ffc107;
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
@@ -306,56 +291,28 @@ const resumeFilePath = '/resume.txt';
   }
 
   .item-year {
-    width: 10%;
-    margin-left: 10px;
+    width: 15%;
+    font-size: 1rem;
+    text-align: center;
+    margin-left: 5px;
     color: var(--color-text-primary);
   }
 
   .item-model {
-    width: 52%;
+    width: 45%;
+    font-size: 1.8rem;
+    font-weight: 700;
     line-height: 1.2;
     padding-left: var(--spacing-lg);
     color: var(--color-text-primary);
   }
 
   .item-country {
-    width: 30%;
+    width: 40%;
     text-align: left;
     padding-left: var(--spacing-lg);
     color: var(--color-text-primary);
   }
-
-  .item-status {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-  }
-
-  .status-badge {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-
-  .status-green {
-    background-color: var(--color-status-green);
-  }
-
-  .status-red {
-    background-color: var(--color-status-red);
-  }
-
-  .status-yellow {
-    background-color: var(--color-status-yellow);
-  }
-
-  /* .item-status span:last-child {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-  } */
 
   /* Expanded Item */
   .item-expanded {
@@ -446,6 +403,12 @@ const resumeFilePath = '/resume.txt';
     float: inline-start;
   }
 
+  /* Additional styles to maintain side-by-side layout */
+  .description-column:nth-child(2) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .description-column p {
     font-size: 0.95rem;
     line-height: 1.6;
@@ -479,18 +442,53 @@ const resumeFilePath = '/resume.txt';
   }
 
   /* Responsive Adjustments */
+  @media (max-width: 1280px) {
+    .item-main {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+    }
+
+    .item-year {
+      width: 15%;
+    }
+
+    .item-model {
+      width: 40%;
+      font-size: 1.5rem;
+    }
+
+    .item-country {
+      width: 45%;
+    }
+  }
+
   @media (max-width: 992px) {
-    .item-expanded-content {
-      flex-direction: column;
+    .item-main {
+      margin-left: 150px;
+      width: calc(100% - 150px);
+    }
+
+    .item-model {
+      width: 50%;
+      font-size: 1.4rem;
+      padding-left: var(--spacing-md);
+    }
+
+    .item-country {
+      width: 35%;
+      padding-left: var(--spacing-md);
     }
 
     .item-image {
-      width: 100%;
-      height: 200px;
+      display: none;
     }
 
     .expanded-details {
       width: 100%;
+    }
+
+    .item-expanded-content {
+      flex-direction: column;
     }
 
     .expanded-content {
@@ -502,6 +500,12 @@ const resumeFilePath = '/resume.txt';
       padding-right: 0;
       margin-bottom: 1rem;
     }
+
+    /* Keep skills and impact side by side */
+    .description-column:nth-child(2) {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 
   @media (max-width: 768px) {
@@ -509,25 +513,26 @@ const resumeFilePath = '/resume.txt';
       flex-wrap: wrap;
       margin-left: 0;
       width: 100%;
+      padding: var(--spacing-md);
+    }
+
+    .item-year {
+      width: auto;
+      margin-right: var(--spacing-md);
+      text-align: left;
     }
 
     .item-model {
       width: 100%;
       order: -1;
-      margin-bottom: 0.5rem;
-      font-size: 1.5rem;
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.3rem;
       padding-left: 0;
     }
 
-    .item-year,
     .item-country {
       width: auto;
-      margin-right: 1.5rem;
-    }
-
-    .item-status {
-      width: auto;
-      margin-left: auto;
+      padding-left: 0;
     }
 
     .list-item[aria-expanded='true'] .item-expanded {
@@ -547,6 +552,31 @@ const resumeFilePath = '/resume.txt';
     .item-image,
     .expanded-details {
       width: 100%;
+    }
+
+    .item-main {
+      padding: var(--spacing-sm);
+    }
+
+    .item-year,
+    .item-country {
+      font-size: 0.9rem;
+    }
+
+    .item-model {
+      font-size: 1.2rem;
+    }
+
+    .footer-buttons {
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .description-column-inner {
+      width: 100%;
+      float: none;
+      margin-bottom: var(--spacing-md);
     }
   }
 
@@ -583,30 +613,21 @@ const resumeFilePath = '/resume.txt';
 
   .resume-button:hover,
   .resume-button:focus {
-    background-color: var(--color-status-green);
-    border-color: var(--color-status-green);
+    background-color: #4caf50;
+    border-color: #4caf50;
     color: var(--color-background);
   }
 
   .linkedin-button:hover,
   .linkedin-button:focus {
-    background-color: var(--color-status-yellow);
-    border-color: var(--color-status-yellow);
+    background-color: #ffc107;
+    border-color: #ffc107;
     color: var(--color-background);
   }
 
   .button-icon {
     font-size: 1.1rem;
     line-height: 1;
-  }
-
-  /* Responsive Footer */
-  @media (max-width: 576px) {
-    .footer-buttons {
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-    }
   }
 </style>
 
