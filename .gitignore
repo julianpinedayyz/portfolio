@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # image files
 public/images/
+
+# UI experiments
+src/ui-experiment/
