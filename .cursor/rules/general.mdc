@@ -1,0 +1,74 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# General development rules
+
+## Worflow
+-  Do not add any features proactively unless I ask you to. If you see opportunities for improvement, please ask first if I want to know them. If I approve, follow this protocol:
+  - Use sequential thinking to understand better the problem.
+  - Search the internet for current and updated solutions or information about the topic.
+  - While doing your research, reflect on what is a simple and reliable solution and always incline to simple solutions.
+  - Provide a detailed plan to implement your solution.
+  - Ask for approval and provide the option to generate commits before moving forward with your solution.
+-  If we are working on a new branch developing a new feature, fixing and issue, etc., DO NOT try to commit changes everytime we perform a change. We will generate commits ONLY when we know that the changes are working as expected.
+-  Keep your solutions Simple. PLEASE KEEP YOUR SOLUTIONS SIMPLE AND RELIABLE.
+
+## 1.	Astro Project Structure and Best Practices:
+- Organize your project with the recommended Astro structure: ￼
+```
+src/
+  ├── components/
+  ├── layouts/
+  ├── pages/
+  └── styles/
+public/
+astro.config.mjs
+```
+- Prioritize static generation and minimize client-side JavaScript to optimize performance.  ￼
+- Use descriptive variable names and adhere to Astro’s naming conventions. ￼
+
+## 2.	Tailwind CSS Integration:
+- Integrate Tailwind CSS using the official Astro integration (@astrojs/tailwind). ￼
+- Utilize Tailwind’s utility classes extensively within your Astro components for consistent styling. ￼
+- Leverage responsive design utilities (sm:, md:, lg:, etc.) to ensure your portfolio is mobile-friendly.  ￼
+
+## 3.	Component Development:
+- Create .astro files for components, ensuring they are modular and reusable. ￼
+- Use component props for data passing and leverage Astro’s built-in components like `<Markdown />` when appropriate. ￼
+- Implement proper component composition to maintain a clear separation of concerns.  ￼
+	
+## 4.	Routing and Pages:
+- Utilize Astro’s file-based routing system within the src/pages/ directory. ￼
+- Implement dynamic routes using the `[...slug].astro` syntax and use `getStaticPaths()` for generating static pages with dynamic routes.  ￼
+	
+## 5.	Styling and Performance Optimization:
+- Use scoped styling with `<style>` tags in `.astro` files and import global styles in layouts when necessary. ￼
+- Minimize client-side JavaScript by leveraging Astro’s static generation and use client:* directives judiciously for partial hydration (e.g., client:load, client:idle, client:visible). ￼
+- Implement lazy loading for images and other assets to enhance performance.  ￼
+	
+## 6.	Accessibility Considerations:
+- Always use semantic HTML and native tags BEFORE implementing complicated Aria solutions.
+- Ensure semantic HTML structure in your Astro components. ￼
+- Implement ARIA attributes where necessary and ensure keyboard navigation support for interactive elements
+
+## 7. Experimentation Protocol
+
+**Description**: All experimental features and components must reside within the `ui-experiment` directory to maintain project organization and stability. If the user asks for a new experiment, you will create a new folder inside `ui-experiment` with the corresponding name of the artifact (e.g., `src/ui-experiment/minimal-dashboard`)
+
+**Enforcement**:
+- **Path**: `src/ui-experiment/**`
+- **Action**: Allow
+
+**Notes**:
+- Ensure that any experimental code is thoroughly tested before moving to production directories.
+- Regularly review and clean up the `ui-experiment` folder to remove outdated experiments.
+
+
+
+
+
+
+
