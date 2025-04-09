@@ -1,9 +1,13 @@
 ---
 const experiences = [
   {
-    role: 'Director of Technology',
-    company: 'Miroamarillo Studio',
+    year: '05/25',
+    role: '829 Studio',
+    company: 'Canada/Worldwide',
     period: 'September 2005 - Present',
+    position: 'Director of Technology',
+    subtitle: 'Formerly Miroamarillo Studio',
+    status: { type: 'active', label: 'Active' },
     description: [
       'Partnered with clients worldwide, including leading fintech and retail organizations, to deliver transformative digital solutions tailored to their business needs.',
       'Spearheaded projects such as marketing data-driven personalization initiatives, enrollment wizards for fintech platforms, and the seamless integration of innovative AI-based solutions into existing client infrastructures.',
@@ -11,19 +15,32 @@ const experiences = [
       'Championed accessibility and inclusive design to strengthen brand-audience connections, fostering trust and loyalty.',
       'Oversaw end-to-end implementation and deployment of digital solutions.',
     ],
-    technologies: [
+    skills: [
       'Global Client Collaboration',
       'AI Integration',
-      'Customer Retention',
+      'Customer Retention Strategies',
       'Revenue Growth',
-      'Accessibility',
+      'Accessibility Consulting',
+      'Market Activation Strategies',
       'Solution Deployment',
     ],
+    impact: [
+      '5M+ Users Reached',
+      '$10M+ Revenue Generated',
+      'Multiple Global Markets',
+      'Enhanced Customer Retention',
+    ],
+    imageUrl:
+      'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Miroamarillo+Studio',
   },
   {
-    role: 'Director of Technology',
-    company: 'Critical Mass',
+    year: '21/22',
+    role: 'Critical Mass',
+    company: 'Canada/UK/Central America/US',
     period: 'July 2021 - June 2022',
+    position: 'Director of Technology',
+    subtitle: '',
+    status: { type: 'previous', label: 'Previous' },
     description: [
       'Directed high-impact personalization and lease renewal projects for Nissan and Infiniti, engaging over 1 million customers and driving brand loyalty.',
       'Led the successful launch of the Nissan Ariya campaign, orchestrating cross-functional teams of 50 members across the UK, Central America, Canada, and the US.',
@@ -31,19 +48,33 @@ const experiences = [
       'Partnered with marketing, design, and revenue teams to align customer-focused initiatives with business objectives.',
       'Led product management and innovation initiatives with internal and external stakeholders.',
     ],
-    technologies: [
+    skills: [
       'Front-End Direction',
       'Global Team Leadership',
       'Campaign Management',
       'Customer Personalization',
-      'Digital Strategy',
+      'Onboarding Optimization',
       'Cross-Functional Collaboration',
+      'Digital Strategy',
+      'Revenue Growth',
     ],
+    impact: [
+      '1M+ Customers Engaged',
+      '50% Reduced Onboarding Time',
+      '50+ Team Members Led',
+      'Multiple Global Regions',
+    ],
+    imageUrl: 'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Critical+Mass',
   },
   {
-    role: 'Director of Front End Engineering, Accessibility Strategy and Digital Integration',
-    company: 'Deloitte Digital',
+    year: '18/19',
+    role: 'Deloitte Digital',
+    company: 'Canada/US',
     period: 'May 2018 - July 2019',
+    position:
+      'Director of Front End Engineering, Accessibility Strategy and Digital Integration',
+    subtitle: '',
+    status: { type: 'previous', label: 'Previous' },
     description: [
       'Directed the launch of PcExpress, a digital platform that reached over 4 million users monthly, driving significant engagement and customer retention.',
       'Led TD Canada Trust personalization initiative designed to connect with over 6 million users across Canada.',
@@ -51,7 +82,7 @@ const experiences = [
       'Championed innovation by integrating accessibility strategies into high-profile projects.',
       'Oversaw budgeting and resource allocation for an annual portfolio valued at $2.5 million.',
     ],
-    technologies: [
+    skills: [
       'Campaign Leadership',
       'Personalization Strategy',
       'User Engagement',
@@ -59,11 +90,24 @@ const experiences = [
       'Budget Management',
       'Digital Platforms',
     ],
+    impact: [
+      '4M+ Monthly Users',
+      '6M+ Canadians Reached',
+      '2M+ Campaign Reach',
+      '$2.5M Budget Managed',
+    ],
+    imageUrl:
+      'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Deloitte+Digital',
   },
   {
-    role: 'Director of Front-End Development - Online Banking & Omnichannel',
-    company: 'Royal Bank of Canada',
+    year: '16/18',
+    role: 'Royal Bank of Canada',
+    company: 'Canada',
     period: 'July 2016 - May 2018',
+    position:
+      'Director of Front-End Development - Online Banking & Omnichannel',
+    subtitle: '',
+    status: { type: 'previous', label: 'Previous' },
     description: [
       'Scaled the front-end development team from 2 to 20 members, managing 18 concurrent projects for over 8 million users.',
       'Delivered a strategic front-end roadmap that improved development efficiency, integrating multiple technology platforms.',
@@ -72,7 +116,7 @@ const experiences = [
       'Led cross-functional collaboration to define customer journeys and enhance user experience across desktop and mobile.',
       'Managed a $2.5 million annual budget, optimizing resource allocation and driving product management initiatives.',
     ],
-    technologies: [
+    skills: [
       'Enterprise Strategy',
       'Team Scaling',
       'Accessibility',
@@ -80,45 +124,424 @@ const experiences = [
       'Agile Development',
       'Budget Optimization',
     ],
+    impact: [
+      '8M+ Users Impacted',
+      '90% Fewer Accessibility Bugs',
+      '18 Concurrent Projects',
+      '$2.5M Budget Managed',
+    ],
+    imageUrl:
+      'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Royal+Bank+of+Canada',
   },
 ];
 ---
 
-<section id="experience" class="py-20">
-  <div class="site-container">
-    <h2 class="text-3xl font-bold mb-12 text-gray-900">Experience</h2>
+<section id="experience" class="bg-[#1A1A1A] py-10 text-white">
+  <div class="max-w-[1480px] mx-auto px-6 my-[50px]">
+    <h2 class="text-3xl font-bold" style="color: #DCDCDC;">Experience</h2>
 
-    <div class="space-y-12">
+    <ul class="item-list">
       {
         experiences.map((job, index) => (
-          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-              <div>
-                <h3 class="text-xl font-bold text-gray-900">{job.role}</h3>
-                <p class="text-gray-700 font-medium">{job.company}</p>
+          <li
+            class="list-item"
+            tabindex="0"
+            aria-expanded={index === 0 ? 'true' : 'false'}
+          >
+            <div class="item-main">
+              <div class="item-year font-extralight italic tracking-tighter text-2xl">
+                {job.year}
               </div>
-              <p class="text-gray-500 mt-2 md:mt-0">{job.period}</p>
+              <div class="item-model font-bold text-4xl">{job.role}</div>
+              <div class="item-country">{job.company}</div>
+              <div class="item-status font-light text-m">
+                <span
+                  class={`status-badge ${
+                    job.status.type === 'active'
+                      ? 'status-green'
+                      : 'status-yellow'
+                  }`}
+                />
+                <span>{job.status.label}</span>
+              </div>
             </div>
-
-            <ul class="space-y-3 mb-6">
-              {job.description.map((item) => (
-                <li class="flex items-start gap-2 text-gray-600">
-                  <span class="text-gray-900 mt-1">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div class="flex flex-wrap gap-2">
-              {job.technologies.map((tech) => (
-                <span class="px-3 py-1 text-sm text-gray-600 bg-gray-100 rounded-full">
-                  {tech}
-                </span>
-              ))}
+            <div class="item-expanded">
+              <div class="item-expanded-content">
+                <div class="item-image">
+                  <img src={job.imageUrl} alt={`${job.company} image`} />
+                </div>
+                <div class="expanded-details">
+                  <div class="expanded-header">
+                    <h3>{job.position}</h3>
+                    <p>{job.subtitle}</p>
+                    <div class="header-divider" />
+                  </div>
+                  <div class="expanded-content">
+                    <div class="description-column">
+                      <p>
+                        A global digital experience design agency specializing
+                        in strategic advisory, design, and marketing solutions.
+                        Key achievements:
+                      </p>
+                      <ul>
+                        {job.description.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="description-column">
+                      <div class="description-column-inner">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                          {job.skills.map((skill) => (
+                            <li>{skill}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div class="description-column-inner">
+                        <h4>Impact:</h4>
+                        <ul>
+                          {job.impact.map((impact) => (
+                            <li>{impact}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>
+
+<style>
+  /* Color Variables */
+  :root {
+    --color-background: #1a1a1a;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #a0a0a0;
+    --color-divider: #333333;
+    --color-expanded-bg: #f0f0f0;
+    --color-expanded-text: #333333;
+    --color-status-green: #4caf50;
+    --color-status-red: #f44336;
+    --color-status-yellow: #ffc107;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --transition-speed: 0.3s;
+  }
+
+  /* Item List */
+  .item-list {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin-left: 0;
+  }
+
+  /* List Item */
+  .list-item {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+  }
+
+  .list-item[aria-expanded='true'] {
+    width: 100%;
+  }
+
+  .list-item:hover .item-main {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .list-item:focus {
+    outline: none;
+  }
+
+  /* Item Main */
+  .item-main {
+    display: flex;
+    align-items: center;
+    margin-left: 350px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    transition: background-color var(--transition-speed);
+    width: calc(100% - 350px);
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .item-year {
+    width: 10%;
+    margin-left: 10px;
+    color: var(--color-text-primary);
+  }
+
+  .item-model {
+    width: 52%;
+    line-height: 1.2;
+    padding-left: var(--spacing-lg);
+    color: var(--color-text-primary);
+  }
+
+  .item-country {
+    width: 30%;
+    text-align: left;
+    padding-left: var(--spacing-lg);
+    color: var(--color-text-primary);
+  }
+
+  .item-status {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .status-badge {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .status-green {
+    background-color: var(--color-status-green);
+  }
+
+  .status-red {
+    background-color: var(--color-status-red);
+  }
+
+  .status-yellow {
+    background-color: var(--color-status-yellow);
+  }
+
+  /* .item-status span:last-child {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  } */
+
+  /* Expanded Item */
+  .item-expanded {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background-color: var(--color-expanded-bg);
+    border-radius: 0;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all var(--transition-speed);
+    z-index: 10;
+  }
+
+  .list-item[aria-expanded='true'] .item-expanded {
+    position: relative;
+    max-height: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .item-expanded-content {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    min-height: 230px;
+  }
+
+  .item-image {
+    width: 25%;
+    height: 230px;
+    max-width: 350px;
+    overflow: hidden;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .expanded-details {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: var(--spacing-lg);
+  }
+
+  .expanded-header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .expanded-header h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-expanded-text);
+  }
+
+  .expanded-header p {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-xs);
+  }
+
+  .header-divider {
+    height: 1px;
+    background-color: #cccccc;
+    margin: var(--spacing-md) 0;
+    width: 100%;
+  }
+
+  .expanded-content {
+    display: flex;
+    color: var(--color-expanded-text);
+  }
+
+  .description-column {
+    flex: 1;
+    padding-right: var(--spacing-md);
+  }
+
+  .description-column-inner {
+    width: 50%;
+    padding-right: var(--spacing-md);
+    float: inline-start;
+  }
+
+  .description-column p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .expanded-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .expanded-details ul li {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .expanded-details ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-text-secondary);
+  }
+
+  .expanded-details h4 {
+    color: var(--color-expanded-text);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .item-expanded-content {
+      flex-direction: column;
+    }
+
+    .item-image {
+      width: 100%;
+      height: 200px;
+    }
+
+    .expanded-details {
+      width: 100%;
+    }
+
+    .expanded-content {
+      flex-direction: column;
+    }
+
+    .description-column {
+      width: 100%;
+      padding-right: 0;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .item-main {
+      flex-wrap: wrap;
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .item-model {
+      width: 100%;
+      order: -1;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      padding-left: 0;
+    }
+
+    .item-year,
+    .item-country {
+      width: auto;
+      margin-right: 1.5rem;
+    }
+
+    .item-status {
+      width: auto;
+      margin-left: auto;
+    }
+
+    .list-item[aria-expanded='true'] .item-expanded {
+      max-height: none;
+    }
+
+    .item-expanded-content {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .item-expanded {
+      flex-direction: column;
+    }
+
+    .item-image,
+    .expanded-details {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const listItems = document.querySelectorAll('.list-item');
+
+    listItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const isExpanded = item.getAttribute('aria-expanded') === 'true';
+        item.setAttribute('aria-expanded', !isExpanded);
+      });
+
+      // Handle keyboard interaction
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isExpanded = item.getAttribute('aria-expanded') === 'true';
+          item.setAttribute('aria-expanded', !isExpanded);
+        }
+      });
+    });
+  });
+</script>
