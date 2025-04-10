@@ -2,7 +2,7 @@
 const experiences = [
   {
     year: '05/25',
-    role: '829 Studio',
+    role: 'Lab 829',
     company: 'Canada/Worldwide',
     period: 'September 2005 - Present',
     position: 'Director of Technology',
@@ -30,8 +30,7 @@ const experiences = [
       'Multiple Global Markets',
       'Enhanced Customer Retention',
     ],
-    imageUrl:
-      'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Miroamarillo+Studio',
+    imageUrl: '/images/lab829.jpg',
   },
   {
     year: '21/22',
@@ -64,7 +63,7 @@ const experiences = [
       '50+ Team Members Led',
       'Multiple Global Regions',
     ],
-    imageUrl: 'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Critical+Mass',
+    imageUrl: '/images/criticalmass.jpg',
   },
   {
     year: '18/19',
@@ -96,8 +95,7 @@ const experiences = [
       '2M+ Campaign Reach',
       '$2.5M Budget Managed',
     ],
-    imageUrl:
-      'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Deloitte+Digital',
+    imageUrl: '/images/deloittedigital.jpg',
   },
   {
     year: '16/18',
@@ -130,8 +128,7 @@ const experiences = [
       '18 Concurrent Projects',
       '$2.5M Budget Managed',
     ],
-    imageUrl:
-      'https://placehold.co/600x400/1A1A1A/CCCCCC?text=Royal+Bank+of+Canada',
+    imageUrl: '/images/rbc.jpg',
   },
 ];
 
@@ -153,9 +150,13 @@ const resumeFilePath = '/resume.txt';
             aria-expanded={index === 0 ? 'true' : 'false'}
           >
             <div class="item-main">
-              <div class="item-year">{job.year}</div>
-              <div class="item-model">{job.role}</div>
-              <div class="item-country">{job.company}</div>
+              <div class="item-year font-extralight italic text-4xl tracking-[-0.08em]">
+                {job.year}
+              </div>
+              <div class="item-model font-semibold text-4xl tracking-[-0.08em]">
+                {job.role}
+              </div>
+              <div class="item-country font-medium">{job.company}</div>
             </div>
             <div class="item-expanded">
               <div class="item-expanded-content">
@@ -263,7 +264,6 @@ const resumeFilePath = '/resume.txt';
     position: relative;
     width: 100%;
     overflow: visible;
-    cursor: pointer;
     transition: background-color var(--transition-speed);
   }
 
@@ -288,21 +288,18 @@ const resumeFilePath = '/resume.txt';
     transition: background-color var(--transition-speed);
     width: calc(100% - 350px);
     border-bottom: 1px solid var(--color-divider);
+    cursor: pointer;
   }
 
   .item-year {
     width: 15%;
-    font-size: 1rem;
-    text-align: center;
     margin-left: 5px;
     color: var(--color-text-primary);
   }
 
   .item-model {
     width: 45%;
-    font-size: 1.8rem;
-    font-weight: 700;
-    line-height: 1.2;
+    /* line-height: 1.2; */
     padding-left: var(--spacing-lg);
     color: var(--color-text-primary);
   }
@@ -634,19 +631,51 @@ const resumeFilePath = '/resume.txt';
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const listItems = document.querySelectorAll('.list-item');
+    const itemMains = document.querySelectorAll('.item-main');
 
-    listItems.forEach((item) => {
-      item.addEventListener('click', () => {
-        const isExpanded = item.getAttribute('aria-expanded') === 'true';
-        item.setAttribute('aria-expanded', !isExpanded);
+    // Function to collapse all items except the one we want to keep expanded
+    const collapseOtherItems = (currentItem) => {
+      listItems.forEach((item) => {
+        if (item !== currentItem) {
+          item.setAttribute('aria-expanded', 'false');
+        }
       });
+    };
 
-      // Handle keyboard interaction
-      item.addEventListener('keydown', (e) => {
+    // Add click handlers to item-main elements
+    itemMains.forEach((itemMain) => {
+      itemMain.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling to parent
+        const parentItem = itemMain.closest('.list-item');
+        const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
+
+        // If clicking the same item-main that's already expanded, just collapse it
+        if (isExpanded) {
+          parentItem.setAttribute('aria-expanded', 'false');
+        } else {
+          // Collapse all other items and expand this one
+          collapseOtherItems(parentItem);
+          parentItem.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Handle keyboard interaction only on item-main elements
+    itemMains.forEach((itemMain) => {
+      itemMain.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          const isExpanded = item.getAttribute('aria-expanded') === 'true';
-          item.setAttribute('aria-expanded', !isExpanded);
+          e.stopPropagation();
+          const parentItem = itemMain.closest('.list-item');
+          const isExpanded =
+            parentItem.getAttribute('aria-expanded') === 'true';
+
+          if (isExpanded) {
+            parentItem.setAttribute('aria-expanded', 'false');
+          } else {
+            collapseOtherItems(parentItem);
+            parentItem.setAttribute('aria-expanded', 'true');
+          }
         }
       });
     });
