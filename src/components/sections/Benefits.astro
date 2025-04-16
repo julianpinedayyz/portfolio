@@ -1,88 +1,67 @@
 ---
-// Define icon map - using existing SVGs for now, might need updating to match image exactly
-const icons: Record<string, string> = {
-  building: `
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-      <line x1="12" y1="6" x2="12" y2="6.01"></line>
-      <line x1="12" y1="10" x2="12" y2="10.01"></line>
-      <line x1="12" y1="14" x2="12" y2="14.01"></line>
-      <line x1="12" y1="18" x2="12" y2="18.01"></line>
-    </svg>
-  `,
-  dollar: `
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-    </svg>
-  `,
-  shield: `
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-    </svg>
-  `,
-  lightning: `
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-    </svg>
-  `,
-  design: `
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <circle cx="12" cy="12" r="10"></circle>
-      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-      <line x1="12" y1="17" x2="12.01" y2="17"></line>
-    </svg>
-  `,
-  users: `
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-      <circle cx="9" cy="7" r="4"></circle>
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-    </svg>
-  `,
+import {
+  // Keep UsersIcon
+  UsersIcon,
+  // Add new icons
+  RocketLaunchIcon,
+  SparklesIcon,
+  CheckBadgeIcon,
+  GlobeAltIcon,
+  CubeTransparentIcon,
+} from '@heroicons/react/24/outline';
+
+// Update icon mapping
+const iconComponents = {
+  rocket: RocketLaunchIcon,
+  sparkles: SparklesIcon,
+  badge: CheckBadgeIcon,
+  universal: GlobeAltIcon,
+  cube: CubeTransparentIcon,
+  users: UsersIcon,
 };
 
+// Update benefits data array
 const benefits = [
   {
     number: '01',
-    title: 'Easier than in-house',
+    title: 'Strategic Acceleration Mindset',
     description:
-      'Just recruiting a product designer will take you months and cost you at least $20,000.',
-    icon: 'building',
+      'Accelerate time-to-value through strategic alignment and proven leadership.',
+    icon: 'rocket',
   },
   {
     number: '02',
-    title: 'Cheaper than agencies',
+    title: 'Transformative Partnership',
     description:
-      'At least 50% cheaper than most agencies or talent marketplaces with huge markups.',
-    icon: 'dollar',
+      'Partner on impactful solutions designed to significantly boost customer retention and drive revenue growth.',
+    icon: 'sparkles',
   },
   {
     number: '03',
-    title: 'Safer than freelance',
+    title: 'Proven Enterprise Expertise',
     description:
-      "Freelancers come and go, but we're always here for you, rain or shine.",
-    icon: 'shield',
+      'Leverage stable leadership experienced in complex enterprise projects across diverse sectors.',
+    icon: 'badge',
   },
   {
     number: '04',
-    title: 'Faster than others',
+    title: 'Accessible & Inclusive UI/UX',
     description:
-      'Subscribe, hop on a kick-off call and receive your first designs in just a few days.',
-    icon: 'lightning',
+      'Champion accessible and inclusive UI/UX design from the start for compliance and enhanced user experience.',
+    icon: 'universal',
   },
   {
     number: '05',
-    title: 'Better UX/UI skills',
+    title: 'Future-Ready Experiences',
     description:
-      'You work directly with a vetted sr. UX/UI designer who can design a top-notch interface.',
-    icon: 'design', // Mapped to question mark SVG for now
+      'Build scalable, engaging digital experiences using user-centered strategies, AI insights, and omnichannel principles.',
+    icon: 'cube',
   },
   {
     number: '06',
-    title: 'Part of your team',
+    title: 'Cross-Functional Collab',
     description:
-      'We work closely with our clients as an extension of their team.',
+      'Integrate seamlessly with your existing marketing, design, and technology teams to ensure cohesive execution and shared success.',
     icon: 'users',
   },
 ];
@@ -90,49 +69,45 @@ const benefits = [
 
 <section id="benefits" class="pb-12 bg-[#f9f9f9] py-16">
   <div class="site-container px-6 mx-auto max-w-6xl">
-    <!-- Parent container for two-column layout -->
-    <div class="grid grid-cols-1 md:grid-cols-10 md:gap-8">
-      <!-- Column 1: Title (approx 30% on md+) -->
-      <div class="md:col-span-3 mb-8 md:mb-0">
+    {/* Main container: Use Flexbox for layout */}
+    <div class="flex flex-col md:flex-row md:gap-8">
+      {/* Column 1: Title - Width changes at md and lg breakpoints */}
+      <div class="md:w-[280px] lg:w-[460px] md:flex-shrink-0 mb-8 md:mb-0">
         <h2 class="text-4xl font-bold tracking-tight text-[#333333]">
           Benefits
         </h2>
       </div>
 
-      <!-- Column 2: Card Grid (approx 70% on md+) -->
-      <div class="md:col-span-7">
-        <!-- Responsive grid layout for cards (3 per row on lg+) -->
+      {/* Column 2: Card Grid - Takes remaining space above md */}
+      <div class="md:flex-grow pt-2">
+        {/* Card grid: 1 col <lg, 2 cols lg-xl, 3 cols xl+ */}
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-y-8"
+          class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-y-8"
         >
           {
             benefits.map((benefit, index) => {
-              const iconSvg = icons[benefit.icon] || ''; // Get SVG string
+              const IconComponent = iconComponents[benefit.icon] || null;
               return (
                 <div
                   class:list={[
-                    'p-6 flex flex-col',
-                    { 'lg:border-t lg:border-gray-200 lg:pt-8': index >= 3 },
+                    'flex flex-col',
+                    { 'xl:border-t xl:border-gray-200 xl:pt-8': index >= 3 },
                   ]}
                 >
-                  <div class="flex items-baseline mb-3">
+                  <div class="flex items-baseline mb-3 md:mb-8">
                     <span class="text-base mr-2 font-medium text-[#333333]">
                       {benefit.number}
                     </span>
-                    <h3 class="text-base font-medium text-[#333333]">
+                    <h3 class="text-base font-medium text-[#333333] leading-tight">
                       {benefit.title}
                     </h3>
-                    {/* Render icon */}
-                    <div
-                      class="ml-auto text-[#888888]"
-                      set:html={iconSvg}
-                      aria-label={benefit.title}
-                    />
+                    {IconComponent && (
+                      <div class="h-5 w-5 ml-auto text-[#888888]">
+                        <IconComponent aria-hidden="true" />
+                      </div>
+                    )}
                   </div>
-
-                  <p class="text-sm text-[#666666] mt-auto pt-3">
-                    {benefit.description}
-                  </p>
+                  <p class="text-sm text-[#666666]">{benefit.description}</p>
                 </div>
               );
             })
@@ -142,5 +117,3 @@ const benefits = [
     </div>
   </div>
 </section>
-
-<!-- Window size indicator removed -->
