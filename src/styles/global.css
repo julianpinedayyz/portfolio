@@ -5,6 +5,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+
+  /* New utility class for section headings */
+  .h2-heading {
+    @apply text-4xl font-bold tracking-[-0.06em];
+    /* You can add other shared styles here later if needed */
+  }
+}
+
 :root {
   --accent: #2563eb;
   --accent-light: #3b82f6;
