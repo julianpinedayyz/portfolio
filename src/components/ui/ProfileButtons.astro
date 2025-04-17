@@ -1,0 +1,130 @@
+---
+// LinkedIn URL and resume file path - can be overridden by props
+const {
+  linkedInUrl = 'https://linkedin.com/in/julianpinedayyz',
+  resumeUrl = 'public/Julian Pineda - 5v4.pdf',
+  githubUrl = '', // Optional
+  showBorder = true, // Whether to show the top border
+  customClass = '', // Additional custom classes
+} = Astro.props;
+
+// Determine which buttons to show based on provided URLs
+const showLinkedIn = !!linkedInUrl;
+const showResume = !!resumeUrl && resumeUrl !== '';
+const showGithub = !!githubUrl && githubUrl !== '';
+
+// Conditional border style
+const borderStyle = showBorder ? 'border-top: 1px solid #C8102E;' : '';
+---
+
+<div class={`experience-footer ${customClass}`} style={borderStyle}>
+  <div class="footer-buttons">
+    {
+      showResume && (
+        <a href={resumeUrl} target="_blank" class="footer-button resume-button">
+          <span>Download Resume</span>
+          <span class="button-icon">↗</span>
+        </a>
+      )
+    }
+    {
+      showLinkedIn && (
+        <a
+          href={linkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-button linkedin-button"
+        >
+          <span>LinkedIn Profile</span>
+          <span class="button-icon">↗</span>
+        </a>
+      )
+    }
+    {
+      showGithub && (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-button github-button"
+        >
+          <span>GitHub Profile</span>
+          <span class="button-icon">↗</span>
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  /* CSS Variables */
+  :root {
+    --color-background: #1a1a1a;
+    --color-text-primary: #ffffff;
+    --color-divider: #333333;
+    --transition-speed: 0.3s;
+  }
+
+  /* Experience Footer Styles - exact copy from Experience.astro */
+  .experience-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+  }
+
+  .footer-buttons {
+    display: flex;
+    gap: 40px;
+  }
+
+  .footer-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: transparent;
+    border: 1px solid var(--color-text-primary);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background-color var(--transition-speed),
+      color var(--transition-speed);
+    text-decoration: none;
+  }
+
+  .resume-button:hover,
+  .resume-button:focus {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    color: var(--color-background);
+  }
+
+  .linkedin-button:hover,
+  .linkedin-button:focus {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: var(--color-background);
+  }
+
+  .github-button:hover,
+  .github-button:focus {
+    background-color: #9c27b0;
+    border-color: #9c27b0;
+    color: var(--color-background);
+  }
+
+  .button-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 576px) {
+    .footer-buttons {
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+  }
+</style>
