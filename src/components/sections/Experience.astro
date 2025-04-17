@@ -140,7 +140,7 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
 ---
 
 <section id="experience" class="bg-[#1A1A1A] py-10 text-white">
-  <div class="max-w-[1480px] mx-auto px-6 my-[50px]">
+  <div class="max-w-[1480px] mx-auto px-6 my-[40px]">
     <h2 class="h2-heading text-[#DCDCDC]">Experience</h2>
 
     <ul class="item-list">
@@ -489,6 +489,11 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
   }
 
   @media (max-width: 768px) {
+    /* Add margin to h2 on mobile */
+    :global(.h2-heading) {
+      margin-bottom: 1.5rem;
+    }
+
     .item-main {
       flex-wrap: wrap;
       margin-left: 0;
