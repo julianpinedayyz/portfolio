@@ -1,4 +1,6 @@
 ---
+import ProfileButtons from '../ui/ProfileButtons.astro';
+
 const experiences = [
   {
     year: '05/25',
@@ -134,7 +136,7 @@ const experiences = [
 
 // LinkedIn URL and resume file path
 const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
-const resumeFilePath = '/resume.txt';
+const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
 ---
 
 <section id="experience" class="bg-[#1A1A1A] py-10 text-white">
@@ -210,27 +212,7 @@ const resumeFilePath = '/resume.txt';
     </ul>
 
     <!-- Experience Footer -->
-    <div class="experience-footer">
-      <div class="footer-buttons">
-        <a
-          href={resumeFilePath}
-          target="_blank"
-          class="footer-button resume-button"
-        >
-          <span>Download Resume</span>
-          <span class="button-icon">↗</span>
-        </a>
-        <a
-          href={linkedInUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="footer-button linkedin-button"
-        >
-          <span>LinkedIn Profile</span>
-          <span class="button-icon">↗</span>
-        </a>
-      </div>
-    </div>
+    <ProfileButtons linkedInUrl={linkedInUrl} resumeUrl={resumeFilePath} />
   </div>
 </section>
 
@@ -257,6 +239,7 @@ const resumeFilePath = '/resume.txt';
     width: 100%;
     padding: 0;
     margin-left: 0;
+    margin-bottom: 80px;
   }
 
   /* List Item */
@@ -564,67 +547,11 @@ const resumeFilePath = '/resume.txt';
       font-size: 1.2rem;
     }
 
-    .footer-buttons {
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-    }
-
     .description-column-inner {
       width: 100%;
       float: none;
       margin-bottom: var(--spacing-md);
     }
-  }
-
-  /* Footer Styles */
-  .experience-footer {
-    margin-top: 80px;
-    border-top: 1px solid var(--color-divider);
-    padding-top: 40px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .footer-buttons {
-    display: flex;
-    gap: 40px;
-  }
-
-  .footer-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background-color: transparent;
-    border: 1px solid var(--color-text-primary);
-    color: var(--color-text-primary);
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition:
-      background-color var(--transition-speed),
-      color var(--transition-speed);
-    text-decoration: none;
-  }
-
-  .resume-button:hover,
-  .resume-button:focus {
-    background-color: #4caf50;
-    border-color: #4caf50;
-    color: var(--color-background);
-  }
-
-  .linkedin-button:hover,
-  .linkedin-button:focus {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: var(--color-background);
-  }
-
-  .button-icon {
-    font-size: 1.1rem;
-    line-height: 1;
   }
 </style>
 
