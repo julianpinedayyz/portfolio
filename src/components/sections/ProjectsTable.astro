@@ -1,5 +1,6 @@
 ---
 // ProjectsTable.astro - A component displaying projects in a table format using the Bauhaus palette
+import ProfileButtons from '../ui/ProfileButtons.astro';
 
 // Bauhaus palette from Palette.astro
 const bauhausColors = {
@@ -14,89 +15,220 @@ const bauhausColors = {
 // Project data from image analysis
 const projects = [
   {
-    year: '2023',
-    project: 'Emerson Collective',
-    madeAt: 'Upstatement',
-    builtWith: ['Next.js', 'TypeScript', 'SCSS', 'Contentful'],
-    link: 'emersoncollective.com',
+    year: '2025',
+    project: 'Confidential',
+    madeAt: 'Lab 829',
+    serviceProvided: ['Frontend Development', 'AI integration'],
+    link: '',
+    confidential: true,
+  },
+  {
+    year: '2025',
+    project: 'Lab 829 Project',
+    madeAt: 'Lab 829',
+    serviceProvided: ['Chrome Extension', 'AI integration'],
+    link: '',
+    confidential: true,
+  },
+  {
+    year: '2024',
+    project: 'Meta Product Architecture Research',
+    madeAt: 'Lab 829',
+    serviceProvided: ['Product Architecture', 'Research', 'API Design'],
+    link: 'meta.com/',
   },
   {
     year: '2023',
-    project: 'Harvard Business School Next.js Site',
-    madeAt: 'Upstatement',
-    builtWith: ['React', 'TypeScript', 'Next.js', 'Contentful'],
-    link: 'hbs.edu',
+    project: 'Klarna Product Roadmap',
+    madeAt: 'Lab 829',
+    serviceProvided: ['Product Roadmap', 'Research'],
+    link: 'klarna.com',
   },
   {
     year: '2022',
-    project: 'Harvard Business School Design System',
-    madeAt: 'Upstatement',
-    builtWith: ['Storybook', 'React', 'TypeScript'],
+    project: 'Inifiniti QX60 Landing Page',
+    madeAt: 'Critical Mass',
+    serviceProvided: ['Technical Direction', 'Personalization'],
+    link: 'infinitiusa.com/vehicles/crossovers/qx60.html',
+  },
+  {
+    year: '2022',
+    project: 'Inifiniti Owners Portal',
+    madeAt: 'Critical Mass',
+    serviceProvided: ['Technical Direction', 'Personalization'],
+    link: 'infinitiusa.com/owners.html',
+  },
+  {
+    year: '2022',
+    project: 'Nissan ARIYA Launch',
+    madeAt: 'Critical Mass',
+    serviceProvided: ['Technical Direction', 'Frontend Development'],
+    link: 'nissan.ca/vehicles/electric-cars/ariya.html',
+  },
+  {
+    year: '2021',
+    project: 'Nissan and Infiniti Onboarding Platform',
+    madeAt: 'Critical Mass',
+    serviceProvided: ['Process Optimization', 'Data Visualization'],
     link: '',
   },
   {
-    year: '2022',
-    project: 'Threadable',
-    madeAt: 'Upstatement',
-    builtWith: ['React Native', 'Ruby on Rails', 'Firebase'],
-    link: 'apps.apple.com',
+    year: '2021',
+    project: 'Kredit Fintech Research',
+    madeAt: 'Lab 829',
+    serviceProvided: ['Research', 'Product Architecture'],
+    link: '',
   },
   {
-    year: '2022',
-    project: 'Pratt',
-    madeAt: 'Upstatement',
-    builtWith: [
-      'WordPress',
-      'Timber',
-      'WordPress Multisite',
-      'Gutenberg',
-      'JavaScript',
+    year: '2020',
+    project: 'Confidential',
+    madeAt: 'Lab 829',
+    serviceProvided: ['Sports Data Integration', 'Interactive Components'],
+    link: '',
+    confidential: true,
+  },
+  {
+    year: '2019',
+    project: 'PC Express',
+    madeAt: 'Deloitte Digital',
+    serviceProvided: ['Design System Development', 'Component Library'],
+    link: 'pcexpress.ca/',
+    canadaOnly: true,
+  },
+  {
+    year: '2019',
+    project: 'Shoppers Drug Mart Marketing Campaigns',
+    madeAt: 'Deloitte Digital',
+    serviceProvided: [
+      'Design System Development',
+      'Component Library',
+      'Frontend Development',
     ],
-    link: 'pratt.edu',
+    link: 'shoppersdrugmart.ca/',
+    canadaOnly: true,
   },
   {
-    year: '2022',
-    project: 'Everytown Gun Law Rankings',
-    madeAt: 'Upstatement',
-    builtWith: ['React', 'Next.js', 'D3.js'],
-    link: 'everytownresearch.org/rankings',
+    year: '2018',
+    project: 'TD Canada Trust Product Architecture',
+    madeAt: 'Deloitte Digital',
+    serviceProvided: ['Product Architecture', 'Research'],
+    link: 'td.com/ca/en/personal-banking',
+    authRequired: true,
   },
   {
-    year: '2021',
-    project: 'Koala Health',
-    madeAt: 'Upstatement',
-    builtWith: ['React', 'TypeScript', 'Tailwind'],
-    link: 'koala.health',
+    year: '2018',
+    project: 'Honda Canada Green Dealers',
+    madeAt: 'Deloitte Digital',
+    serviceProvided: ['Product Architecture', 'Frontend Development'],
+    link: 'hondacanada.ca/greendealers',
   },
   {
-    year: '2021',
-    project: 'Philadelphia Inquirer Sports Scoreboards',
-    madeAt: 'Upstatement',
-    builtWith: ['React', 'D3.js', 'GraphQL'],
-    link: 'inquirer.com/sports',
+    year: '2018',
+    project: 'Canadian Olympic Committee Website',
+    madeAt: 'Deloitte Digital',
+    serviceProvided: ['Product Architecture', 'Frontend Development'],
+    link: 'olympic.ca',
   },
   {
-    year: '2021',
-    project: 'Vanderbilt Design System',
-    madeAt: 'Upstatement',
-    builtWith: ['Storybook', 'React', 'SCSS'],
-    link: 'vanderbilt.edu',
+    year: '2018',
+    project: 'Coca Cola USA Accessibility Audit',
+    madeAt: 'Deloitte Digital',
+    serviceProvided: ['Accessibility Audit', 'Research'],
+    link: 'coca-colahellenic.com/en/accessibility',
   },
   {
-    year: '2020',
-    project: 'Michelle Wu for Boston Grassroots Toolkit',
-    madeAt: 'Upstatement',
-    builtWith: ['Gatsby', 'React', 'Netlify'],
-    link: 'michelleforboston.com',
+    year: '2018',
+    project: 'RBC Omnichannel Banking',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Direction',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'rbcroyalbank.com/ways-to-bank/online-banking/index.html',
+    authRequired: true,
   },
   {
-    year: '2020',
-    project: 'The 19th News',
-    madeAt: 'Upstatement',
-    builtWith: ['WordPress', 'React', 'Tailwind'],
-    link: '19thnews.org',
+    year: '2017',
+    project: 'RBC Mortgage Calculators and Tools',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Direction',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'rbcroyalbank.com/mortgages/mortgage-calculators.html',
+    authRequired: true,
+  },
+  {
+    year: '2017',
+    project: 'RBC My Advisor',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'rbcroyalbank.com/investments/myadvisor.html',
+    authRequired: true,
+  },
+  {
+    year: '16/18',
+    project: 'RBC Mobile App',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Cross Functional Collaboration',
+      'Frontend Development',
+    ],
+    link: 'rbcroyalbank.com/mobile-app',
+    authRequired: true,
+  },
+  {
+    year: '14/18',
+    project: 'RBC Personal Online Banking',
+    madeAt: 'Lab 829/RBC',
+    serviceProvided: [
+      'Tech Direction',
+      'Cross Functional Collaboration',
+      'Frontend Development',
+    ],
+    link: 'rbcroyalbank.com/personal.html',
+    authRequired: true,
+  },
+  {
+    year: '11/14',
+    project: 'Ontario.ca',
+    madeAt: 'Government of Ontario',
+    serviceProvided: [
+      'Product Architecture',
+      'Design System Development',
+      'Frontend Development',
+      'a11y',
+    ],
+    link: 'ontario.ca',
+  },
+  {
+    year: '11/14',
+    project: 'Ontario.ca',
+    madeAt: 'Government of Ontario',
+    serviceProvided: [
+      'Product Architecture',
+      'Design System Development',
+      'Frontend Development',
+      'a11y',
+    ],
+    link: 'ontario.ca',
   },
 ];
+
+// Calculate initial visible projects and if we need a load more button
+const initialVisibleCount = 10;
+const hasMoreProjects = projects.length > initialVisibleCount;
+
+// Social media URLs
+const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
+const gitHubUrl = 'https://github.com/jrpin';
 ---
 
 <section
@@ -110,51 +242,27 @@ const projects = [
     <!-- Projects table -->
     <div class="overflow-x-auto">
       <table class="w-full border-collapse">
-        <thead>
+        <thead class="sr-only">
           <tr style={`border-bottom: 1px solid ${bauhausColors.crimsonRed};`}>
-            <th class="py-4 text-left font-medium">Year</th>
             <th class="py-4 text-left font-medium">Project</th>
             <th class="py-4 text-left font-medium md:table-cell hidden"
               >Made at</th
             >
             <th class="py-4 text-left font-medium md:table-cell hidden"
-              >Built with</th
+              >Service Provided</th
             >
-            <th class="py-4 text-left font-medium sm:table-cell hidden">Link</th
-            >
-            <th class="py-4 text-left font-medium sm:hidden"></th>
+            <th class="py-4 text-left font-medium">Year</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="projects-table-body">
           {
-            projects.map((project) => (
+            projects.slice(0, initialVisibleCount).map((project) => (
               <tr
                 style={`border-bottom: 1px solid rgba(255, 255, 255, 0.1);`}
                 class="hover:bg-opacity-10 hover:bg-white transition-colors"
               >
-                <td class="py-6 pr-4 align-top whitespace-nowrap">
-                  {project.year}
-                </td>
-                <td class="py-6 pr-4 align-top font-medium">
-                  {project.project}
-                </td>
-                <td class="py-6 pr-4 align-top whitespace-nowrap md:table-cell hidden">
-                  {project.madeAt}
-                </td>
-                <td class="py-6 pr-4 align-top md:table-cell hidden">
-                  <div class="flex flex-wrap gap-2">
-                    {project.builtWith.map((tech) => (
-                      <span
-                        class="inline-block px-3 py-1 text-xs rounded-full"
-                        style={`background-color: ${bauhausColors.forestGreen}; color: ${bauhausColors.pureWhite};`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td class="py-6 align-top sm:table-cell hidden">
-                  {project.link && (
+                <td class="py-1.5 pr-4 align-top font-medium">
+                  {project.link ? (
                     <a
                       href={`https://${project.link}`}
                       target="_blank"
@@ -162,48 +270,100 @@ const projects = [
                       class="inline-flex items-center hover:underline"
                       style={`color: ${bauhausColors.ochreYellow};`}
                     >
-                      {project.link}
+                      {project.project}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="ml-1"
+                        class="h-4 w-4 ml-1 inline"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
                       >
-                        <path d="M7 17L17 7M7 7h10v10" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                          clip-rule="evenodd"
+                        />
                       </svg>
+
+                      {project.canadaOnly && (
+                        <span class="relative group">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 ml-1 inline"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap">
+                            Canada site only. Use VPN
+                          </span>
+                        </span>
+                      )}
+
+                      {project.authRequired && (
+                        <span class="relative group">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 ml-1 inline"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"
+                            />
+                          </svg>
+                          <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap">
+                            Internal site or auth required
+                          </span>
+                        </span>
+                      )}
                     </a>
+                  ) : (
+                    <span
+                      class="inline-flex items-center"
+                      style={`color: ${project.confidential ? bauhausColors.crimsonRed : bauhausColors.pureWhite};`}
+                    >
+                      {project.project}
+                      {project.confidential && (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4 ml-1 inline"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          aria-hidden="true"
+                          style="transform: translateY(-1px);"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      )}
+                    </span>
                   )}
                 </td>
-                <td class="py-6 align-top text-right sm:hidden">
-                  {project.link && (
-                    <a
-                      href={`https://${project.link}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit ${project.project} website`}
-                      style={`color: ${bauhausColors.ochreYellow};`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M7 17L17 7M7 7h10v10" />
-                      </svg>
-                    </a>
-                  )}
+                <td class="py-1.5 pr-4 align-top whitespace-nowrap md:table-cell hidden">
+                  {project.madeAt}
+                </td>
+                <td class="py-1.5 pr-4 align-top md:table-cell hidden">
+                  <span class="text-sm font-light italic opacity-80">
+                    {project.serviceProvided.join(', ')}
+                  </span>
+                </td>
+                <td class="py-1.5 pr-4 align-top whitespace-nowrap">
+                  <span class="text-lg font-light italic">{project.year}</span>
                 </td>
               </tr>
             ))
@@ -211,13 +371,277 @@ const projects = [
         </tbody>
       </table>
     </div>
+
+    <div class="mt-8 text-center flex flex-col items-center">
+      {
+        hasMoreProjects && (
+          <button
+            id="load-more-btn"
+            class="px-6 py-2 text-sm font-medium transition-colors mb-10"
+            style={`background-color: ${bauhausColors.forestGreen}; color: ${bauhausColors.pureWhite};`}
+          >
+            Load More
+          </button>
+        )
+      }
+
+      <!-- Footer buttons - initially hidden if there are more projects to load -->
+      <div
+        id="projects-footer"
+        class={`projects-footer ${hasMoreProjects ? 'hidden' : 'block'} mt-10 w-full`}
+        style="opacity: 0.9;"
+      >
+        <ProfileButtons
+          linkedInUrl={linkedInUrl}
+          githubUrl=""
+          resumeUrl="public/Julian Pineda - 5v4.pdf"
+          showBorder={true}
+          customClass="w-full"
+        />
+      </div>
+    </div>
   </div>
 </section>
+
+<script define:vars={{ projects, initialVisibleCount }}>
+  // Client-side JavaScript for the Load More functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const projectsTableBody = document.getElementById('projects-table-body');
+    const projectsFooter = document.getElementById('projects-footer');
+
+    if (loadMoreBtn && projectsTableBody) {
+      let visibleCount = initialVisibleCount;
+      const batchSize = 10; // Number of projects to load per click
+
+      loadMoreBtn.addEventListener('click', () => {
+        // Get the next batch of projects (10 more)
+        const nextBatchEnd = Math.min(
+          visibleCount + batchSize,
+          projects.length,
+        );
+        const projectsToAdd = projects.slice(visibleCount, nextBatchEnd);
+        visibleCount = nextBatchEnd;
+
+        if (projectsToAdd.length > 0) {
+          for (const project of projectsToAdd) {
+            const row = document.createElement('tr');
+            row.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            row.className =
+              'hover:bg-opacity-10 hover:bg-white transition-colors';
+
+            // Project name/link cell
+            const projectCell = document.createElement('td');
+            projectCell.className = 'py-1.5 pr-4 align-top font-medium';
+
+            if (project.link) {
+              const link = document.createElement('a');
+              link.href = `https://${project.link}`;
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+              link.className = 'inline-flex items-center hover:underline';
+              link.style.color = '#F4A100';
+              link.textContent = project.project;
+
+              // Add arrow icon
+              const arrowSvg = document.createElementNS(
+                'http://www.w3.org/2000/svg',
+                'svg',
+              );
+              arrowSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+              arrowSvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+              arrowSvg.setAttribute('viewBox', '0 0 20 20');
+              arrowSvg.setAttribute('fill', 'currentColor');
+              arrowSvg.setAttribute('aria-hidden', 'true');
+
+              const arrowPath = document.createElementNS(
+                'http://www.w3.org/2000/svg',
+                'path',
+              );
+              arrowPath.setAttribute('fill-rule', 'evenodd');
+              arrowPath.setAttribute(
+                'd',
+                'M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z',
+              );
+              arrowPath.setAttribute('clip-rule', 'evenodd');
+
+              arrowSvg.appendChild(arrowPath);
+              link.appendChild(arrowSvg);
+
+              // Add location icon and tooltip for Canada-only sites
+              if (project.canadaOnly) {
+                const vpnSpan = document.createElement('span');
+                vpnSpan.className = 'relative group';
+
+                const mapSvg = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'svg',
+                );
+                mapSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                mapSvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+                mapSvg.setAttribute('viewBox', '0 0 20 20');
+                mapSvg.setAttribute('fill', 'currentColor');
+                mapSvg.setAttribute('aria-hidden', 'true');
+
+                const mapPath = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'path',
+                );
+                mapPath.setAttribute('fill-rule', 'evenodd');
+                mapPath.setAttribute(
+                  'd',
+                  'M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z',
+                );
+                mapPath.setAttribute('clip-rule', 'evenodd');
+
+                mapSvg.appendChild(mapPath);
+                vpnSpan.appendChild(mapSvg);
+
+                const tooltip = document.createElement('span');
+                tooltip.className =
+                  'absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap';
+                tooltip.textContent = 'Canada site only. Use VPN';
+                vpnSpan.appendChild(tooltip);
+
+                link.appendChild(vpnSpan);
+              }
+
+              // Add key icon and tooltip for auth required sites
+              if (project.authRequired) {
+                const authSpan = document.createElement('span');
+                authSpan.className = 'relative group';
+
+                const keySvg = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'svg',
+                );
+                keySvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                keySvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+                keySvg.setAttribute('viewBox', '0 0 24 24');
+                keySvg.setAttribute('fill', 'none');
+                keySvg.setAttribute('stroke', 'currentColor');
+                keySvg.setAttribute('stroke-width', '1.5');
+                keySvg.setAttribute('aria-hidden', 'true');
+
+                const keyPath = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'path',
+                );
+                keyPath.setAttribute('stroke-linecap', 'round');
+                keyPath.setAttribute('stroke-linejoin', 'round');
+                keyPath.setAttribute(
+                  'd',
+                  'M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z',
+                );
+
+                keySvg.appendChild(keyPath);
+                authSpan.appendChild(keySvg);
+
+                const tooltip = document.createElement('span');
+                tooltip.className =
+                  'absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap';
+                tooltip.textContent = 'Internal site or auth required';
+                authSpan.appendChild(tooltip);
+
+                link.appendChild(authSpan);
+              }
+
+              projectCell.appendChild(link);
+            } else {
+              const span = document.createElement('span');
+              span.className = 'inline-flex items-center';
+              span.style.color = project.confidential ? '#C8102E' : '#FFFFFF';
+              span.textContent = project.project;
+
+              if (project.confidential) {
+                const lockSvg = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'svg',
+                );
+                lockSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                lockSvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+                lockSvg.setAttribute('viewBox', '0 0 20 20');
+                lockSvg.setAttribute('fill', 'currentColor');
+                lockSvg.setAttribute('aria-hidden', 'true');
+                lockSvg.style.transform = 'translateY(-1px)';
+
+                const lockPath = document.createElementNS(
+                  'http://www.w3.org/2000/svg',
+                  'path',
+                );
+                lockPath.setAttribute('fill-rule', 'evenodd');
+                lockPath.setAttribute(
+                  'd',
+                  'M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z',
+                );
+                lockPath.setAttribute('clip-rule', 'evenodd');
+
+                lockSvg.appendChild(lockPath);
+                span.appendChild(lockSvg);
+              }
+
+              projectCell.appendChild(span);
+            }
+
+            // Made at cell
+            const madeAtCell = document.createElement('td');
+            madeAtCell.className =
+              'py-1.5 pr-4 align-top whitespace-nowrap md:table-cell hidden';
+            madeAtCell.textContent = project.madeAt;
+
+            // Service provided cell
+            const serviceCell = document.createElement('td');
+            serviceCell.className =
+              'py-1.5 pr-4 align-top md:table-cell hidden';
+
+            const serviceSpan = document.createElement('span');
+            serviceSpan.className = 'text-sm font-light italic opacity-80';
+            serviceSpan.textContent = project.serviceProvided.join(', ');
+            serviceCell.appendChild(serviceSpan);
+
+            // Year cell
+            const yearCell = document.createElement('td');
+            yearCell.className = 'py-1.5 pr-4 align-top whitespace-nowrap';
+
+            const yearSpan = document.createElement('span');
+            yearSpan.className = 'text-lg font-light italic';
+            yearSpan.textContent = project.year;
+            yearCell.appendChild(yearSpan);
+
+            // Add all cells to the row
+            row.appendChild(projectCell);
+            row.appendChild(madeAtCell);
+            row.appendChild(serviceCell);
+            row.appendChild(yearCell);
+
+            // Add the row to the table
+            projectsTableBody.appendChild(row);
+          }
+
+          // Show footer and hide button if we've loaded all projects
+          if (visibleCount >= projects.length) {
+            loadMoreBtn.style.display = 'none';
+            if (projectsFooter) {
+              projectsFooter.classList.remove('hidden');
+              projectsFooter.classList.add('block');
+            }
+          }
+        }
+      });
+    }
+  });
+</script>
 
 <style>
   /* Additional styles can be added here if needed */
   th {
     font-weight: 500;
+  }
+
+  /* Button hover effects - removed since they're now handled by ProfileButtons */
+
+  #load-more-btn:hover {
+    background-color: #005d63 !important; /* Slightly darker green on hover */
   }
 
   @media (max-width: 768px) {
