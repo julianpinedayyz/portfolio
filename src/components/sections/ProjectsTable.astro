@@ -120,7 +120,7 @@ const projects = [
     project: 'Honda Canada Green Dealers',
     madeAt: 'Deloitte Digital',
     serviceProvided: ['Product Architecture', 'Frontend Development'],
-    link: 'hondacanada.ca/greendealers',
+    link: 'hondacanada.ca/home',
   },
   {
     year: '2018',
@@ -210,7 +210,7 @@ const projects = [
   },
   {
     year: '11/14',
-    project: 'Ontario.ca',
+    project: 'Newsroom Ontario',
     madeAt: 'Government of Ontario',
     serviceProvided: [
       'Product Architecture',
@@ -218,7 +218,7 @@ const projects = [
       'Frontend Development',
       'a11y',
     ],
-    link: 'ontario.ca',
+    link: 'news.ontario.ca/en',
   },
 ];
 
@@ -228,176 +228,184 @@ const hasMoreProjects = projects.length > initialVisibleCount;
 
 // Social media URLs
 const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
-const gitHubUrl = 'https://github.com/jrpin';
+const gitHubUrl = 'https://github.com/julianpinedayyz';
 ---
 
-<section
-  style={`background-color: ${bauhausColors.deepNavy}; color: ${bauhausColors.pureWhite};`}
-  class="py-20"
->
+<section class="py-20 bg-[#0E0E2C] text-white">
   <div class="site-container">
-    <!-- Projects heading -->
-    <h2 class="h2-heading mb-16">All Projects</h2>
+    <!-- Create a flex container for the layout -->
+    <div class="flex flex-col lg:flex-row">
+      <!-- Fixed-width column for heading - 300px on desktop, full width on mobile -->
+      <div class="w-full lg:w-[300px] flex-shrink-0 mb-6 lg:mb-0">
+        <h2 class="h2-heading text-[#e7dfd0]">All Projects</h2>
+      </div>
 
-    <!-- Projects table -->
-    <div class="overflow-x-auto">
-      <table class="w-full border-collapse">
-        <thead class="sr-only">
-          <tr style={`border-bottom: 1px solid ${bauhausColors.crimsonRed};`}>
-            <th class="py-4 text-left font-medium">Project</th>
-            <th class="py-4 text-left font-medium md:table-cell hidden"
-              >Made at</th
-            >
-            <th class="py-4 text-left font-medium md:table-cell hidden"
-              >Service Provided</th
-            >
-            <th class="py-4 text-left font-medium">Year</th>
-          </tr>
-        </thead>
-        <tbody id="projects-table-body">
-          {
-            projects.slice(0, initialVisibleCount).map((project) => (
-              <tr
-                style={`border-bottom: 1px solid rgba(255, 255, 255, 0.1);`}
-                class="hover:bg-opacity-10 hover:bg-white transition-colors"
-              >
-                <td class="py-1.5 pr-4 align-top font-medium">
-                  {project.link ? (
-                    <a
-                      href={`https://${project.link}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center hover:underline"
-                      style={`color: ${bauhausColors.ochreYellow};`}
-                    >
-                      {project.project}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 ml-1 inline"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-
-                      {project.canadaOnly && (
-                        <span class="relative group">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 ml-1 inline"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                              clip-rule="evenodd"
-                            />
-                          </svg>
-                          <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap">
-                            Canada site only. Use VPN
-                          </span>
-                        </span>
-                      )}
-
-                      {project.authRequired && (
-                        <span class="relative group">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 ml-1 inline"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"
-                            />
-                          </svg>
-                          <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap">
-                            Internal site or auth required
-                          </span>
-                        </span>
-                      )}
-                    </a>
-                  ) : (
-                    <span
-                      class="inline-flex items-center"
-                      style={`color: ${project.confidential ? bauhausColors.crimsonRed : bauhausColors.pureWhite};`}
-                    >
-                      {project.project}
-                      {project.confidential && (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-4 w-4 ml-1 inline"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          style="transform: translateY(-1px);"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      )}
-                    </span>
-                  )}
-                </td>
-                <td class="py-1.5 pr-4 align-top whitespace-nowrap md:table-cell hidden">
-                  {project.madeAt}
-                </td>
-                <td class="py-1.5 pr-4 align-top md:table-cell hidden">
-                  <span class="text-sm font-light italic opacity-80">
-                    {project.serviceProvided.join(', ')}
-                  </span>
-                </td>
-                <td class="py-1.5 pr-4 align-top whitespace-nowrap">
-                  <span class="text-lg font-light italic">{project.year}</span>
-                </td>
+      <!-- Table column that takes the remaining width -->
+      <div class="flex-grow">
+        <!-- Projects table -->
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead class="sr-only">
+              <tr class="border-b border-[#C8102E]">
+                <th class="py-4 text-left font-medium">Project</th>
+                <th class="py-4 text-left font-medium xl:table-cell hidden"
+                  >Made at</th
+                >
+                <th class="py-4 text-left font-medium md:table-cell hidden"
+                  >Service Provided</th
+                >
+                <th class="py-4 text-left font-medium">Year</th>
               </tr>
-            ))
+            </thead>
+            <tbody id="projects-table-body">
+              {
+                projects.slice(0, initialVisibleCount).map((project) => (
+                  <tr class="border-b border-white/10 hover:bg-opacity-10 hover:bg-white transition-colors">
+                    <td class="py-0.5 pl-5 pr-4 align-top font-medium md:py-2.5 sm:py-1.5">
+                      {project.link ? (
+                        <a
+                          href={`https://${project.link}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center hover:underline text-[#F4A100]"
+                        >
+                          <span class="flex-grow">{project.project}</span>
+                          <span class="flex-shrink-0 inline-flex items-center">
+                            <svg
+                              style="width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+
+                            {project.canadaOnly && (
+                              <span class="relative group">
+                                <svg
+                                  style="width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                    clip-rule="evenodd"
+                                  />
+                                </svg>
+                                <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap">
+                                  Canada site only. Use VPN
+                                </span>
+                              </span>
+                            )}
+
+                            {project.authRequired && (
+                              <span class="relative group">
+                                <svg
+                                  style="width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="1.5"
+                                  aria-hidden="true"
+                                >
+                                  <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"
+                                  />
+                                </svg>
+                                <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-1 invisible group-hover:visible bg-black text-white text-xs px-2 py-1 whitespace-nowrap">
+                                  Internal site or auth required
+                                </span>
+                              </span>
+                            )}
+                          </span>
+                        </a>
+                      ) : (
+                        <span
+                          class={`inline-flex items-center ${project.confidential ? 'text-[#C8102E]' : 'text-white'}`}
+                        >
+                          <span class="flex-grow">{project.project}</span>
+                          {project.confidential && (
+                            <span class="flex-shrink-0">
+                              <svg
+                                style="width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </span>
+                          )}
+                        </span>
+                      )}
+
+                      {/* Show Made At on smaller screens */}
+                      <div class="mt-1 text-sm font-light italic opacity-70 xl:hidden">
+                        {project.madeAt}
+                      </div>
+                    </td>
+                    <td class="py-0.5 pr-4 align-top whitespace-nowrap xl:table-cell hidden md:py-2.5 sm:py-1.5">
+                      {project.madeAt}
+                    </td>
+                    <td class="py-0.5 pr-4 align-top md:table-cell hidden md:py-2.5 sm:py-1.5">
+                      <span class="text-sm font-light italic opacity-80">
+                        {project.serviceProvided.join(', ')}
+                      </span>
+                    </td>
+                    <td class="py-0.5 pr-5 align-top text-right whitespace-nowrap md:py-2.5 sm:py-1.5">
+                      <span class="text-lg font-light italic">
+                        {project.year}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-8 text-center flex flex-col items-center">
+          {
+            hasMoreProjects && (
+              <button
+                id="load-more-btn"
+                class="px-6 py-2 text-sm font-medium transition-colors mb-10 bg-[#004851] text-white hover:bg-[#005d63]"
+              >
+                Load More
+              </button>
+            )
           }
-        </tbody>
-      </table>
-    </div>
 
-    <div class="mt-8 text-center flex flex-col items-center">
-      {
-        hasMoreProjects && (
-          <button
-            id="load-more-btn"
-            class="px-6 py-2 text-sm font-medium transition-colors mb-10"
-            style={`background-color: ${bauhausColors.forestGreen}; color: ${bauhausColors.pureWhite};`}
+          <!-- Footer buttons - initially hidden if there are more projects to load -->
+          <div
+            id="projects-footer"
+            class={`projects-footer ${hasMoreProjects ? 'hidden' : 'block'} mt-10 w-full opacity-90`}
           >
-            Load More
-          </button>
-        )
-      }
-
-      <!-- Footer buttons - initially hidden if there are more projects to load -->
-      <div
-        id="projects-footer"
-        class={`projects-footer ${hasMoreProjects ? 'hidden' : 'block'} mt-10 w-full`}
-        style="opacity: 0.9;"
-      >
-        <ProfileButtons
-          linkedInUrl={linkedInUrl}
-          githubUrl=""
-          resumeUrl="public/Julian Pineda - 5v4.pdf"
-          showBorder={true}
-          customClass="w-full"
-        />
+            <ProfileButtons
+              linkedInUrl={linkedInUrl}
+              githubUrl=""
+              resumeUrl="public/Julian Pineda - 5v4.pdf"
+              showBorder={true}
+              customClass="w-full"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -426,22 +434,30 @@ const gitHubUrl = 'https://github.com/jrpin';
         if (projectsToAdd.length > 0) {
           for (const project of projectsToAdd) {
             const row = document.createElement('tr');
-            row.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
             row.className =
-              'hover:bg-opacity-10 hover:bg-white transition-colors';
+              'border-b border-white/10 hover:bg-opacity-10 hover:bg-white transition-colors';
 
             // Project name/link cell
             const projectCell = document.createElement('td');
-            projectCell.className = 'py-1.5 pr-4 align-top font-medium';
+            projectCell.className =
+              'py-0.5 pl-5 pr-4 align-top font-medium md:py-2.5 sm:py-1.5';
 
             if (project.link) {
               const link = document.createElement('a');
               link.href = `https://${project.link}`;
               link.target = '_blank';
               link.rel = 'noopener noreferrer';
-              link.className = 'inline-flex items-center hover:underline';
-              link.style.color = '#F4A100';
-              link.textContent = project.project;
+              link.className =
+                'inline-flex items-center hover:underline text-[#F4A100]';
+
+              const textSpan = document.createElement('span');
+              textSpan.className = 'flex-grow';
+              textSpan.textContent = project.project;
+              link.appendChild(textSpan);
+
+              const iconsContainer = document.createElement('span');
+              iconsContainer.className =
+                'flex-shrink-0 inline-flex items-center';
 
               // Add arrow icon
               const arrowSvg = document.createElementNS(
@@ -449,7 +465,10 @@ const gitHubUrl = 'https://github.com/jrpin';
                 'svg',
               );
               arrowSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-              arrowSvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+              arrowSvg.setAttribute(
+                'style',
+                'width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;',
+              );
               arrowSvg.setAttribute('viewBox', '0 0 20 20');
               arrowSvg.setAttribute('fill', 'currentColor');
               arrowSvg.setAttribute('aria-hidden', 'true');
@@ -466,7 +485,7 @@ const gitHubUrl = 'https://github.com/jrpin';
               arrowPath.setAttribute('clip-rule', 'evenodd');
 
               arrowSvg.appendChild(arrowPath);
-              link.appendChild(arrowSvg);
+              iconsContainer.appendChild(arrowSvg);
 
               // Add location icon and tooltip for Canada-only sites
               if (project.canadaOnly) {
@@ -478,7 +497,10 @@ const gitHubUrl = 'https://github.com/jrpin';
                   'svg',
                 );
                 mapSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-                mapSvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+                mapSvg.setAttribute(
+                  'style',
+                  'width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;',
+                );
                 mapSvg.setAttribute('viewBox', '0 0 20 20');
                 mapSvg.setAttribute('fill', 'currentColor');
                 mapSvg.setAttribute('aria-hidden', 'true');
@@ -503,10 +525,10 @@ const gitHubUrl = 'https://github.com/jrpin';
                 tooltip.textContent = 'Canada site only. Use VPN';
                 vpnSpan.appendChild(tooltip);
 
-                link.appendChild(vpnSpan);
+                iconsContainer.appendChild(vpnSpan);
               }
 
-              // Add key icon and tooltip for auth required sites
+              // Add key icon for auth required sites
               if (project.authRequired) {
                 const authSpan = document.createElement('span');
                 authSpan.className = 'relative group';
@@ -516,7 +538,10 @@ const gitHubUrl = 'https://github.com/jrpin';
                   'svg',
                 );
                 keySvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-                keySvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+                keySvg.setAttribute(
+                  'style',
+                  'width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;',
+                );
                 keySvg.setAttribute('viewBox', '0 0 24 24');
                 keySvg.setAttribute('fill', 'none');
                 keySvg.setAttribute('stroke', 'currentColor');
@@ -543,27 +568,38 @@ const gitHubUrl = 'https://github.com/jrpin';
                 tooltip.textContent = 'Internal site or auth required';
                 authSpan.appendChild(tooltip);
 
-                link.appendChild(authSpan);
+                iconsContainer.appendChild(authSpan);
               }
 
+              link.appendChild(iconsContainer);
               projectCell.appendChild(link);
             } else {
               const span = document.createElement('span');
-              span.className = 'inline-flex items-center';
-              span.style.color = project.confidential ? '#C8102E' : '#FFFFFF';
-              span.textContent = project.project;
+              span.className = project.confidential
+                ? 'inline-flex items-center text-[#C8102E]'
+                : 'inline-flex items-center text-white';
+
+              const textSpan = document.createElement('span');
+              textSpan.className = 'flex-grow';
+              textSpan.textContent = project.project;
+              span.appendChild(textSpan);
 
               if (project.confidential) {
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'flex-shrink-0';
+
                 const lockSvg = document.createElementNS(
                   'http://www.w3.org/2000/svg',
                   'svg',
                 );
                 lockSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-                lockSvg.setAttribute('class', 'h-4 w-4 ml-1 inline');
+                lockSvg.setAttribute(
+                  'style',
+                  'width: 16px; height: 16px; margin-left: 4px; vertical-align: middle; display: inline-block;',
+                );
                 lockSvg.setAttribute('viewBox', '0 0 20 20');
                 lockSvg.setAttribute('fill', 'currentColor');
                 lockSvg.setAttribute('aria-hidden', 'true');
-                lockSvg.style.transform = 'translateY(-1px)';
 
                 const lockPath = document.createElementNS(
                   'http://www.w3.org/2000/svg',
@@ -577,22 +613,30 @@ const gitHubUrl = 'https://github.com/jrpin';
                 lockPath.setAttribute('clip-rule', 'evenodd');
 
                 lockSvg.appendChild(lockPath);
-                span.appendChild(lockSvg);
+                iconSpan.appendChild(lockSvg);
+                span.appendChild(iconSpan);
               }
 
               projectCell.appendChild(span);
             }
 
-            // Made at cell
+            // Add Made At text for smaller screens
+            const madeAtMobile = document.createElement('div');
+            madeAtMobile.className =
+              'mt-1 text-sm font-light italic opacity-70 xl:hidden';
+            madeAtMobile.textContent = project.madeAt;
+            projectCell.appendChild(madeAtMobile);
+
+            // Made at cell (for larger screens)
             const madeAtCell = document.createElement('td');
             madeAtCell.className =
-              'py-1.5 pr-4 align-top whitespace-nowrap md:table-cell hidden';
+              'py-0.5 pr-4 align-top whitespace-nowrap xl:table-cell hidden md:py-2.5 sm:py-1.5';
             madeAtCell.textContent = project.madeAt;
 
             // Service provided cell
             const serviceCell = document.createElement('td');
             serviceCell.className =
-              'py-1.5 pr-4 align-top md:table-cell hidden';
+              'py-0.5 pr-4 align-top md:table-cell hidden md:py-2.5 sm:py-1.5';
 
             const serviceSpan = document.createElement('span');
             serviceSpan.className = 'text-sm font-light italic opacity-80';
@@ -601,7 +645,8 @@ const gitHubUrl = 'https://github.com/jrpin';
 
             // Year cell
             const yearCell = document.createElement('td');
-            yearCell.className = 'py-1.5 pr-4 align-top whitespace-nowrap';
+            yearCell.className =
+              'py-0.5 pr-5 align-top text-right whitespace-nowrap md:py-2.5 sm:py-1.5';
 
             const yearSpan = document.createElement('span');
             yearSpan.className = 'text-lg font-light italic';
@@ -631,47 +676,3 @@ const gitHubUrl = 'https://github.com/jrpin';
     }
   });
 </script>
-
-<style>
-  /* Additional styles can be added here if needed */
-  th {
-    font-weight: 500;
-  }
-
-  /* Button hover effects - removed since they're now handled by ProfileButtons */
-
-  #load-more-btn:hover {
-    background-color: #005d63 !important; /* Slightly darker green on hover */
-  }
-
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    td,
-    th {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-    }
-  }
-
-  @media (max-width: 580px) {
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .site-container {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    td,
-    th {
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-    }
-  }
-</style>
