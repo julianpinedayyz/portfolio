@@ -1,6 +1,6 @@
 # Julian Pineda Portfolio
 
-A personal portfolio website built with Astro, TypeScript, and Tailwind CSS.
+This is the repository for my personal portfolio website, built with Astro and Tailwind CSS.
 
 ## Features
 
@@ -42,6 +42,8 @@ npm run dev
 # or
 yarn dev
 ```
+
+**Note:** Due to the configuration for GitHub Pages deployment (`base: '/portfolio'`), the local development server serves the site at `http://localhost:3000/portfolio/`.
 
 4. Open your browser and visit `http://localhost:3000`
 
@@ -85,3 +87,7 @@ MIT
 ---
 
 Built with ♥ by Julian Pineda
+
+## Deployment
+
+The site is automatically deployed to GitHub Pages via GitHub Actions whenever changes are pushed to the `main` branch.

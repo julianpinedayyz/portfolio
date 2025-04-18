@@ -13,7 +13,8 @@ import MinimalCards from '../ui-library/MinimalCards.astro';
 ---
 
 <Layout title="Julian Pineda | Technology Leader & Digital Transformation">
-  <Sandbox />
+  {/* Only render Sandbox in development mode */}
+  {import.meta.env.DEV && <Sandbox />}
   <Hero />
   <About />
   <Experience />
