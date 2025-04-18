@@ -26,7 +26,7 @@ export const bauhausColors = {
 export const projects: Project[] = [
   {
     year: '2025',
-    project: 'Confidential',
+    project: 'Fintech Product Architecture',
     madeAt: 'Lab 829',
     serviceProvided: ['Frontend Development', 'AI integration'],
     link: '',
@@ -91,7 +91,7 @@ export const projects: Project[] = [
   },
   {
     year: '2020',
-    project: 'Confidential',
+    project: 'System Design',
     madeAt: 'Lab 829',
     serviceProvided: ['Sports Data Integration', 'Interactive Components'],
     link: '',
