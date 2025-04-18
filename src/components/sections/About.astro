@@ -15,31 +15,31 @@ const skills = [
 ];
 ---
 
-<section id="about" class="py-10" style="background-color: #333333;">
+<section id="about" class="py-10 bg-gray-800">
   <div class="max-w-[1480px] mx-auto px-6 my-[40px]">
     <div class="lg:flex lg:flex-wrap">
       <!-- Title container with fixed width -->
       <div class="w-full lg:w-[400px] mb-12 lg:mb-0">
-        <h2 class="h2-heading text-[#DCDCDC]">About</h2>
+        <h2 class="h2-heading text-gray-300">About</h2>
       </div>
 
       <!-- Content container -->
       <div class="w-full lg:flex-1">
-        <div class="space-y-6">
-          <p style="color: #DCDCDC;">
+        <div class="space-y-6 text-gray-300">
+          <p>
             With a strong track record of aligning strategic initiatives with
             business goals, I drive innovation and deliver meaningful impact
             across government, retail, consulting, fintech, and marketing
             sectors.
           </p>
 
-          <p style="color: #DCDCDC;">
+          <p>
             I've successfully led digital transformation projects impacting
             millions of users, optimizing user experience and improving key
             engagement and customer retention metrics.
           </p>
 
-          <p style="color: #DCDCDC;">
+          <p>
             My expertise spans product development, user-centered design, and
             data-driven optimization, ensuring seamless digital experiences that
             drive business growth. I excel at collaborating with
@@ -47,7 +47,7 @@ const skills = [
             operational efficiency.
           </p>
 
-          <p style="color: #DCDCDC;">
+          <p>
             I thrive in roles that require a blend of strategic vision and
             technical fluency, ensuring that products are not only well-executed
             but also scalable and future-ready in an AI-driven world.
@@ -59,19 +59,18 @@ const skills = [
                 <div class="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4"
+                    class="h-4 w-4 stroke-gray-300"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="#DCDCDC"
+                    stroke-width="2"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      stroke-width="2"
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span style="color: #DCDCDC;">{skill}</span>
+                  <span>{skill}</span>
                 </div>
               ))
             }

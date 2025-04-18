@@ -2,20 +2,20 @@
 import { services, keyValues } from '../../data/services.ts';
 ---
 
-<section id="services" class="py-24" style="background-color: #DCDCDC;">
+<section id="services" class="py-24 bg-gray-300">
   <div class="site-container">
     <div class="lg:flex lg:flex-wrap">
       <!-- Title container with fixed width -->
       <div class="w-full lg:w-[490px] mb-12 lg:mb-0">
-        <h2 class="h2-heading text-[#333333]">Services</h2>
+        <h2 class="h2-heading text-gray-800">Services</h2>
       </div>
 
       <!-- Services list container -->
-      <div class="w-full lg:flex-1" style="margin-top: -8px;">
+      <div class="w-full lg:flex-1 -mt-2">
         <div class="space-y-1">
           {
             services.map((service, index) => (
-              <div class="border-b" style="border-color: #999999;">
+              <div class="border-b border-gray-400">
                 <button
                   class="service-toggle w-full py-5 flex justify-between items-center text-left"
                   data-index={index}
@@ -24,10 +24,7 @@ import { services, keyValues } from '../../data/services.ts';
                   aria-controls={`service-content-${index}`}
                   id={`service-toggle-${index}`}
                 >
-                  <span
-                    class="text-lg font-bold tracking-tight"
-                    style="color: #333333;"
-                  >
+                  <span class="text-lg font-bold tracking-tight text-gray-800">
                     {service.title}
                   </span>
                   <svg
@@ -36,9 +33,9 @@ import { services, keyValues } from '../../data/services.ts';
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#C22929"
+                    stroke="currentColor"
                     stroke-width="2"
-                    class="plus-icon transition-transform"
+                    class="plus-icon transition-transform text-brand-red"
                     aria-hidden="true"
                   >
                     <line x1="12" y1="5" x2="12" y2="19" />
@@ -46,12 +43,12 @@ import { services, keyValues } from '../../data/services.ts';
                   </svg>
                 </button>
                 <div
-                  class="service-content py-2 pb-6 hidden"
+                  class="service-content py-2 pb-6 hidden text-gray-800"
                   id={`service-content-${index}`}
                   role="region"
                   aria-labelledby={`service-toggle-${index}`}
                 >
-                  <p style="color: #333333;">{service.description}</p>
+                  <p>{service.description}</p>
                 </div>
               </div>
             ))
