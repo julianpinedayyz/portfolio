@@ -126,7 +126,7 @@
   <!-- Mobile navigation -->
   <div
     id="mobile-nav"
-    class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20"
+    class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20 transition-transform duration-500 ease-in-out translate-x-0"
     aria-label="Mobile navigation"
     role="dialog"
     aria-modal="true"
@@ -159,27 +159,27 @@
     <nav class="site-container flex flex-col items-start gap-6 h-full">
       <a
         href="#about"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
         >About</a
       >
       <a
         href="#experience"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
         >Experience</a
       >
       <a
         href="#projects"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
         >Projects</a
       >
       <a
         href="#services"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
         >Services</a
       >
       <a
         href="#contact"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
         >Contact</a
       >
       <!-- Resume button commented out -->
@@ -314,7 +314,7 @@
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');
   const contactDropdownToggle = document.getElementById(
-    'contact-dropdown-toggle'
+    'contact-dropdown-toggle',
   );
   const contactDropdown = document.getElementById('contact-dropdown');
   const closeMenuBtn = document.getElementById('close-menu-btn');
@@ -327,8 +327,8 @@
   const getFocusableElements = () => {
     return Array.from(
       mobileNav.querySelectorAll(
-        'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
-      )
+        'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+      ),
     ).filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null);
   };
 
@@ -403,6 +403,11 @@
   // Close menu button
   if (closeMenuBtn && mobileNav && menuToggle) {
     closeMenuBtn.addEventListener('click', () => {
+      // Reset styles immediately if closed manually
+      mobileNavLinks.forEach((link) => {
+        link.classList.remove('-translate-x-[500px]');
+      });
+      mobileNav.classList.remove('-translate-x-[500px]');
       mobileNav.classList.add('hidden');
       menuToggle.setAttribute('aria-expanded', 'false');
 
@@ -422,21 +427,81 @@
     });
   }
 
-  // Close menu when a nav link is clicked
+  // Close menu when a nav link is clicked, with a precise sequential animation (Slide Left)
   if (mobileNavLinks && mobileNav && menuToggle) {
-    mobileNavLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.add('hidden');
-        menuToggle.setAttribute('aria-expanded', 'false');
+    // Order links from top to bottom as they appear visually
+    const orderedLinks = [
+      document.querySelector('#mobile-nav a[href="#about"]'),
+      document.querySelector('#mobile-nav a[href="#experience"]'),
+      document.querySelector('#mobile-nav a[href="#projects"]'),
+      document.querySelector('#mobile-nav a[href="#services"]'),
+      document.querySelector('#mobile-nav a[href="#contact"]'),
+    ].filter(Boolean); // Filter out null if any link is missing
 
-        // Remove focus trap when closing via link click
-        document.removeEventListener('keydown', handleTabKeyInMobileNav);
+    mobileNavLinks.forEach((clickedLink) => {
+      clickedLink.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent instant jump
 
-        // Add inert attribute when closing via navigation
-        mobileNav.setAttribute('inert', '');
-        mobileNav.setAttribute('tabindex', '-1');
+        const targetId = clickedLink.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
 
-        // No need to restore focus here as we're navigating to a new section
+        if (targetElement) {
+          // Start smooth scroll immediately
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+          });
+        }
+
+        // Disable pointer events during animation
+        mobileNav.style.pointerEvents = 'none';
+
+        const linkVisualDuration = 300; // Matches duration-300 on links
+        const timeSlotPerLink = 1000; // 1 second between each link animation start
+        const drawerVisualDuration = 500; // Matches duration-500 on mobileNav
+
+        // 1. Trigger sequential link slide out (bottom-up)
+        const reversedLinks = [...orderedLinks].reverse();
+        reversedLinks.forEach((navLink, index) => {
+          const animationStartTime = index * timeSlotPerLink;
+          setTimeout(() => {
+            navLink.classList.add('-translate-x-[300px]');
+          }, animationStartTime);
+        });
+
+        // Calculate when the last link (About) animation *finishes*
+        const lastLinkIndex = orderedLinks.length - 1;
+        const lastLinkStartTime = lastLinkIndex * timeSlotPerLink;
+        const lastLinkEndTime = lastLinkStartTime + linkVisualDuration;
+
+        // 2. Trigger drawer slide out *after* last link animation finishes
+        const drawerAnimationStartTime = lastLinkEndTime + 50;
+        setTimeout(() => {
+          mobileNav.classList.add('-translate-x-[500px]');
+        }, drawerAnimationStartTime);
+
+        // 3. Final cleanup after all animations should be complete
+        const totalDuration =
+          drawerAnimationStartTime + drawerVisualDuration + 100;
+        setTimeout(() => {
+          mobileNav.classList.add('hidden');
+          menuToggle.setAttribute('aria-expanded', 'false');
+
+          // Reset styles for next opening
+          orderedLinks.forEach((navLink) => {
+            navLink.classList.remove('-translate-x-[500px]');
+          });
+          mobileNav.classList.remove('-translate-x-[500px]');
+
+          // Remove focus trap when closing via link click
+          document.removeEventListener('keydown', handleTabKeyInMobileNav);
+
+          // Add inert attribute when closing via navigation
+          mobileNav.setAttribute('inert', '');
+          mobileNav.setAttribute('tabindex', '-1');
+
+          // Re-enable pointer events
+          mobileNav.style.pointerEvents = 'auto';
+        }, totalDuration);
       });
     });
   }
@@ -450,6 +515,12 @@
     ) {
       mobileNav.classList.add('hidden');
       menuToggle.setAttribute('aria-expanded', 'false');
+
+      // Reset styles if closed via Escape
+      mobileNavLinks.forEach((link) => {
+        link.classList.remove('-translate-x-[500px]');
+      });
+      mobileNav.classList.remove('-translate-x-[500px]');
 
       // Remove focus trap
       document.removeEventListener('keydown', handleTabKeyInMobileNav);
