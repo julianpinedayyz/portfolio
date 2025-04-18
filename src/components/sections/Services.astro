@@ -1,57 +1,5 @@
 ---
-const services = [
-  {
-    title: 'Digital Transformation Strategy',
-    description:
-      'Development of comprehensive digital transformation roadmaps for organizations looking to modernize their digital presence and operations.',
-  },
-  {
-    title: 'Technology Leadership',
-    description:
-      'Interim and consulting CTO services to help organizations build and scale their technology teams and infrastructure.',
-  },
-  {
-    title: 'UI/UX Design & Development',
-    description:
-      'Creation of user-centered digital experiences with a focus on accessibility, usability, and conversion optimization.',
-  },
-  {
-    title: 'Accessibility Implementation',
-    description:
-      'Implementation of web accessibility standards (WCAG) to ensure digital products are usable by people of all abilities.',
-  },
-  {
-    title: 'AI & ML Integration',
-    description:
-      'Strategic integration of artificial intelligence and machine learning solutions to enhance product capabilities and user experiences.',
-  },
-  {
-    title: 'Enterprise Platform Development',
-    description:
-      'End-to-end development of scalable enterprise platforms with robust architecture and optimized performance.',
-  },
-];
-
-const keyValues = [
-  {
-    number: '01',
-    title: 'Strategic Vision',
-    description:
-      'Developing forward-thinking strategies that align technology initiatives with business objectives and industry trends.',
-  },
-  {
-    number: '02',
-    title: 'Technical Excellence',
-    description:
-      'Bringing technical fluency and hands-on expertise to deliver high-quality digital solutions that scale effectively.',
-  },
-  {
-    number: '03',
-    title: 'User-Centered Approach',
-    description:
-      'Focusing on creating accessible, intuitive digital experiences that prioritize user needs and business outcomes.',
-  },
-];
+import { services, keyValues } from '../../data/services.ts';
 ---
 
 <section id="services" class="py-24" style="background-color: #DCDCDC;">
@@ -63,7 +11,7 @@ const keyValues = [
       </div>
 
       <!-- Services list container -->
-      <div class="w-full lg:flex-1">
+      <div class="w-full lg:flex-1" style="margin-top: -8px;">
         <div class="space-y-1">
           {
             services.map((service, index) => (
@@ -130,4 +78,9 @@ const keyValues = [
       });
     });
   });
+
+  // Open the first accordion item by default
+  if (serviceToggles.length > 0) {
+    serviceToggles[0].click();
+  }
 </script>
