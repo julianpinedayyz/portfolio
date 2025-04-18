@@ -192,7 +192,7 @@ export const projects: Project[] = [
       'Cross Functional Collaboration',
       'Frontend Development',
     ],
-    link: 'https://rbcroyalbank.com/mobile-app',
+    link: 'https://www.rbcroyalbank.com/ways-to-bank/mobile/rbc-mobile-app/index.html',
     authRequired: true,
   },
   {
