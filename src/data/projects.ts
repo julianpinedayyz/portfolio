@@ -119,9 +119,9 @@ export const projects: Project[] = [
   },
   {
     year: '2018',
-    project: 'TD Canada Trust Product Architecture',
+    project: 'TD Canada Trust System Design & Product Architecture',
     madeAt: 'Deloitte Digital',
-    serviceProvided: ['Product Architecture', 'Research'],
+    serviceProvided: ['System Design', 'Product Architecture', 'Research'],
     link: 'https://td.com/ca/en/personal-banking',
     authRequired: true,
   },
