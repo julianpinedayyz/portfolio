@@ -549,7 +549,8 @@ import {
       });
     });
 
-    // Handle keyboard interaction and focus
+    // Remove the focus listener that triggers scrolling
+    /*
     itemMains.forEach((itemMain) => {
       // Ensure focused items are visible
       itemMain.addEventListener('focus', () => {
@@ -558,6 +559,17 @@ import {
       });
 
       // Handle keyboard interaction
+      itemMain.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleAccordion(itemMain);
+        }
+      });
+    });
+    */
+    // Keep only the keydown listener
+    itemMains.forEach((itemMain) => {
       itemMain.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
