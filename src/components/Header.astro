@@ -126,7 +126,7 @@
   <!-- Mobile navigation -->
   <div
     id="mobile-nav"
-    class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20 transition-transform duration-[800ms] ease-in-out translate-x-0"
+    class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20 transition-transform transition-opacity duration-1000 ease-in-out translate-y-0 opacity-100"
     aria-label="Mobile navigation"
     role="dialog"
     aria-modal="true"
@@ -364,70 +364,78 @@
     }
   };
 
-  // Menu toggle (Open)
+  // Menu toggle (Open/Close)
   if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      mobileNav.classList.toggle('hidden');
+      const isCurrentlyExpanded =
+        menuToggle.getAttribute('aria-expanded') === 'true';
+      const opening = !isCurrentlyExpanded;
 
-      // If opening the menu, trap focus inside
-      if (!expanded) {
-        // Store the currently focused element to restore focus later
+      menuToggle.setAttribute('aria-expanded', opening);
+
+      if (opening) {
+        // --- Simple Top-Down Opening Animation ---
+        // 1. Apply starting state (off-screen top, invisible)
+        mobileNav.classList.add('opacity-0', '-translate-y-full');
+
+        // 2. Make the nav visible (but still off-screen)
+        mobileNav.classList.remove('hidden');
+
+        // 3. Force reflow and trigger animation after a tick
+        requestAnimationFrame(() => {
+          // Remove starting state classes to animate to default state (translate-y-0, opacity-100)
+          mobileNav.classList.remove('opacity-0', '-translate-y-full');
+        });
+        // --- End Animation Setup ---
+
+        // Store the currently focused element
         previouslyFocusedElement = document.activeElement;
 
-        // Remove inert attribute when opening
+        // Remove inert, set focus, add trap listener
         mobileNav.removeAttribute('inert');
         mobileNav.removeAttribute('tabindex');
-
-        // Set focus to the close button
         setTimeout(() => {
-          if (closeMenuBtn) {
-            closeMenuBtn.focus();
-          }
+          if (closeMenuBtn) closeMenuBtn.focus();
         }, 100);
-
-        // Add the keydown event listener for focus trapping
         document.addEventListener('keydown', handleTabKeyInMobileNav);
       } else {
-        // Remove the keydown event listener when menu is closed
-        document.removeEventListener('keydown', handleTabKeyInMobileNav);
+        // Closing the menu via toggle button
+        // Just hide instantly and reset all possible animation states
+        mobileNav.classList.add('hidden');
+        mobileNavLinks.forEach((link) => {
+          link.classList.remove('-translate-x-[300px]');
+        });
+        mobileNav.classList.remove('-translate-x-[500px]');
+        mobileNav.classList.remove('opacity-0', '-translate-y-full'); // Reset opening animation classes
 
-        // Add inert attribute when closing
+        document.removeEventListener('keydown', handleTabKeyInMobileNav);
         mobileNav.setAttribute('inert', '');
         mobileNav.setAttribute('tabindex', '-1');
       }
     });
   }
 
-  // Close menu button
+  // Close menu button (Reset all animation classes)
   if (closeMenuBtn && mobileNav && menuToggle) {
     closeMenuBtn.addEventListener('click', () => {
-      // Reset styles immediately if closed manually
+      // Reset all possible animation states
       mobileNavLinks.forEach((link) => {
         link.classList.remove('-translate-x-[300px]');
       });
       mobileNav.classList.remove('-translate-x-[500px]');
+      mobileNav.classList.remove('opacity-0', '-translate-y-full'); // Reset opening animation classes
+
       mobileNav.classList.add('hidden');
       menuToggle.setAttribute('aria-expanded', 'false');
-
-      // Remove focus trap when closing
       document.removeEventListener('keydown', handleTabKeyInMobileNav);
-
-      // Add inert attribute when closing
       mobileNav.setAttribute('inert', '');
       mobileNav.setAttribute('tabindex', '-1');
-
-      // Return focus to the menu toggle button
-      if (previouslyFocusedElement) {
-        previouslyFocusedElement.focus();
-      } else {
-        menuToggle.focus();
-      }
+      if (previouslyFocusedElement) previouslyFocusedElement.focus();
+      else menuToggle.focus();
     });
   }
 
-  // Close menu when a nav link is clicked, with a precise sequential animation (Slide Left)
+  // Close menu when a nav link is clicked (Keep slide-out, but reset opening classes on cleanup)
   if (mobileNavLinks && mobileNav && menuToggle) {
     // Order links from top to bottom as they appear visually
     const orderedLinks = [
@@ -459,7 +467,7 @@
         const staggerDelay = 100; // Updated: 100ms between each link animation start
         const drawerVisualDuration = 800; // Updated: Matches duration-[800ms] on mobileNav
 
-        // 1. Trigger sequential link slide out (bottom-up) - Animations will overlap
+        // 1. Trigger link slide out (bottom-up) - Animations will overlap
         const reversedLinks = [...orderedLinks].reverse();
         reversedLinks.forEach((navLink, index) => {
           const animationStartTime = index * staggerDelay; // Tightly staggered start time
@@ -506,7 +514,7 @@
     });
   }
 
-  // Handle Escape key to close the mobile menu
+  // Handle Escape key (Reset all animation classes)
   document.addEventListener('keydown', (e) => {
     if (
       e.key === 'Escape' &&
@@ -516,16 +524,14 @@
       mobileNav.classList.add('hidden');
       menuToggle.setAttribute('aria-expanded', 'false');
 
-      // Reset styles if closed via Escape
+      // Reset BOTH closing and opening animation classes
       mobileNavLinks.forEach((link) => {
-        link.classList.remove('-translate-x-[300px]'); // Reset user's 300px value
+        link.classList.remove('-translate-x-[300px]');
       });
-      mobileNav.classList.remove('-translate-x-[500px]'); // Reset drawer slide value
+      mobileNav.classList.remove('-translate-x-[500px]');
+      mobileNav.classList.remove('opacity-0', '-translate-y-full'); // Reset opening classes
 
-      // Remove focus trap
       document.removeEventListener('keydown', handleTabKeyInMobileNav);
-
-      // Add inert attribute when closing
       mobileNav.setAttribute('inert', '');
       mobileNav.setAttribute('tabindex', '-1');
 
