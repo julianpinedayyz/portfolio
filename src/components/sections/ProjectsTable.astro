@@ -449,6 +449,9 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
               projectsFooter.classList.remove('hidden');
               projectsFooter.classList.add('block');
             }
+          } else {
+            // If there are more projects to load, ensure the button keeps focus
+            loadMoreBtn.focus();
           }
         }
       });
