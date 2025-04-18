@@ -4,6 +4,7 @@ import react from "@astrojs/react";
 
 export default defineConfig({
   site: 'https://julianpineda.com',
+  output: 'static',
   integrations: [tailwind(), react()],
   server: {
     host: '0.0.0.0',
