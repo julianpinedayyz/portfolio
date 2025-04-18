@@ -84,6 +84,45 @@ a:hover {
   color: var(--accent-light);
 }
 
+/* Focus styles for service accordion */
+.service-toggle:focus-visible {
+  outline: none;
+}
+
+/* Remove default focus styles from contact section links */
+#contact a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--white);
+}
+
+/* Black focus ring for footer links */
+footer a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--black);
+}
+
+/* Animated underline for footer links - matched to header links */
+footer a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--black);
+  transition: width 0.3s ease-in-out;
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
 code {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
