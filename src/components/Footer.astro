@@ -2,7 +2,7 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="py-4 border-t border-gray-100 bg-white">
+<footer class="py-4 border-t border-gray-100 bg-white" role="contentinfo">
   <div class="site-container">
     <div class="flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="text-xs font-medium text-gray-900">
@@ -14,27 +14,27 @@ const currentYear = new Date().getFullYear();
         <span>Worldwide → Canada</span>
       </div>
 
-      <div class="flex gap-6 items-center">
+      <nav class="flex gap-6 items-center" aria-label="Social links">
         <a
           href="https://linkedin.com/in/julianpinedayyz"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          class="text-gray-800 hover:text-gray-900 transition-colors text-xs"
+          aria-label="LinkedIn Profile"
+          class="text-gray-800 hover:text-gray-900 focus:outline-none focus-visible:underline transition-colors text-xs"
         >
-          LinkedIn
+          LinkedIn<span class="sr-only"> (opens in a new tab)</span>
         </a>
 
         <a
           href="https://github.com/julianpinedayyz"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="GitHub"
-          class="text-gray-800 hover:text-gray-900 transition-colors text-xs"
+          aria-label="GitHub Profile"
+          class="text-gray-800 hover:text-gray-900 focus:outline-none focus-visible:underline transition-colors text-xs"
         >
-          GitHub
+          GitHub<span class="sr-only"> (opens in a new tab)</span>
         </a>
-      </div>
+      </nav>
     </div>
   </div>
 </footer>

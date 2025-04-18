@@ -9,6 +9,7 @@
     <a
       href="/"
       class="text-sm font-bold tracking-tighter text-gray-900 flex items-center hover:bg-black hover:text-white focus-visible:bg-white focus-visible:text-black focus-visible:border-black focus-visible:border focus-visible:outline-none p-1 transition-colors"
+      aria-label="Julian Pineda - Home"
     >
       <span>Julian Pineda</span>
     </a>
@@ -19,6 +20,8 @@
         id="menu-toggle"
         class="md:hidden flex items-center p-2 text-gray-900"
         aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +34,8 @@
           stroke-linecap="round"
           stroke-linejoin="round"
           class="menu-icon"
+          aria-hidden="true"
+          role="img"
         >
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -39,57 +44,71 @@
       </button>
 
       <!-- Desktop navigation -->
-      <nav id="desktop-nav" class="hidden md:flex items-center gap-8">
+      <nav
+        id="desktop-nav"
+        class="hidden md:flex items-center gap-8"
+        aria-label="Main navigation"
+      >
         <a
           href="#about"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
           >About</a
         >
         <a
           href="#experience"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
           >Experience</a
         >
         <a
           href="#projects"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
           >Projects</a
         >
         <a
           href="#services"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
           >Services</a
         >
         <div class="relative flex items-center">
           <button
             id="contact-dropdown-toggle"
-            class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none relative pb-[2px] link-hover"
+            class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
             style="line-height: 1; padding-bottom: 2px; margin-bottom: 0;"
-            >Contact</button
+            aria-expanded="false"
+            aria-controls="contact-dropdown">Contact</button
           >
           <!-- Contact dropdown menu -->
           <div
             id="contact-dropdown"
             class="hidden absolute top-full right-0 w-auto bg-white p-2.5 border border-black"
+            role="menu"
+            aria-labelledby="contact-dropdown-toggle"
           >
             <div class="flex items-center py-1.5 px-2 border-b border-black">
-              <span class="font-bold mr-4 text-[0.7rem]">@</span>
+              <span class="font-bold mr-4 text-[0.7rem]" aria-hidden="true"
+                >@</span
+              >
               <a
                 href="mailto:julian@julianpineda.com"
                 class="font-bold text-[0.7rem] text-[#262626] contact-link"
-                >julian@julianpineda.com</a
+                role="menuitem">julian@julianpineda.com</a
               >
             </div>
             <div
               class="flex items-center justify-between py-1.5 px-2 border-b border-black"
             >
-              <span class="font-bold mr-4 text-[0.7rem]">L</span>
+              <span class="font-bold mr-4 text-[0.7rem]" aria-hidden="true"
+                >L</span
+              >
               <a
                 href="https://linkedin.com/in/julianpinedayyz"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="font-bold text-[0.7rem] text-[#262626] contact-link flex items-center"
-                >LinkedIn <span class="ml-1">↗</span></a
+                role="menuitem"
+                >LinkedIn <span class="ml-1" aria-hidden="true">↗</span><span
+                  class="sr-only">(opens in a new tab)</span
+                ></a
               >
             </div>
           </div>
@@ -108,11 +127,15 @@
   <div
     id="mobile-nav"
     class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20"
+    aria-label="Mobile navigation"
+    role="dialog"
+    aria-modal="true"
   >
     <button
       id="close-menu-btn"
       class="absolute text-white p-2 z-50"
       style="top: 0.525rem; right: 1.9rem;"
+      aria-label="Close menu"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +147,8 @@
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
+        aria-hidden="true"
+        role="img"
       >
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -132,27 +157,27 @@
     <nav class="site-container flex flex-col items-start gap-6 h-full">
       <a
         href="#about"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
         >About</a
       >
       <a
         href="#experience"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
         >Experience</a
       >
       <a
         href="#projects"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
         >Projects</a
       >
       <a
         href="#services"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
         >Services</a
       >
       <a
         href="#contact"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
         >Contact</a
       >
       <!-- Resume button commented out -->
@@ -272,22 +297,39 @@
   // Menu toggle (Open)
   if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', () => {
-      mobileNav.classList.remove('hidden');
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      mobileNav.classList.toggle('hidden');
+
+      // If opening the menu, trap focus inside
+      if (!expanded) {
+        // Set focus to the first focusable element in the menu
+        setTimeout(() => {
+          const firstFocusableElement = mobileNav.querySelector('a, button');
+          if (firstFocusableElement) {
+            firstFocusableElement.focus();
+          }
+        }, 100);
+      }
     });
   }
 
   // Close menu button
-  if (closeMenuBtn && mobileNav) {
+  if (closeMenuBtn && mobileNav && menuToggle) {
     closeMenuBtn.addEventListener('click', () => {
       mobileNav.classList.add('hidden');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      // Return focus to the menu toggle button
+      menuToggle.focus();
     });
   }
 
   // Close menu when a nav link is clicked
-  if (mobileNavLinks && mobileNav) {
+  if (mobileNavLinks && mobileNav && menuToggle) {
     mobileNavLinks.forEach((link) => {
       link.addEventListener('click', () => {
         mobileNav.classList.add('hidden');
+        menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -296,7 +338,46 @@
   if (contactDropdownToggle && contactDropdown) {
     contactDropdownToggle.addEventListener('click', (e) => {
       e.stopPropagation();
+      const expanded =
+        contactDropdownToggle.getAttribute('aria-expanded') === 'true';
+      contactDropdownToggle.setAttribute('aria-expanded', !expanded);
       contactDropdown.classList.toggle('hidden');
+
+      // If opening the dropdown, set focus to the first link
+      if (!expanded) {
+        setTimeout(() => {
+          const firstLink = contactDropdown.querySelector('a');
+          if (firstLink) {
+            firstLink.focus();
+          }
+        }, 100);
+      }
+    });
+
+    // Handle keyboard events for the dropdown
+    contactDropdown.addEventListener('keydown', (e) => {
+      const focusableElements =
+        contactDropdown.querySelectorAll('a[role="menuitem"]');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      // Handle Tab and Shift+Tab to trap focus
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+
+      // Close on Escape
+      if (e.key === 'Escape') {
+        contactDropdown.classList.add('hidden');
+        contactDropdownToggle.setAttribute('aria-expanded', 'false');
+        contactDropdownToggle.focus();
+      }
     });
 
     document.addEventListener('click', (e) => {
@@ -305,6 +386,7 @@
         !contactDropdownToggle.contains(e.target)
       ) {
         contactDropdown.classList.add('hidden');
+        contactDropdownToggle.setAttribute('aria-expanded', 'false');
       }
     });
   }

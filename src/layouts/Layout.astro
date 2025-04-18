@@ -34,8 +34,9 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
   </head>
   <body class="text-gray-900 bg-white font-sans antialiased">
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <Footer />
@@ -107,5 +108,23 @@ const {
 
   main {
     flex: 1;
+  }
+
+  /* Skip link styles */
+  .skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 16px;
+    z-index: 100;
+    transition: top 0.2s ease-in-out;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .skip-to-content:focus {
+    top: 0;
   }
 </style>
