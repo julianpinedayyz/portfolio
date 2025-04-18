@@ -139,6 +139,11 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
                       <div class="mt-1 text-sm font-light italic opacity-70 xl:hidden">
                         {project.madeAt}
                       </div>
+
+                      {/* Show Service Provided below Made At on smaller screens */}
+                      <div class="mt-0.5 text-sm font-semibold italic opacity-80 md:hidden">
+                        {project.serviceProvided.join(', ')}
+                      </div>
                     </td>
                     <td class="py-0.5 pr-4 align-top whitespace-nowrap xl:table-cell hidden md:py-2.5 sm:py-1.5">
                       {project.madeAt}
@@ -406,6 +411,13 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
               'mt-1 text-sm font-light italic opacity-70 xl:hidden';
             madeAtMobile.textContent = project.madeAt;
             projectCell.appendChild(madeAtMobile);
+
+            // Add Service Provided below Made At on smaller screens
+            const serviceMobile = document.createElement('div');
+            serviceMobile.className =
+              'mt-0.5 text-sm font-semibold italic opacity-80 md:hidden';
+            serviceMobile.textContent = project.serviceProvided.join(', ');
+            projectCell.appendChild(serviceMobile);
 
             // Made at cell (for larger screens)
             const madeAtCell = document.createElement('td');
