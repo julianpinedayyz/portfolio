@@ -9,62 +9,63 @@ import {
   GlobeAltIcon,
   CubeTransparentIcon,
 } from '@heroicons/react/24/outline';
+import { benefits, iconComponents } from '../../data/benefitsData';
 
 // Update icon mapping
-const iconComponents = {
-  rocket: RocketLaunchIcon,
-  sparkles: SparklesIcon,
-  badge: CheckBadgeIcon,
-  universal: GlobeAltIcon,
-  cube: CubeTransparentIcon,
-  users: UsersIcon,
-};
+// const iconComponents = {
+//   rocket: RocketLaunchIcon,
+//   sparkles: SparklesIcon,
+//   badge: CheckBadgeIcon,
+//   universal: GlobeAltIcon,
+//   cube: CubeTransparentIcon,
+//   users: UsersIcon,
+// };
 
 // Update benefits data array
-const benefits = [
-  {
-    number: '01',
-    title: 'Strategic Acceleration Mindset',
-    description:
-      'Accelerate time-to-value through strategic alignment and proven leadership.',
-    icon: 'rocket',
-  },
-  {
-    number: '02',
-    title: 'Transformative Partnership',
-    description:
-      'Partner on impactful solutions designed to significantly boost customer retention and drive revenue growth.',
-    icon: 'sparkles',
-  },
-  {
-    number: '03',
-    title: 'Proven Enterprise Expertise',
-    description:
-      'Leverage stable leadership experienced in complex enterprise projects across diverse sectors.',
-    icon: 'badge',
-  },
-  {
-    number: '04',
-    title: 'Accessible & Inclusive UI/UX',
-    description:
-      'Champion accessible and inclusive UI/UX design from the start for compliance and enhanced user experience.',
-    icon: 'universal',
-  },
-  {
-    number: '05',
-    title: 'Future-Ready Experiences',
-    description:
-      'Build scalable, engaging digital experiences using user-centered strategies, AI insights, and omnichannel principles.',
-    icon: 'cube',
-  },
-  {
-    number: '06',
-    title: 'Cross-Functional Collab',
-    description:
-      'Integrate seamlessly with your existing marketing, design, and technology teams to ensure cohesive execution and shared success.',
-    icon: 'users',
-  },
-];
+// const benefits = [
+//   {
+//     number: '01',
+//     title: 'Strategic Acceleration Mindset',
+//     description:
+//       'Accelerate time-to-value through strategic alignment and proven leadership.',
+//     icon: 'rocket',
+//   },
+//   {
+//     number: '02',
+//     title: 'Transformative Partnership',
+//     description:
+//       'Partner on impactful solutions designed to significantly boost customer retention and drive revenue growth.',
+//     icon: 'sparkles',
+//   },
+//   {
+//     number: '03',
+//     title: 'Proven Enterprise Expertise',
+//     description:
+//       'Leverage stable leadership experienced in complex enterprise projects across diverse sectors.',
+//     icon: 'badge',
+//   },
+//   {
+//     number: '04',
+//     title: 'Accessible & Inclusive UI/UX',
+//     description:
+//       'Champion accessible and inclusive UI/UX design from the start for compliance and enhanced user experience.',
+//     icon: 'universal',
+//   },
+//   {
+//     number: '05',
+//     title: 'Future-Ready Experiences',
+//     description:
+//       'Build scalable, engaging digital experiences using user-centered strategies, AI insights, and omnichannel principles.',
+//     icon: 'cube',
+//   },
+//   {
+//     number: '06',
+//     title: 'Cross-Functional Collab',
+//     description:
+//       'Integrate seamlessly with your existing marketing, design, and technology teams to ensure cohesive execution and shared success.',
+//     icon: 'users',
+//   },
+// ];
 ---
 
 <section id="benefits" class="pb-12 bg-[#f9f9f9] py-16">
