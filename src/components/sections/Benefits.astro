@@ -9,65 +9,10 @@ import {
   GlobeAltIcon,
   CubeTransparentIcon,
 } from '@heroicons/react/24/outline';
-
-// Update icon mapping
-const iconComponents = {
-  rocket: RocketLaunchIcon,
-  sparkles: SparklesIcon,
-  badge: CheckBadgeIcon,
-  universal: GlobeAltIcon,
-  cube: CubeTransparentIcon,
-  users: UsersIcon,
-};
-
-// Update benefits data array
-const benefits = [
-  {
-    number: '01',
-    title: 'Strategic Acceleration Mindset',
-    description:
-      'Accelerate time-to-value through strategic alignment and proven leadership.',
-    icon: 'rocket',
-  },
-  {
-    number: '02',
-    title: 'Transformative Partnership',
-    description:
-      'Partner on impactful solutions designed to significantly boost customer retention and drive revenue growth.',
-    icon: 'sparkles',
-  },
-  {
-    number: '03',
-    title: 'Proven Enterprise Expertise',
-    description:
-      'Leverage stable leadership experienced in complex enterprise projects across diverse sectors.',
-    icon: 'badge',
-  },
-  {
-    number: '04',
-    title: 'Accessible & Inclusive UI/UX',
-    description:
-      'Champion accessible and inclusive UI/UX design from the start for compliance and enhanced user experience.',
-    icon: 'universal',
-  },
-  {
-    number: '05',
-    title: 'Future-Ready Experiences',
-    description:
-      'Build scalable, engaging digital experiences using user-centered strategies, AI insights, and omnichannel principles.',
-    icon: 'cube',
-  },
-  {
-    number: '06',
-    title: 'Cross-Functional Collab',
-    description:
-      'Integrate seamlessly with your existing marketing, design, and technology teams to ensure cohesive execution and shared success.',
-    icon: 'users',
-  },
-];
+import { benefits, iconComponents } from '../../data/benefitsData';
 ---
 
-<section id="benefits" class="pb-12 bg-[#f9f9f9] py-16">
+<section id="benefits" class="pb-12 bg-white py-16">
   <div class="site-container px-6 mx-auto max-w-6xl">
     {/* Main container: Use Flexbox for layout */}
     <div class="flex flex-col md:flex-row md:gap-8">
@@ -89,7 +34,7 @@ const benefits = [
                 <div
                   class:list={[
                     'flex flex-col',
-                    { 'xl:border-t xl:border-gray-200 xl:pt-8': index >= 3 },
+                    { 'xl:border-t xl:border-gray-500 xl:pt-8': index >= 3 },
                   ]}
                 >
                   <div class="flex items-baseline mb-3 md:mb-8">
@@ -105,7 +50,12 @@ const benefits = [
                       </div>
                     )}
                   </div>
-                  <p class="text-sm text-[#666666]">{benefit.description}</p>
+                  <p
+                    class="text-sm font-medium"
+                    style="color: #000000 !important;"
+                  >
+                    {benefit.description}
+                  </p>
                 </div>
               );
             })

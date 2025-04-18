@@ -1,142 +1,11 @@
 ---
 import ProfileButtons from '../ui/ProfileButtons.astro';
-
-const experiences = [
-  {
-    year: '05/25',
-    role: 'Lab 829',
-    company: 'Canada/Worldwide',
-    period: 'September 2005 - Present',
-    position: 'Director of Technology',
-    subtitle: 'Formerly Miroamarillo Studio',
-    status: { type: 'active', label: 'Active' },
-    description: [
-      'Partnered with clients worldwide, including leading fintech and retail organizations, to deliver transformative digital solutions tailored to their business needs.',
-      'Spearheaded projects such as marketing data-driven personalization initiatives, enrollment wizards for fintech platforms, and the seamless integration of innovative AI-based solutions into existing client infrastructures.',
-      'Directed initiatives that reached over 5 million users, significantly enhancing customer retention rates and unlocking over $10 million in new annual revenue streams.',
-      'Championed accessibility and inclusive design to strengthen brand-audience connections, fostering trust and loyalty.',
-      'Oversaw end-to-end implementation and deployment of digital solutions.',
-    ],
-    skills: [
-      'Global Client Collaboration',
-      'AI Integration',
-      'Customer Retention Strategies',
-      'Revenue Growth',
-      'Accessibility Consulting',
-      'Market Activation Strategies',
-      'Solution Deployment',
-    ],
-    impact: [
-      '5M+ Users Reached',
-      '$10M+ Revenue Generated',
-      'Multiple Global Markets',
-      'Enhanced Customer Retention',
-    ],
-    imageUrl: '/images/lab829.jpg',
-  },
-  {
-    year: '21/22',
-    role: 'Critical Mass',
-    company: 'Canada/UK/Central America/US',
-    period: 'July 2021 - June 2022',
-    position: 'Director of Technology',
-    subtitle: '',
-    status: { type: 'previous', label: 'Previous' },
-    description: [
-      'Directed high-impact personalization and lease renewal projects for Nissan and Infiniti, engaging over 1 million customers and driving brand loyalty.',
-      'Led the successful launch of the Nissan Ariya campaign, orchestrating cross-functional teams of 50 members across the UK, Central America, Canada, and the US.',
-      'Spearheaded the hiring, onboarding, and retention strategy for new team members, including developing an innovative onboarding platform that reduced onboarding time by 50%.',
-      'Partnered with marketing, design, and revenue teams to align customer-focused initiatives with business objectives.',
-      'Led product management and innovation initiatives with internal and external stakeholders.',
-    ],
-    skills: [
-      'Front-End Direction',
-      'Global Team Leadership',
-      'Campaign Management',
-      'Customer Personalization',
-      'Onboarding Optimization',
-      'Cross-Functional Collaboration',
-      'Digital Strategy',
-      'Revenue Growth',
-    ],
-    impact: [
-      '1M+ Customers Engaged',
-      '50% Reduced Onboarding Time',
-      '50+ Team Members Led',
-      'Multiple Global Regions',
-    ],
-    imageUrl: '/images/criticalmass.png',
-  },
-  {
-    year: '18/19',
-    role: 'Deloitte Digital',
-    company: 'Canada/US',
-    period: 'May 2018 - July 2019',
-    position:
-      'Director of Front End Engineering, Accessibility Strategy and Digital Integration',
-    subtitle: '',
-    status: { type: 'previous', label: 'Previous' },
-    description: [
-      'Directed the launch of PcExpress, a digital platform that reached over 4 million users monthly, driving significant engagement and customer retention.',
-      'Led TD Canada Trust personalization initiative designed to connect with over 6 million users across Canada.',
-      'Orchestrated marketing campaigns for Loblaws, achieving seasonal outreach to over 2 million users per campaign.',
-      'Championed innovation by integrating accessibility strategies into high-profile projects.',
-      'Oversaw budgeting and resource allocation for an annual portfolio valued at $2.5 million.',
-    ],
-    skills: [
-      'Campaign Leadership',
-      'Personalization Strategy',
-      'User Engagement',
-      'Accessibility Integration',
-      'Budget Management',
-      'Digital Platforms',
-    ],
-    impact: [
-      '4M+ Monthly Users',
-      '6M+ Canadians Reached',
-      '2M+ Campaign Reach',
-      '$2.5M Budget Managed',
-    ],
-    imageUrl: '/images/deloittedigital.png',
-  },
-  {
-    year: '16/18',
-    role: 'Royal Bank of Canada',
-    company: 'Canada',
-    period: 'July 2016 - May 2018',
-    position:
-      'Director of Front-End Development - Online Banking & Omnichannel',
-    subtitle: '',
-    status: { type: 'previous', label: 'Previous' },
-    description: [
-      'Scaled the front-end development team from 2 to 20 members, managing 18 concurrent projects for over 8 million users.',
-      'Delivered a strategic front-end roadmap that improved development efficiency, integrating multiple technology platforms.',
-      'Reduced accessibility bugs by 90% before the first QA cycle through best practices implementation.',
-      'Accelerated product delivery timelines by developing an in-house framework and optimizing processes.',
-      'Led cross-functional collaboration to define customer journeys and enhance user experience across desktop and mobile.',
-      'Managed a $2.5 million annual budget, optimizing resource allocation and driving product management initiatives.',
-    ],
-    skills: [
-      'Enterprise Strategy',
-      'Team Scaling',
-      'Accessibility',
-      'Platform Integration',
-      'Agile Development',
-      'Budget Optimization',
-    ],
-    impact: [
-      '8M+ Users Impacted',
-      '90% Fewer Accessibility Bugs',
-      '18 Concurrent Projects',
-      '$2.5M Budget Managed',
-    ],
-    imageUrl: '/images/rbc.jpg',
-  },
-];
-
-// LinkedIn URL and resume file path
-const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
-const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
+import { Image } from 'astro:assets';
+import {
+  experiences,
+  linkedInUrl,
+  resumeFilePath,
+} from '../../data/experienceData';
 ---
 
 <section id="experience" class="bg-[#1A1A1A] py-10 text-white">
@@ -146,12 +15,15 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
     <ul class="item-list">
       {
         experiences.map((job, index) => (
-          <li
-            class="list-item"
-            tabindex="0"
-            aria-expanded={index === 0 ? 'true' : 'false'}
-          >
-            <div class="item-main">
+          <li class="list-item" aria-expanded={index === 0 ? 'true' : 'false'}>
+            <div
+              class="item-main"
+              role="button"
+              tabindex="0"
+              aria-controls={`panel-${index}`}
+              id={`accordion-header-${index}`}
+              aria-expanded={index === 0 ? 'true' : 'false'}
+            >
               <div class="item-year font-extralight italic text-4xl tracking-[-0.08em]">
                 {job.year}
               </div>
@@ -159,11 +31,29 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
                 {job.role}
               </div>
               <div class="item-country font-medium">{job.company}</div>
+              <span class="sr-only">
+                (Click to {index === 0 ? 'collapse' : 'expand'})
+              </span>
             </div>
-            <div class="item-expanded">
+            <div
+              class="item-expanded"
+              id={`panel-${index}`}
+              role="region"
+              aria-labelledby={`accordion-header-${index}`}
+            >
               <div class="item-expanded-content">
                 <div class="item-image">
-                  <img src={job.imageUrl} alt={`${job.company} image`} />
+                  <Image
+                    src={job.imageUrl}
+                    alt={`${job.role} at ${job.company} logo`}
+                    width={350}
+                    height={230}
+                    format="webp"
+                    quality={80}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={index === 0 ? 'high' : 'auto'}
+                    decoding="async"
+                  />
                 </div>
                 <div class="expanded-details">
                   <div class="expanded-header">
@@ -221,7 +111,7 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
   :root {
     --color-background: #1a1a1a;
     --color-text-primary: #ffffff;
-    --color-text-secondary: #a0a0a0;
+    --color-text-secondary: #4b5563; /* Changed from #a0a0a0 to #4b5563 (gray-700) for better contrast */
     --color-divider: #333333;
     --color-expanded-bg: #f1efe5;
     --color-expanded-text: #333333;
@@ -272,6 +162,28 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
     width: calc(100% - 350px);
     border-bottom: 1px solid var(--color-divider);
     cursor: pointer;
+    position: relative;
+  }
+
+  /* Expand/collapse indicator */
+  .item-main::after {
+    content: '+';
+    position: absolute;
+    right: 24px;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--color-text-primary);
+    transition: transform var(--transition-speed);
+  }
+
+  .list-item[aria-expanded='true'] .item-main::after {
+    content: '−';
+  }
+
+  /* Focus styling for accessibility */
+  .item-main:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
   }
 
   .item-year {
@@ -564,50 +476,93 @@ const resumeFilePath = 'public/Julian Pineda - 5v4.pdf';
   document.addEventListener('DOMContentLoaded', () => {
     const listItems = document.querySelectorAll('.list-item');
     const itemMains = document.querySelectorAll('.item-main');
+    // Get the header element to calculate its height
+    const header = document.querySelector('header');
+    // Calculate offset (header height plus some padding)
+    const getHeaderOffset = () => {
+      const headerHeight = header ? header.offsetHeight : 0;
+      return headerHeight + 16; // Add some extra padding
+    };
+
+    // Function to scroll element into view with header offset
+    const scrollWithOffset = (element) => {
+      const headerOffset = getHeaderOffset();
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    };
 
     // Function to collapse all items except the one we want to keep expanded
     const collapseOtherItems = (currentItem) => {
       listItems.forEach((item) => {
         if (item !== currentItem) {
           item.setAttribute('aria-expanded', 'false');
+          const header = item.querySelector('.item-main');
+          if (header) {
+            header.setAttribute('aria-expanded', 'false');
+            // Update screen reader text
+            const srText = header.querySelector('.sr-only');
+            if (srText) srText.textContent = '(Click to expand)';
+          }
         }
       });
+    };
+
+    // Function to toggle accordion state
+    const toggleAccordion = (accordionHeader) => {
+      const parentItem = accordionHeader.closest('.list-item');
+      const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
+      const panelId = accordionHeader.getAttribute('aria-controls');
+      const srText = accordionHeader.querySelector('.sr-only');
+
+      // Toggle expanded state
+      if (isExpanded) {
+        parentItem.setAttribute('aria-expanded', 'false');
+        accordionHeader.setAttribute('aria-expanded', 'false');
+        if (srText) srText.textContent = '(Click to expand)';
+      } else {
+        // Collapse all other items first
+        collapseOtherItems(parentItem);
+
+        // Expand this item
+        parentItem.setAttribute('aria-expanded', 'true');
+        accordionHeader.setAttribute('aria-expanded', 'true');
+        if (srText) srText.textContent = '(Click to collapse)';
+
+        // Scroll the expanded item into view, accounting for header height
+        setTimeout(() => {
+          scrollWithOffset(accordionHeader);
+        }, 10);
+      }
     };
 
     // Add click handlers to item-main elements
     itemMains.forEach((itemMain) => {
       itemMain.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent event from bubbling to parent
-        const parentItem = itemMain.closest('.list-item');
-        const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
-
-        // If clicking the same item-main that's already expanded, just collapse it
-        if (isExpanded) {
-          parentItem.setAttribute('aria-expanded', 'false');
-        } else {
-          // Collapse all other items and expand this one
-          collapseOtherItems(parentItem);
-          parentItem.setAttribute('aria-expanded', 'true');
-        }
+        toggleAccordion(itemMain);
       });
     });
 
-    // Handle keyboard interaction only on item-main elements
+    // Handle keyboard interaction and focus
     itemMains.forEach((itemMain) => {
+      // Ensure focused items are visible
+      itemMain.addEventListener('focus', () => {
+        // Scroll the focused item into view, accounting for header
+        scrollWithOffset(itemMain);
+      });
+
+      // Handle keyboard interaction
       itemMain.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           e.stopPropagation();
-          const parentItem = itemMain.closest('.list-item');
-          const isExpanded =
-            parentItem.getAttribute('aria-expanded') === 'true';
-
-          if (isExpanded) {
-            parentItem.setAttribute('aria-expanded', 'false');
-          } else {
-            collapseOtherItems(parentItem);
-            parentItem.setAttribute('aria-expanded', 'true');
-          }
+          toggleAccordion(itemMain);
         }
       });
     });
