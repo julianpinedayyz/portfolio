@@ -51,28 +51,28 @@
       >
         <a
           href="#about"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] relative pb-[2px] link-hover border-none"
           >About</a
         >
         <a
           href="#experience"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] relative pb-[2px] link-hover border-none"
           >Experience</a
         >
         <a
           href="#projects"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] relative pb-[2px] link-hover border-none"
           >Projects</a
         >
         <a
           href="#services"
-          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
+          class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] relative pb-[2px] link-hover border-none"
           >Services</a
         >
         <div class="relative flex items-center">
           <button
             id="contact-dropdown-toggle"
-            class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 relative pb-[2px] link-hover"
+            class="nav-link text-[0.88rem] text-[#262626] hover:text-[#262626] relative pb-[2px] link-hover border-0 bg-transparent appearance-none"
             style="line-height: 1; padding-bottom: 2px; margin-bottom: 0;"
             aria-expanded="false"
             aria-controls="contact-dropdown">Contact</button
@@ -157,27 +157,27 @@
     <nav class="site-container flex flex-col items-start gap-6 h-full">
       <a
         href="#about"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
         >About</a
       >
       <a
         href="#experience"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
         >Experience</a
       >
       <a
         href="#projects"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
         >Projects</a
       >
       <a
         href="#services"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
         >Services</a
       >
       <a
         href="#contact"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black relative pb-[2px] link-hover-mobile"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile"
         >Contact</a
       >
       <!-- Resume button commented out -->
@@ -197,7 +197,7 @@
     content: '';
     position: absolute;
     width: 0;
-    height: 2px; /* Increase height to match other underlines */
+    height: 2px;
     bottom: 0;
     left: 0;
     background-color: #000000;
@@ -209,12 +209,15 @@
     vertical-align: baseline;
     display: inline-block;
     line-height: 1;
+    border: none;
+    background: transparent;
+    position: relative;
   }
 
   /* Special case for contact dropdown */
   #contact-dropdown-toggle.link-hover::after {
     width: 0;
-    height: 2px; /* Match other links */
+    height: 2px;
     left: 0;
     right: auto;
     bottom: 0;
@@ -222,6 +225,14 @@
 
   #contact-dropdown-toggle.link-hover:hover::after {
     width: 100%;
+  }
+
+  #contact-dropdown-toggle {
+    background: transparent !important;
+    border: none !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
 
   /* Expand underline on hover */
@@ -234,9 +245,10 @@
     width: 100%;
   }
 
-  /* Focus styles */
+  /* New simple focus style for keyboard navigation */
   .nav-link:focus {
-    outline: none;
+    outline: 2px solid black;
+    outline-offset: 2px;
   }
 
   /* Resume button styles */
@@ -255,6 +267,12 @@
 
   .contact-link:hover {
     color: #262626 !important;
+  }
+
+  /* Add focus style for contact links */
+  .contact-link:focus {
+    outline: 2px solid black;
+    outline-offset: 2px;
   }
 
   /* Mobile link hover */
@@ -282,13 +300,19 @@
     /* Ensure active link underline is visible */
     width: 100%;
   }
+
+  /* Mobile focus styles */
+  .link-hover-mobile:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
 </style>
 
 <script>
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');
   const contactDropdownToggle = document.getElementById(
-    'contact-dropdown-toggle',
+    'contact-dropdown-toggle'
   );
   const contactDropdown = document.getElementById('contact-dropdown');
   const closeMenuBtn = document.getElementById('close-menu-btn');
