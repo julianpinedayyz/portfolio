@@ -1,5 +1,6 @@
 ---
 import ProfileButtons from '../ui/ProfileButtons.astro';
+import { Image } from 'astro:assets';
 import {
   experiences,
   linkedInUrl,
@@ -42,7 +43,17 @@ import {
             >
               <div class="item-expanded-content">
                 <div class="item-image">
-                  <img src={job.imageUrl} alt={`${job.company} image`} />
+                  <Image
+                    src={job.imageUrl}
+                    alt={`${job.role} at ${job.company} logo`}
+                    width={350}
+                    height={230}
+                    format="webp"
+                    quality={80}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={index === 0 ? 'high' : 'auto'}
+                    decoding="async"
+                  />
                 </div>
                 <div class="expanded-details">
                   <div class="expanded-header">
