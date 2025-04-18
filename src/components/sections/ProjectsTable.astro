@@ -47,7 +47,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="inline-flex items-center hover:underline text-[#F4A100] hover:text-[#F4A100]"
+                          class="inline-flex items-center hover:underline text-white hover:text-white"
                         >
                           <span class="flex-grow">{project.project}</span>
                           <span class="flex-shrink-0 inline-flex items-center">
@@ -144,7 +144,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
                       {project.madeAt}
                     </td>
                     <td class="py-0.5 pr-4 align-top md:table-cell hidden md:py-2.5 sm:py-1.5">
-                      <span class="text-sm font-light italic opacity-80">
+                      <span class="text-m font-semibold italic opacity-80">
                         {project.serviceProvided.join(', ')}
                       </span>
                     </td>
@@ -228,7 +228,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
               link.target = '_blank';
               link.rel = 'noopener noreferrer';
               link.className =
-                'inline-flex items-center hover:underline text-[#F4A100] hover:text-[#F4A100]';
+                'inline-flex items-center hover:underline text-white hover:text-white';
 
               const textSpan = document.createElement('span');
               textSpan.className = 'flex-grow';
@@ -419,7 +419,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
               'py-0.5 pr-4 align-top md:table-cell hidden md:py-2.5 sm:py-1.5';
 
             const serviceSpan = document.createElement('span');
-            serviceSpan.className = 'text-sm font-light italic opacity-80';
+            serviceSpan.className = 'text-m font-semibold italic opacity-80';
             serviceSpan.textContent = project.serviceProvided.join(', ');
             serviceCell.appendChild(serviceSpan);
 
