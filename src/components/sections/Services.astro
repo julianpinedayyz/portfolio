@@ -94,6 +94,12 @@ import { services, keyValues } from '../../data/services.ts';
         const icon = toggle.querySelector('.plus-icon');
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
 
+        // Check if elements exist before proceeding
+        if (!content || !icon) {
+          console.error('Service toggle content or icon missing', toggle);
+          return;
+        }
+
         // Update ARIA attributes based on new state
         toggle.setAttribute('aria-expanded', !isExpanded);
 
@@ -109,9 +115,12 @@ import { services, keyValues } from '../../data/services.ts';
               const otherContent = otherToggle.nextElementSibling;
               const otherIcon = otherToggle.querySelector('.plus-icon');
 
-              otherToggle.setAttribute('aria-expanded', 'false');
-              otherContent.classList.add('hidden');
-              otherIcon.classList.remove('rotate-45');
+              // Check if other elements exist
+              if (otherContent && otherIcon) {
+                otherToggle.setAttribute('aria-expanded', 'false');
+                otherContent.classList.add('hidden');
+                otherIcon.classList.remove('rotate-45');
+              }
             }
           });
 
@@ -139,13 +148,15 @@ import { services, keyValues } from '../../data/services.ts';
     // Open the first accordion item by default
     if (serviceToggles.length > 0) {
       const firstToggle = serviceToggles[0];
-      firstToggle.setAttribute('aria-expanded', 'true');
-
       const firstContent = firstToggle.nextElementSibling;
-      firstContent.classList.remove('hidden');
-
       const firstIcon = firstToggle.querySelector('.plus-icon');
-      firstIcon.classList.add('rotate-45');
+
+      // Check if first elements exist
+      if (firstToggle && firstContent && firstIcon) {
+        firstToggle.setAttribute('aria-expanded', 'true');
+        firstContent.classList.remove('hidden');
+        firstIcon.classList.add('rotate-45');
+      }
     }
   });
 </script>
