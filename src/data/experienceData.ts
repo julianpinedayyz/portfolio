@@ -27,7 +27,7 @@ export interface Experience {
 
 // LinkedIn URL and resume file path
 export const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
-export const resumeFilePath = '/Julian Pineda - 5v4.pdf'; // Keep the path relative to the public folder
+export const resumeFilePath = '/Julian Pineda - 5v4.pdf';
 
 // Experiences data array with type annotation
 export const experiences: Experience[] = [
