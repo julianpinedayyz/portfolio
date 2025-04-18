@@ -27,7 +27,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
           <table class="w-full border-collapse">
             <thead class="">
               <tr class="border-b border-[#C8102E]">
-                <th class="pt-2 pb-4 text-center font-medium w-8">
+                <th class="py-4 text-center font-medium w-8">
                   <svg
                     class="w-5 h-5 inline-block"
                     xmlns="http://www.w3.org/2000/svg"
@@ -43,14 +43,14 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
                     <circle cx="12" cy="12" r="3"></circle>
                   </svg>
                 </th>
-                <th class="pt-2 pb-4 text-left font-medium">Project</th>
-                <th class="pt-2 pb-4 text-left font-medium xl:table-cell hidden"
+                <th class="py-4 text-left font-medium">Project</th>
+                <th class="py-4 text-left font-medium xl:table-cell hidden"
                   >Made at</th
                 >
-                <th class="pt-2 pb-4 text-left font-medium md:table-cell hidden"
+                <th class="py-4 text-left font-medium md:table-cell hidden"
                   >Service Provided</th
                 >
-                <th class="pt-2 pb-4 text-left font-medium">Year</th>
+                <th class="py-4 text-left font-medium pl-4">Year</th>
               </tr>
             </thead>
             <tbody id="projects-table-body">
@@ -136,7 +136,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="inline-flex items-center hover:underline text-white hover:text-white"
+                          class="inline-flex items-center text-white hover:text-white underline decoration-white/50 hover:decoration-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0E0E2C] rounded-sm"
                         >
                           <span class="flex-grow">{project.project}</span>
                           <svg
@@ -196,7 +196,7 @@ const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
             hasMoreProjects && (
               <button
                 id="load-more-btn"
-                class="px-6 py-2 text-sm font-medium transition-colors mb-10 bg-[#004851] text-white hover:bg-[#005d63]"
+                class="px-6 py-2 text-sm font-medium transition-colors mb-10 bg-[#004851] text-white hover:bg-[#005d63] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0E0E2C]"
               >
                 Load More
               </button>
