@@ -1,3 +1,9 @@
+import lab829Image from '../assets/experience/lab829.jpg';
+import criticalmassImage from '../assets/experience/criticalmass.png';
+import deloitteImage from '../assets/experience/deloittedigital.png';
+import rbcImage from '../assets/experience/rbc.jpg';
+import type { ImageMetadata } from 'astro:assets'; // Import the type
+
 // Define the type for the status object
 interface Status {
   type: 'active' | 'previous';
@@ -16,7 +22,7 @@ export interface Experience {
   description: string[];
   skills: string[];
   impact: string[];
-  imageUrl: string;
+  imageUrl: ImageMetadata;
 }
 
 // LinkedIn URL and resume file path
@@ -55,7 +61,7 @@ export const experiences: Experience[] = [
       'Multiple Global Markets',
       'Enhanced Customer Retention',
     ],
-    imageUrl: '/images/lab829.jpg',
+    imageUrl: lab829Image,
   },
   {
     year: '21/22',
@@ -88,7 +94,7 @@ export const experiences: Experience[] = [
       '50+ Team Members Led',
       'Multiple Global Regions',
     ],
-    imageUrl: '/images/criticalmass.png',
+    imageUrl: criticalmassImage,
   },
   {
     year: '18/19',
@@ -120,7 +126,7 @@ export const experiences: Experience[] = [
       '2M+ Campaign Reach',
       '$2.5M Budget Managed',
     ],
-    imageUrl: '/images/deloittedigital.png',
+    imageUrl: deloitteImage,
   },
   {
     year: '16/18',
@@ -153,6 +159,6 @@ export const experiences: Experience[] = [
       '18 Concurrent Projects',
       '$2.5M Budget Managed',
     ],
-    imageUrl: '/images/rbc.jpg',
+    imageUrl: rbcImage,
   },
 ];
