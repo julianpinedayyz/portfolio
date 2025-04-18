@@ -19,6 +19,10 @@ import { services, keyValues } from '../../data/services.ts';
                 <button
                   class="service-toggle w-full py-5 flex justify-between items-center text-left"
                   data-index={index}
+                  role="button"
+                  aria-expanded={index === 0 ? 'true' : 'false'}
+                  aria-controls={`service-content-${index}`}
+                  id={`service-toggle-${index}`}
                 >
                   <span
                     class="text-lg font-bold tracking-tight"
@@ -35,12 +39,18 @@ import { services, keyValues } from '../../data/services.ts';
                     stroke="#C22929"
                     stroke-width="2"
                     class="plus-icon transition-transform"
+                    aria-hidden="true"
                   >
                     <line x1="12" y1="5" x2="12" y2="19" />
                     <line x1="5" y1="12" x2="19" y2="12" />
                   </svg>
                 </button>
-                <div class="service-content py-2 pb-6 hidden">
+                <div
+                  class="service-content py-2 pb-6 hidden"
+                  id={`service-content-${index}`}
+                  role="region"
+                  aria-labelledby={`service-toggle-${index}`}
+                >
                   <p style="color: #333333;">{service.description}</p>
                 </div>
               </div>
@@ -53,34 +63,89 @@ import { services, keyValues } from '../../data/services.ts';
 </section>
 
 <script>
-  // Toggle service details
-  const serviceToggles = document.querySelectorAll('.service-toggle');
+  document.addEventListener('DOMContentLoaded', () => {
+    const serviceToggles = document.querySelectorAll('.service-toggle');
+    // Get the header element to calculate its height
+    const header = document.querySelector('header');
 
-  serviceToggles.forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-      const content = toggle.nextElementSibling as HTMLElement;
-      const icon = toggle.querySelector('.plus-icon');
+    // Calculate offset (header height plus some padding)
+    const getHeaderOffset = () => {
+      const headerHeight = header ? header.offsetHeight : 0;
+      return headerHeight + 16; // Add some extra padding
+    };
 
-      // Toggle this item
-      content.classList.toggle('hidden');
-      icon.classList.toggle('rotate-45');
+    // Function to scroll element into view with header offset
+    const scrollWithOffset = (element) => {
+      const headerOffset = getHeaderOffset();
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
 
-      // Optional: Close other items when opening a new one
-      const index = toggle.getAttribute('data-index');
-      serviceToggles.forEach((otherToggle) => {
-        if (otherToggle !== toggle) {
-          const otherContent = otherToggle.nextElementSibling as HTMLElement;
-          const otherIcon = otherToggle.querySelector('.plus-icon');
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    };
 
-          otherContent.classList.add('hidden');
-          otherIcon.classList.remove('rotate-45');
+    // Toggle service details with improved accessibility
+    serviceToggles.forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('.plus-icon');
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+        // Update ARIA attributes based on new state
+        toggle.setAttribute('aria-expanded', !isExpanded);
+
+        // Toggle content visibility
+        if (isExpanded) {
+          // Collapsing this item
+          content.classList.add('hidden');
+          icon.classList.remove('rotate-45');
+        } else {
+          // Expanding this item - close others first
+          serviceToggles.forEach((otherToggle) => {
+            if (otherToggle !== toggle) {
+              const otherContent = otherToggle.nextElementSibling;
+              const otherIcon = otherToggle.querySelector('.plus-icon');
+
+              otherToggle.setAttribute('aria-expanded', 'false');
+              otherContent.classList.add('hidden');
+              otherIcon.classList.remove('rotate-45');
+            }
+          });
+
+          // Then open this one
+          content.classList.remove('hidden');
+          icon.classList.add('rotate-45');
+
+          // Scroll the expanded service into view with header offset
+          setTimeout(() => {
+            scrollWithOffset(toggle);
+          }, 10);
+        }
+      });
+
+      // Add keyboard support for toggles
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          toggle.click();
         }
       });
     });
-  });
 
-  // Open the first accordion item by default
-  if (serviceToggles.length > 0) {
-    serviceToggles[0].click();
-  }
+    // Open the first accordion item by default
+    if (serviceToggles.length > 0) {
+      const firstToggle = serviceToggles[0];
+      firstToggle.setAttribute('aria-expanded', 'true');
+
+      const firstContent = firstToggle.nextElementSibling;
+      firstContent.classList.remove('hidden');
+
+      const firstIcon = firstToggle.querySelector('.plus-icon');
+      firstIcon.classList.add('rotate-45');
+    }
+  });
 </script>
