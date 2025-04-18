@@ -21,7 +21,11 @@ const borderStyle = showBorder ? 'border-top: 1px solid #C8102E;' : '';
   <div class="footer-buttons">
     {
       showResume && (
-        <a href={resumeUrl} target="_blank" class="footer-button resume-button">
+        <a
+          href={resumeUrl}
+          target="_blank"
+          class="footer-button resume-button focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0E0E2C]"
+        >
           <span>Download Resume</span>
           <span class="button-icon">↗</span>
         </a>
@@ -33,7 +37,7 @@ const borderStyle = showBorder ? 'border-top: 1px solid #C8102E;' : '';
           href={linkedInUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="footer-button linkedin-button"
+          class="footer-button linkedin-button focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0E0E2C]"
         >
           <span>LinkedIn Profile</span>
           <span class="button-icon">↗</span>
@@ -46,7 +50,7 @@ const borderStyle = showBorder ? 'border-top: 1px solid #C8102E;' : '';
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="footer-button github-button"
+          class="footer-button github-button focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0E0E2C]"
         >
           <span>GitHub Profile</span>
           <span class="button-icon">↗</span>
