@@ -1,234 +1,14 @@
 ---
 // ProjectsTable.astro - A component displaying projects in a table format using the Bauhaus palette
 import ProfileButtons from '../ui/ProfileButtons.astro';
-
-// Bauhaus palette from Palette.astro
-const bauhausColors = {
-  deepNavy: '#0E0E2C',
-  crimsonRed: '#C8102E',
-  ochreYellow: '#F4A100',
-  forestGreen: '#004851',
-  warmBeige: '#D6C6A5',
-  pureWhite: '#FFFFFF',
-};
-
-// Project data from image analysis
-const projects = [
-  {
-    year: '2025',
-    project: 'Confidential',
-    madeAt: 'Lab 829',
-    serviceProvided: ['Frontend Development', 'AI integration'],
-    link: '',
-    confidential: true,
-  },
-  {
-    year: '2025',
-    project: 'Lab 829 Project',
-    madeAt: 'Lab 829',
-    serviceProvided: ['Chrome Extension', 'AI integration'],
-    link: '',
-    confidential: true,
-  },
-  {
-    year: '2024',
-    project: 'Meta Product Architecture Research',
-    madeAt: 'Lab 829',
-    serviceProvided: ['Product Architecture', 'Research', 'API Design'],
-    link: 'meta.com/',
-  },
-  {
-    year: '2023',
-    project: 'Klarna Product Roadmap',
-    madeAt: 'Lab 829',
-    serviceProvided: ['Product Roadmap', 'Research'],
-    link: 'klarna.com',
-  },
-  {
-    year: '2022',
-    project: 'Inifiniti QX60 Landing Page',
-    madeAt: 'Critical Mass',
-    serviceProvided: ['Technical Direction', 'Personalization'],
-    link: 'infinitiusa.com/vehicles/crossovers/qx60.html',
-  },
-  {
-    year: '2022',
-    project: 'Inifiniti Owners Portal',
-    madeAt: 'Critical Mass',
-    serviceProvided: ['Technical Direction', 'Personalization'],
-    link: 'infinitiusa.com/owners.html',
-  },
-  {
-    year: '2022',
-    project: 'Nissan ARIYA Launch',
-    madeAt: 'Critical Mass',
-    serviceProvided: ['Technical Direction', 'Frontend Development'],
-    link: 'nissan.ca/vehicles/electric-cars/ariya.html',
-  },
-  {
-    year: '2021',
-    project: 'Nissan and Infiniti Onboarding Platform',
-    madeAt: 'Critical Mass',
-    serviceProvided: ['Process Optimization', 'Data Visualization'],
-    link: '',
-  },
-  {
-    year: '2021',
-    project: 'Kredit Fintech Research',
-    madeAt: 'Lab 829',
-    serviceProvided: ['Research', 'Product Architecture'],
-    link: '',
-  },
-  {
-    year: '2020',
-    project: 'Confidential',
-    madeAt: 'Lab 829',
-    serviceProvided: ['Sports Data Integration', 'Interactive Components'],
-    link: '',
-    confidential: true,
-  },
-  {
-    year: '2019',
-    project: 'PC Express',
-    madeAt: 'Deloitte Digital',
-    serviceProvided: ['Design System Development', 'Component Library'],
-    link: 'pcexpress.ca/',
-    canadaOnly: true,
-  },
-  {
-    year: '2019',
-    project: 'Shoppers Drug Mart Marketing Campaigns',
-    madeAt: 'Deloitte Digital',
-    serviceProvided: [
-      'Design System Development',
-      'Component Library',
-      'Frontend Development',
-    ],
-    link: 'shoppersdrugmart.ca/',
-    canadaOnly: true,
-  },
-  {
-    year: '2018',
-    project: 'TD Canada Trust Product Architecture',
-    madeAt: 'Deloitte Digital',
-    serviceProvided: ['Product Architecture', 'Research'],
-    link: 'td.com/ca/en/personal-banking',
-    authRequired: true,
-  },
-  {
-    year: '2018',
-    project: 'Honda Canada Green Dealers',
-    madeAt: 'Deloitte Digital',
-    serviceProvided: ['Product Architecture', 'Frontend Development'],
-    link: 'hondacanada.ca/home',
-  },
-  {
-    year: '2018',
-    project: 'Canadian Olympic Committee Website',
-    madeAt: 'Deloitte Digital',
-    serviceProvided: ['Product Architecture', 'Frontend Development'],
-    link: 'olympic.ca',
-  },
-  {
-    year: '2018',
-    project: 'Coca Cola USA Accessibility Audit',
-    madeAt: 'Deloitte Digital',
-    serviceProvided: ['Accessibility Audit', 'Research'],
-    link: 'coca-colahellenic.com/en/accessibility',
-  },
-  {
-    year: '2018',
-    project: 'RBC Omnichannel Banking',
-    madeAt: 'RBC',
-    serviceProvided: [
-      'Tech Direction',
-      'Product Architecture',
-      'Frontend Development',
-    ],
-    link: 'rbcroyalbank.com/ways-to-bank/online-banking/index.html',
-    authRequired: true,
-  },
-  {
-    year: '2017',
-    project: 'RBC Mortgage Calculators and Tools',
-    madeAt: 'RBC',
-    serviceProvided: [
-      'Tech Direction',
-      'Product Architecture',
-      'Frontend Development',
-    ],
-    link: 'rbcroyalbank.com/mortgages/mortgage-calculators.html',
-    authRequired: true,
-  },
-  {
-    year: '2017',
-    project: 'RBC My Advisor',
-    madeAt: 'RBC',
-    serviceProvided: [
-      'Tech Advisor',
-      'Product Architecture',
-      'Frontend Development',
-    ],
-    link: 'rbcroyalbank.com/investments/myadvisor.html',
-    authRequired: true,
-  },
-  {
-    year: '16/18',
-    project: 'RBC Mobile App',
-    madeAt: 'RBC',
-    serviceProvided: [
-      'Tech Advisor',
-      'Cross Functional Collaboration',
-      'Frontend Development',
-    ],
-    link: 'rbcroyalbank.com/mobile-app',
-    authRequired: true,
-  },
-  {
-    year: '14/18',
-    project: 'RBC Personal Online Banking',
-    madeAt: 'Lab 829/RBC',
-    serviceProvided: [
-      'Tech Direction',
-      'Cross Functional Collaboration',
-      'Frontend Development',
-    ],
-    link: 'rbcroyalbank.com/personal.html',
-    authRequired: true,
-  },
-  {
-    year: '11/14',
-    project: 'Ontario.ca',
-    madeAt: 'Government of Ontario',
-    serviceProvided: [
-      'Product Architecture',
-      'Design System Development',
-      'Frontend Development',
-      'a11y',
-    ],
-    link: 'ontario.ca',
-  },
-  {
-    year: '11/14',
-    project: 'Newsroom Ontario',
-    madeAt: 'Government of Ontario',
-    serviceProvided: [
-      'Product Architecture',
-      'Design System Development',
-      'Frontend Development',
-      'a11y',
-    ],
-    link: 'news.ontario.ca/en',
-  },
-];
+import { projects, socialMediaLinks } from '../../data/projects';
 
 // Calculate initial visible projects and if we need a load more button
 const initialVisibleCount = 10;
 const hasMoreProjects = projects.length > initialVisibleCount;
 
-// Social media URLs
-const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
-const gitHubUrl = 'https://github.com/julianpinedayyz';
+// Extract social media URLs for convenience
+const { linkedIn: linkedInUrl, github: gitHubUrl } = socialMediaLinks;
 ---
 
 <section id="projects" class="py-20 bg-[#0E0E2C] text-white">
@@ -264,7 +44,7 @@ const gitHubUrl = 'https://github.com/julianpinedayyz';
                     <td class="py-0.5 pl-5 pr-4 align-top font-medium md:py-2.5 sm:py-1.5">
                       {project.link ? (
                         <a
-                          href={`https://${project.link}`}
+                          href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="inline-flex items-center hover:underline text-[#F4A100] hover:text-[#F4A100]"
@@ -399,7 +179,7 @@ const gitHubUrl = 'https://github.com/julianpinedayyz';
           >
             <ProfileButtons
               linkedInUrl={linkedInUrl}
-              githubUrl=""
+              githubUrl={gitHubUrl}
               resumeUrl="public/Julian Pineda - 5v4.pdf"
               showBorder={true}
               customClass="w-full"
@@ -444,7 +224,7 @@ const gitHubUrl = 'https://github.com/julianpinedayyz';
 
             if (project.link) {
               const link = document.createElement('a');
-              link.href = `https://${project.link}`;
+              link.href = project.link;
               link.target = '_blank';
               link.rel = 'noopener noreferrer';
               link.className =
