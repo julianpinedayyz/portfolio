@@ -30,6 +30,14 @@ module.exports = {
           800: '#2E2E2E',
           700: '#363636',
         },
+        gray: {
+          300: '#DCDCDC',
+          400: '#999999',
+          800: '#333333',
+          900: '#1A1A1A',
+        },
+        beige: '#f1efe5',
+        'brand-red': '#C22929',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
