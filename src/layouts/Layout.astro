@@ -54,32 +54,36 @@ const {
     </main>
     <Footer />
 
-    <!-- Window size indicator (for development) -->
-    <div
-      id="size-indicator"
-      class="fixed bottom-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-md text-xs z-50 font-mono"
-    >
-      Size: <span id="width">-</span> x <span id="height">-</span>
-    </div>
+    {/* Window size indicator (for development only) */}
+    {import.meta.env.DEV && (
+      <>
+        <div
+          id="size-indicator"
+          class="fixed bottom-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-md text-xs z-50 font-mono"
+        >
+          Size: <span id="width">-</span> x <span id="height">-</span>
+        </div>
 
-    <script is:inline>
-      // Update the size indicator on load and resize
-      function updateSizeIndicator() {
-        const widthEl = document.getElementById('width');
-        const heightEl = document.getElementById('height');
-        if (widthEl && heightEl) {
-          widthEl.textContent = window.innerWidth;
-          heightEl.textContent = window.innerHeight;
-        }
-      }
+        <script is:inline>
+          // Update the size indicator on load and resize
+          function updateSizeIndicator() {
+            const widthEl = document.getElementById('width');
+            const heightEl = document.getElementById('height');
+            if (widthEl && heightEl) {
+              widthEl.textContent = window.innerWidth;
+              heightEl.textContent = window.innerHeight;
+            }
+          }
 
-      // Initialize size indicator
-      window.addEventListener('DOMContentLoaded', updateSizeIndicator);
-      window.addEventListener('resize', updateSizeIndicator);
+          // Initialize size indicator
+          window.addEventListener('DOMContentLoaded', updateSizeIndicator);
+          window.addEventListener('resize', updateSizeIndicator);
 
-      // Initial call in case DOMContentLoaded already fired
-      updateSizeIndicator();
-    </script>
+          // Initial call in case DOMContentLoaded already fired
+          updateSizeIndicator();
+        </script>
+      </>
+    )}
   </body>
 </html>
 
