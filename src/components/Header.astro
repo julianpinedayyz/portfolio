@@ -126,7 +126,7 @@
   <!-- Mobile navigation -->
   <div
     id="mobile-nav"
-    class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20 transition-transform duration-500 ease-in-out translate-x-0"
+    class="fixed top-0 left-0 w-full h-screen bg-black hidden z-40 pt-20 transition-transform duration-[800ms] ease-in-out translate-x-0"
     aria-label="Mobile navigation"
     role="dialog"
     aria-modal="true"
@@ -159,27 +159,27 @@
     <nav class="site-container flex flex-col items-start gap-6 h-full">
       <a
         href="#about"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-200 ease-in-out translate-x-0"
         >About</a
       >
       <a
         href="#experience"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-200 ease-in-out translate-x-0"
         >Experience</a
       >
       <a
         href="#projects"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-200 ease-in-out translate-x-0"
         >Projects</a
       >
       <a
         href="#services"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-200 ease-in-out translate-x-0"
         >Services</a
       >
       <a
         href="#contact"
-        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-300 ease-in-out translate-x-0"
+        class="nav-link text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] link-hover-mobile transition-transform duration-200 ease-in-out translate-x-0"
         >Contact</a
       >
       <!-- Resume button commented out -->
@@ -405,7 +405,7 @@
     closeMenuBtn.addEventListener('click', () => {
       // Reset styles immediately if closed manually
       mobileNavLinks.forEach((link) => {
-        link.classList.remove('-translate-x-[500px]');
+        link.classList.remove('-translate-x-[300px]');
       });
       mobileNav.classList.remove('-translate-x-[500px]');
       mobileNav.classList.add('hidden');
@@ -455,42 +455,42 @@
         // Disable pointer events during animation
         mobileNav.style.pointerEvents = 'none';
 
-        const linkVisualDuration = 300; // Matches duration-300 on links
-        const timeSlotPerLink = 1000; // 1 second between each link animation start
-        const drawerVisualDuration = 500; // Matches duration-500 on mobileNav
+        const linkVisualDuration = 200; // Matches duration-200 on links
+        const staggerDelay = 100; // Updated: 100ms between each link animation start
+        const drawerVisualDuration = 800; // Updated: Matches duration-[800ms] on mobileNav
 
-        // 1. Trigger sequential link slide out (bottom-up)
+        // 1. Trigger sequential link slide out (bottom-up) - Animations will overlap
         const reversedLinks = [...orderedLinks].reverse();
         reversedLinks.forEach((navLink, index) => {
-          const animationStartTime = index * timeSlotPerLink;
+          const animationStartTime = index * staggerDelay; // Tightly staggered start time
           setTimeout(() => {
-            navLink.classList.add('-translate-x-[300px]');
+            navLink.classList.add('-translate-x-[300px]'); // Slide left 300px
           }, animationStartTime);
         });
 
-        // Calculate when the last link (About) animation *finishes*
-        const lastLinkIndex = orderedLinks.length - 1;
-        const lastLinkStartTime = lastLinkIndex * timeSlotPerLink;
-        const lastLinkEndTime = lastLinkStartTime + linkVisualDuration;
+        // Calculate when the last link (About) animation *starts*
+        const lastLinkIndex = reversedLinks.length - 1;
+        const lastLinkStartTime = lastLinkIndex * staggerDelay;
 
-        // 2. Trigger drawer slide out *after* last link animation finishes
-        const drawerAnimationStartTime = lastLinkEndTime + 50;
+        // 2. Trigger drawer slide out shortly *after* last link animation *starts*
+        const drawerAnimationStartTime = lastLinkStartTime + 100; // Start drawer 100ms after last link STARTS
         setTimeout(() => {
-          mobileNav.classList.add('-translate-x-[500px]');
+          mobileNav.classList.add('-translate-x-[500px]'); // Drawer slides left 500px
         }, drawerAnimationStartTime);
 
-        // 3. Final cleanup after all animations should be complete
-        const totalDuration =
-          drawerAnimationStartTime + drawerVisualDuration + 100;
+        // 3. Final cleanup after drawer animation should be complete
+        const drawerAnimationEndTime =
+          drawerAnimationStartTime + drawerVisualDuration;
+        const totalDuration = drawerAnimationEndTime + 100; // Add buffer
         setTimeout(() => {
           mobileNav.classList.add('hidden');
           menuToggle.setAttribute('aria-expanded', 'false');
 
           // Reset styles for next opening
           orderedLinks.forEach((navLink) => {
-            navLink.classList.remove('-translate-x-[500px]');
+            navLink.classList.remove('-translate-x-[300px]'); // Reset user's 300px value
           });
-          mobileNav.classList.remove('-translate-x-[500px]');
+          mobileNav.classList.remove('-translate-x-[500px]'); // Reset drawer slide value
 
           // Remove focus trap when closing via link click
           document.removeEventListener('keydown', handleTabKeyInMobileNav);
@@ -518,9 +518,9 @@
 
       // Reset styles if closed via Escape
       mobileNavLinks.forEach((link) => {
-        link.classList.remove('-translate-x-[500px]');
+        link.classList.remove('-translate-x-[300px]'); // Reset user's 300px value
       });
-      mobileNav.classList.remove('-translate-x-[500px]');
+      mobileNav.classList.remove('-translate-x-[500px]'); // Reset drawer slide value
 
       // Remove focus trap
       document.removeEventListener('keydown', handleTabKeyInMobileNav);
