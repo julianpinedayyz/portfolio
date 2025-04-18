@@ -17,7 +17,7 @@ import { services, keyValues } from '../../data/services.ts';
             services.map((service, index) => (
               <div class="border-b border-gray-400">
                 <button
-                  class="service-toggle w-full py-5 flex justify-between items-center text-left"
+                  class="service-toggle w-full py-5 flex justify-between items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
                   data-index={index}
                   role="button"
                   aria-expanded={index === 0 ? 'true' : 'false'}
