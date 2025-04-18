@@ -130,6 +130,8 @@
     aria-label="Mobile navigation"
     role="dialog"
     aria-modal="true"
+    inert
+    tabindex="-1"
   >
     <button
       id="close-menu-btn"
@@ -318,6 +320,50 @@
   const closeMenuBtn = document.getElementById('close-menu-btn');
   const mobileNavLinks = document.querySelectorAll('#mobile-nav .nav-link');
 
+  // Mobile Menu focus trap functionality
+  let previouslyFocusedElement = null;
+
+  // Get all focusable elements in the mobile menu
+  const getFocusableElements = () => {
+    return Array.from(
+      mobileNav.querySelectorAll(
+        'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute('disabled') && el.offsetParent !== null);
+  };
+
+  // Handle tab key press to trap focus
+  const handleTabKeyInMobileNav = (e) => {
+    if (mobileNav.classList.contains('hidden')) return;
+
+    // Get all focusable elements
+    const focusableElements = getFocusableElements();
+
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // If Shift+Tab on first element, move to last element
+    if (
+      e.key === 'Tab' &&
+      e.shiftKey &&
+      document.activeElement === firstElement
+    ) {
+      e.preventDefault();
+      lastElement.focus();
+    }
+    // If Tab on last element, cycle to first element
+    else if (
+      e.key === 'Tab' &&
+      !e.shiftKey &&
+      document.activeElement === lastElement
+    ) {
+      e.preventDefault();
+      firstElement.focus();
+    }
+  };
+
   // Menu toggle (Open)
   if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', () => {
@@ -327,13 +373,29 @@
 
       // If opening the menu, trap focus inside
       if (!expanded) {
-        // Set focus to the first focusable element in the menu
+        // Store the currently focused element to restore focus later
+        previouslyFocusedElement = document.activeElement;
+
+        // Remove inert attribute when opening
+        mobileNav.removeAttribute('inert');
+        mobileNav.removeAttribute('tabindex');
+
+        // Set focus to the close button
         setTimeout(() => {
-          const firstFocusableElement = mobileNav.querySelector('a, button');
-          if (firstFocusableElement) {
-            firstFocusableElement.focus();
+          if (closeMenuBtn) {
+            closeMenuBtn.focus();
           }
         }, 100);
+
+        // Add the keydown event listener for focus trapping
+        document.addEventListener('keydown', handleTabKeyInMobileNav);
+      } else {
+        // Remove the keydown event listener when menu is closed
+        document.removeEventListener('keydown', handleTabKeyInMobileNav);
+
+        // Add inert attribute when closing
+        mobileNav.setAttribute('inert', '');
+        mobileNav.setAttribute('tabindex', '-1');
       }
     });
   }
@@ -343,8 +405,20 @@
     closeMenuBtn.addEventListener('click', () => {
       mobileNav.classList.add('hidden');
       menuToggle.setAttribute('aria-expanded', 'false');
+
+      // Remove focus trap when closing
+      document.removeEventListener('keydown', handleTabKeyInMobileNav);
+
+      // Add inert attribute when closing
+      mobileNav.setAttribute('inert', '');
+      mobileNav.setAttribute('tabindex', '-1');
+
       // Return focus to the menu toggle button
-      menuToggle.focus();
+      if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+      } else {
+        menuToggle.focus();
+      }
     });
   }
 
@@ -354,9 +428,44 @@
       link.addEventListener('click', () => {
         mobileNav.classList.add('hidden');
         menuToggle.setAttribute('aria-expanded', 'false');
+
+        // Remove focus trap when closing via link click
+        document.removeEventListener('keydown', handleTabKeyInMobileNav);
+
+        // Add inert attribute when closing via navigation
+        mobileNav.setAttribute('inert', '');
+        mobileNav.setAttribute('tabindex', '-1');
+
+        // No need to restore focus here as we're navigating to a new section
       });
     });
   }
+
+  // Handle Escape key to close the mobile menu
+  document.addEventListener('keydown', (e) => {
+    if (
+      e.key === 'Escape' &&
+      mobileNav &&
+      !mobileNav.classList.contains('hidden')
+    ) {
+      mobileNav.classList.add('hidden');
+      menuToggle.setAttribute('aria-expanded', 'false');
+
+      // Remove focus trap
+      document.removeEventListener('keydown', handleTabKeyInMobileNav);
+
+      // Add inert attribute when closing
+      mobileNav.setAttribute('inert', '');
+      mobileNav.setAttribute('tabindex', '-1');
+
+      // Return focus to the menu toggle button
+      if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+      } else {
+        menuToggle.focus();
+      }
+    }
+  });
 
   // Desktop contact dropdown
   if (contactDropdownToggle && contactDropdown) {
