@@ -1,5 +1,5 @@
 ---
-
+import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
 ---
 
 <section
@@ -18,10 +18,29 @@
           >Julian<br class="inline sm:hidden" /> Pineda</span
         >
         <span
-          class="text-2xl sm:text-3xl md:text-7xl font-light tracking-tighter leading-tight"
-          >is a transformative leader in digital ecosystems and technology
-          strategy.</span
+          class="text-2xl sm:text-3xl md:text-7xl font-light tracking-tighter leading-tight relative"
         >
+          <!-- Static text that's visible to screen readers but hidden for visual users after animation starts -->
+          <span
+            id="static-tagline"
+            class="block transition-opacity duration-500"
+          >
+            Transformative leader in digital ecosystems and technology strategy.
+          </span>
+
+          <!-- Dynamic text positioned absolutely on top -->
+          <span
+            class="absolute top-0 left-0 w-full opacity-0 transition-opacity duration-500"
+            id="dynamic-container"
+          >
+            <ScramblingTextScript
+              id="hero-tagline"
+              text="Transformative leader in digital ecosystems and technology strategy."
+              delay={800}
+              rotationDelay={10000}
+            />
+          </span>
+        </span>
       </h1>
     </div>
   </div>
@@ -43,3 +62,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Simple script to fade between static and dynamic text
+  document.addEventListener('DOMContentLoaded', () => {
+    const staticTagline = document.getElementById('static-tagline');
+    const dynamicContainer = document.getElementById('dynamic-container');
+
+    if (staticTagline && dynamicContainer) {
+      // After a delay, start the transition
+      setTimeout(() => {
+        // For visual users, we'll hide the static text and show the animation
+        staticTagline.classList.add('opacity-0');
+        // The static text remains in the DOM for screen readers
+
+        dynamicContainer.classList.remove('opacity-0');
+        dynamicContainer.classList.add('opacity-100');
+      }, 2000); // Wait 2 seconds before switching to dynamic content
+    }
+  });
+</script>
