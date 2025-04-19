@@ -118,6 +118,9 @@ import {
     <!-- Experience Footer -->
     <ProfileButtons linkedInUrl={linkedInUrl} resumeUrl={resumeFilePath} />
   </div>
+
+  <!-- Live region for screen reader announcements -->
+  <div id="accordion-live-region" class="sr-only" aria-live="polite"></div>
 </section>
 
 <style>
@@ -533,12 +536,23 @@ import {
       const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
       const panelId = accordionHeader.getAttribute('aria-controls');
       const srText = accordionHeader.querySelector('.sr-only');
+      const panel = document.getElementById(panelId);
 
       // Toggle expanded state
       if (isExpanded) {
         parentItem.setAttribute('aria-expanded', 'false');
         accordionHeader.setAttribute('aria-expanded', 'false');
         if (srText) srText.textContent = '(Click to expand)';
+
+        // Announce state change to screen readers without moving focus
+        const liveRegion = document.getElementById('accordion-live-region');
+        if (liveRegion) {
+          liveRegion.textContent = 'Accordion panel collapsed';
+          // Clear after announcement
+          setTimeout(() => {
+            liveRegion.textContent = '';
+          }, 1000);
+        }
       } else {
         // Collapse all other items first
         collapseOtherItems(parentItem);
@@ -548,11 +562,25 @@ import {
         accordionHeader.setAttribute('aria-expanded', 'true');
         if (srText) srText.textContent = '(Click to collapse)';
 
+        // Announce state change to screen readers without moving focus
+        const liveRegion = document.getElementById('accordion-live-region');
+        if (liveRegion) {
+          liveRegion.textContent = 'Accordion panel expanded';
+          // Clear after announcement
+          setTimeout(() => {
+            liveRegion.textContent = '';
+          }, 1000);
+        }
+
         // Scroll the expanded item into view, accounting for header height
         setTimeout(() => {
           scrollWithOffset(accordionHeader);
         }, 10);
       }
+
+      // Keep focus on the button that was activated
+      // This is the recommended behavior for accordions
+      accordionHeader.focus();
     };
 
     // Add click handlers to item-main elements
@@ -563,25 +591,6 @@ import {
       });
     });
 
-    // Remove the focus listener that triggers scrolling
-    /*
-    itemMains.forEach((itemMain) => {
-      // Ensure focused items are visible
-      itemMain.addEventListener('focus', () => {
-        // Scroll the focused item into view, accounting for header
-        scrollWithOffset(itemMain);
-      });
-
-      // Handle keyboard interaction
-      itemMain.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleAccordion(itemMain);
-        }
-      });
-    });
-    */
     // Keep only the keydown listener
     itemMains.forEach((itemMain) => {
       itemMain.addEventListener('keydown', (e) => {
