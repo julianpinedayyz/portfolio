@@ -1,0 +1,380 @@
+---
+// Props for the script
+const {
+  id,
+  text,
+  delay = 500,
+  rotationDelay = 10000,
+  showStopButton = true,
+} = Astro.props;
+
+// Define multiple sentences to rotate through
+const sentences = [
+  'Transformative leader in digital ecosystems and technology strategy.',
+  'Strategic architect shaping AI-driven products and intelligent digital ecosystems.',
+  'Innovating at the intersection of AI, product architecture, and digital strategy.',
+  'Driving product innovation through AI systems, accessible design, and digital architecture.',
+  'Transforming digital strategy through AI innovation and system-level design.',
+];
+
+// Find the longest sentence to use for measuring height
+const longestSentence = sentences.reduce(
+  (longest, current) => (current.length > longest.length ? current : longest),
+  '',
+);
+---
+
+<div class="flex flex-col items-start">
+  <div id={`${id}-container`} class="relative">
+    <!-- Keep scrambling text hidden from screen readers but visible -->
+    <span id={id} class="scramble-text-target block" aria-hidden="true"></span>
+
+    {
+      showStopButton && (
+        <div
+          class="absolute -top-10 right-10 flex space-x-2 text-gray-400 transition-opacity duration-300 opacity-0"
+          id={`${id}-controls`}
+        >
+          <button
+            id={`${id}-stop`}
+            aria-label="Stop animation"
+            title="Stop animation"
+            class="hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-black rounded-none p-1 text-xs flex items-center group relative"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-pause-circle"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="10" y1="15" x2="10" y2="9" />
+              <line x1="14" y1="15" x2="14" y2="9" />
+            </svg>
+            <span class="tooltip-text absolute bottom-full left-1/2 transform -translate-x-1/2 px-3 py-1.5 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap mb-2 pointer-events-none tracking-wider">
+              Stop animation
+            </span>
+          </button>
+
+          <button
+            id={`${id}-reload`}
+            aria-label="Restart animation"
+            title="Restart animation"
+            class="hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-black rounded-none p-1 text-xs flex items-center group relative"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-refresh-cw"
+              aria-hidden="true"
+            >
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+            </svg>
+            <span class="tooltip-text absolute bottom-full left-1/2 transform -translate-x-1/2 px-3 py-1.5 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap mb-2 pointer-events-none tracking-wider">
+              Restart animation
+            </span>
+          </button>
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<!-- Live region to announce animation status for screen reader users -->
+<div id={`${id}-status`} class="sr-only" aria-live="polite"></div>
+
+<style>
+  /* Setting fixed heights at different breakpoints to prevent layout shift */
+  #hero-tagline-container {
+    min-height: 5.5em; /* Default for mobile */
+  }
+
+  @media (min-width: 640px) {
+    #hero-tagline-container {
+      min-height: 4.5em; /* For small devices */
+    }
+  }
+
+  @media (min-width: 768px) {
+    #hero-tagline-container {
+      min-height: 3.5em; /* For medium devices */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #hero-tagline-container {
+      min-height: 3em; /* For large devices */
+    }
+  }
+
+  /* Additional tooltip styles */
+  .tooltip-text {
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+  }
+</style>
+
+<script
+  define:vars={{
+    targetId: id,
+    initialText: text,
+    delay,
+    sentences,
+    rotationDelay,
+    showStopButton,
+  }}
+>
+  // Wait for document to be fully loaded
+  window.addEventListener('load', () => {
+    const targetElement = document.getElementById(targetId);
+    const statusElement = document.getElementById(`${targetId}-status`);
+
+    if (!targetElement) {
+      console.error(`Element with id ${targetId} not found`);
+      return;
+    }
+
+    const containerElement = document.getElementById(`${targetId}-container`);
+    if (containerElement) {
+      // Calculate and fix the container height based on the longest possible content
+      const measureHeight = () => {
+        // First, get the height of the target with the longest content
+        const originalContent = targetElement.textContent;
+
+        // Find the longest sentence
+        const longestSentence = sentences.reduce(
+          (longest, current) =>
+            current.length > longest.length ? current : longest,
+          '',
+        );
+
+        // Set the longest content temporarily
+        targetElement.textContent = longestSentence;
+
+        // Get the height and add a small buffer
+        const height = targetElement.offsetHeight + 5;
+
+        // Reset the original content
+        targetElement.textContent = originalContent;
+
+        // Set fixed height on container
+        containerElement.style.height = `${height}px`;
+      };
+
+      // Measure immediately
+      measureHeight();
+
+      // Measure again after fonts have loaded
+      document.fonts.ready.then(() => {
+        measureHeight();
+      });
+
+      // Also measure on resize
+      window.addEventListener('resize', measureHeight);
+    }
+
+    // Get the controls
+    const controlsContainer = showStopButton
+      ? document.getElementById(`${targetId}-controls`)
+      : null;
+    const stopButton = showStopButton
+      ? document.getElementById(`${targetId}-stop`)
+      : null;
+    const reloadButton = showStopButton
+      ? document.getElementById(`${targetId}-reload`)
+      : null;
+
+    // Animation state
+    let isAnimating = true;
+    let animationTimeout = null;
+
+    // Find the index of the initial text in the sentences array, or default to 0
+    let currentIndex = Math.max(
+      0,
+      sentences.findIndex((s) => s === initialText),
+    );
+
+    // Function to generate a pool of characters based on the current and next sentence
+    const generateCharPool = (currentSentence, nextSentence) => {
+      // Start with some special characters
+      const specialChars = '!<>-_\\/[]{}—=+*^?#_';
+
+      // Extract all unique characters from both sentences
+      const sentenceChars = Array.from(
+        new Set((currentSentence + nextSentence).split('')),
+      ).join('');
+
+      return specialChars + sentenceChars;
+    };
+
+    // Function to get a random character from a pool
+    const randomChar = (pool) => pool[Math.floor(Math.random() * pool.length)];
+
+    // Custom scramble implementation
+    const scramble = (startText, finalText, element, duration = 2000) => {
+      // Generate character pool from both sentences
+      const charPool = generateCharPool(startText, finalText);
+
+      let startTime = null;
+
+      // Clear any previous animation frame
+      if (element.dataset.animationId) {
+        cancelAnimationFrame(Number(element.dataset.animationId));
+      }
+
+      // Animation function
+      const animate = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min(1, (timestamp - startTime) / duration);
+
+        // How many characters should be revealed
+        const revealLength = Math.floor(progress * finalText.length);
+
+        // Build current text
+        const currentText = finalText
+          .split('')
+          .map((char, index) => {
+            // If whitespace, preserve it
+            if (char === ' ') return ' ';
+
+            // If we should reveal this character
+            if (index < revealLength) {
+              return finalText[index];
+            }
+
+            // Otherwise show a random character
+            return randomChar(charPool);
+          })
+          .join('');
+
+        // Update the element
+        element.textContent = currentText;
+
+        // Show controls during and after animation (always visible once shown)
+        if (
+          controlsContainer &&
+          controlsContainer.classList.contains('opacity-0')
+        ) {
+          controlsContainer.classList.remove('opacity-0');
+          controlsContainer.classList.add('opacity-100');
+        }
+
+        // Continue animation if not complete and still animating
+        if (progress < 1 && isAnimating) {
+          element.dataset.animationId = requestAnimationFrame(animate);
+        } else {
+          delete element.dataset.animationId;
+
+          // If we're no longer animating, show the full text clearly
+          if (!isAnimating) {
+            element.textContent = finalText;
+          }
+        }
+      };
+
+      // Start the animation
+      element.dataset.animationId = requestAnimationFrame(animate);
+    };
+
+    // Function to fade in the text (when animation is stopped)
+    const fadeInText = (finalText, element) => {
+      // Just set the text without animation
+      element.textContent = finalText;
+    };
+
+    // Function to transition to the next sentence
+    const transitionToNextSentence = () => {
+      if (!isAnimating) return;
+
+      const currentSentence = sentences[currentIndex];
+      // Move to next sentence, or back to first
+      currentIndex = (currentIndex + 1) % sentences.length;
+      const nextSentence = sentences[currentIndex];
+
+      // Perform the scramble animation
+      scramble(currentSentence, nextSentence, targetElement, 3000);
+
+      // Schedule next transition
+      if (isAnimating) {
+        animationTimeout = setTimeout(transitionToNextSentence, rotationDelay);
+      }
+    };
+
+    // Handle stop button click
+    if (stopButton) {
+      stopButton.addEventListener('click', () => {
+        isAnimating = false;
+
+        // Clear any scheduled transitions
+        if (animationTimeout) {
+          clearTimeout(animationTimeout);
+        }
+
+        // Cancel any ongoing animations
+        if (targetElement.dataset.animationId) {
+          cancelAnimationFrame(Number(targetElement.dataset.animationId));
+          delete targetElement.dataset.animationId;
+        }
+
+        // Fade in the current text
+        fadeInText(sentences[currentIndex], targetElement);
+
+        // Update status for screen readers
+        if (statusElement) {
+          statusElement.textContent = 'Animation stopped';
+        }
+      });
+    }
+
+    // Handle reload button click
+    if (reloadButton) {
+      reloadButton.addEventListener('click', () => {
+        // If already animating, do nothing
+        if (isAnimating) return;
+
+        // Restart animation
+        isAnimating = true;
+
+        // Start from current text
+        transitionToNextSentence();
+
+        // Update status for screen readers
+        if (statusElement) {
+          statusElement.textContent = 'Animation restarted';
+        }
+      });
+    }
+
+    // Start with initial text
+    targetElement.textContent = initialText;
+
+    // Now wait for the longer rotation delay before starting the animation
+    // This gives time for the static text to be visible before we start animating
+    animationTimeout = setTimeout(() => {
+      // Show controls when animation starts
+      if (controlsContainer) {
+        controlsContainer.classList.remove('opacity-0');
+        controlsContainer.classList.add('opacity-100');
+      }
+
+      // Start the animation
+      transitionToNextSentence();
+    }, rotationDelay);
+  });
+</script>
