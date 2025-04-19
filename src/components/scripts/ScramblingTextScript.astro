@@ -93,31 +93,6 @@ const longestSentence = sentences.reduce(
 <!-- Live region to announce animation status for screen reader users -->
 <div id={`${id}-status`} class="sr-only" aria-live="polite"></div>
 
-<style>
-  /* Setting fixed heights at different breakpoints to prevent layout shift */
-  #hero-tagline-container {
-    min-height: 5.5em; /* Default for mobile */
-  }
-
-  @media (min-width: 640px) {
-    #hero-tagline-container {
-      min-height: 4.5em; /* For small devices */
-    }
-  }
-
-  @media (min-width: 768px) {
-    #hero-tagline-container {
-      min-height: 3.5em; /* For medium devices */
-    }
-  }
-
-  @media (min-width: 1024px) {
-    #hero-tagline-container {
-      min-height: 3em; /* For large devices */
-    }
-  }
-</style>
-
 <script
   define:vars={{
     targetId: id,

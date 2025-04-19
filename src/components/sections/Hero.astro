@@ -17,20 +17,16 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
           class="text-[50px] sm:text-[65px] md:text-[100px] block font-extra-black tracking-tighter mb-2 sm:mb-2 leading-[1.1]"
           >Julian<br class="inline sm:hidden" /> Pineda</span
         >
-        <span
+        <div
+          id="tagline-parent-container"
           class="text-2xl sm:text-3xl md:text-7xl font-light tracking-tighter leading-tight relative"
         >
-          <!-- Static text that's visible to screen readers but hidden for visual users after animation starts -->
-          <span
-            id="static-tagline"
-            class="block transition-opacity duration-500"
-          >
+          <div id="static-tagline" class="block">
             Transformative leader in digital ecosystems and technology strategy.
-          </span>
+          </div>
 
-          <!-- Dynamic text positioned absolutely on top -->
-          <span
-            class="absolute top-0 left-0 w-full opacity-0 transition-opacity duration-500"
+          <div
+            class="absolute top-0 left-0 w-full hidden"
             id="dynamic-container"
           >
             <ScramblingTextScript
@@ -39,8 +35,8 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
               delay={800}
               rotationDelay={10000}
             />
-          </span>
-        </span>
+          </div>
+        </div>
       </h1>
     </div>
   </div>
@@ -63,22 +59,38 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
   </div>
 </div>
 
+<style>
+  #tagline-parent-container {
+    min-height: 6em;
+  }
+  @media (min-width: 640px) {
+    #tagline-parent-container {
+      min-height: 5em;
+    }
+  }
+  @media (min-width: 768px) {
+    #tagline-parent-container {
+      min-height: 4em;
+    }
+  }
+  @media (min-width: 1024px) {
+    #tagline-parent-container {
+      min-height: 3.5em;
+    }
+  }
+</style>
+
 <script>
-  // Simple script to fade between static and dynamic text
   document.addEventListener('DOMContentLoaded', () => {
     const staticTagline = document.getElementById('static-tagline');
     const dynamicContainer = document.getElementById('dynamic-container');
 
     if (staticTagline && dynamicContainer) {
-      // After a delay, start the transition
-      setTimeout(() => {
-        // For visual users, we'll hide the static text and show the animation
-        staticTagline.classList.add('opacity-0');
-        // The static text remains in the DOM for screen readers
+      dynamicContainer.classList.remove('hidden');
 
-        dynamicContainer.classList.remove('opacity-0');
-        dynamicContainer.classList.add('opacity-100');
-      }, 2000); // Wait 2 seconds before switching to dynamic content
+      setTimeout(() => {
+        staticTagline.classList.add('hidden');
+      }, 2000);
     }
   });
 </script>
