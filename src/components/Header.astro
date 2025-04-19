@@ -18,8 +18,8 @@
       <!-- Mobile menu button -->
       <button
         id="menu-toggle"
-        class="md:hidden flex items-center p-2 text-gray-900"
-        aria-label="Toggle menu"
+        class="md:hidden flex items-center p-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-0 rounded-none"
+        aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="mobile-nav"
       >
@@ -135,9 +135,9 @@
   >
     <button
       id="close-menu-btn"
-      class="absolute text-white p-2 z-50"
+      class="absolute text-white p-2 z-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-0 rounded-none"
       style="top: 0.525rem; right: 1.9rem;"
-      aria-label="Close menu"
+      aria-label="Close navigation menu"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -247,6 +247,9 @@
     width: 100%;
   }
 
+  /* Custom focus styles for buttons */
+  /* Removed to ensure Tailwind classes work properly */
+
   /* New simple focus style for keyboard navigation */
   .nav-link:focus {
     outline: 2px solid black;
@@ -307,6 +310,14 @@
   .link-hover-mobile:focus {
     outline: 2px solid white;
     outline-offset: 2px;
+    padding-right: 5px;
+  }
+
+  /* Add specific focus style for mobile nav links to ensure proper padding */
+  #mobile-nav .nav-link:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    padding-right: 5px;
   }
 </style>
 
