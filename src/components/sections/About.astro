@@ -53,27 +53,32 @@ const skills = [
             but also scalable and future-ready in an AI-driven world.
           </p>
 
-          <div class="grid grid-cols-2 gap-2 mt-6">
-            {
-              skills.map((skill) => (
-                <div class="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 stroke-gray-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span>{skill}</span>
-                </div>
-              ))
-            }
+          <div class="mt-6">
+            <h3 class="text-xl font-medium text-gray-200 mb-3">Skills</h3>
+            <ul class="grid grid-cols-2 gap-2">
+              {
+                skills.map((skill) => (
+                  <li class="flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      class="min-w-[16px] min-h-[16px] stroke-gray-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>{skill}</span>
+                  </li>
+                ))
+              }
+            </ul>
           </div>
         </div>
       </div>

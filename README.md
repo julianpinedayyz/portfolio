@@ -10,6 +10,7 @@ This is the repository for my personal portfolio website, built with Astro and T
 - 📱 Fully responsive design
 - 🧩 Component-based architecture
 - ⚡ Fast loading and rendering
+- ✨ Scrambling text animation in the hero section with user controls (stop/restart).
 
 ## Getting Started
 
