@@ -10,108 +10,141 @@ import {
 
 <section id="experience" class="bg-[#1A1A1A] py-10 text-white">
   <div class="max-w-[1480px] mx-auto px-6 my-[40px]">
-    <h2 class="h2-heading text-[#DCDCDC]">Experience</h2>
+    <!-- Title container with fixed width -->
+    <div class="w-full lg:w-[400px] mb-12 lg:mb-0">
+      <h2 class="h2-heading text-[#DCDCDC]">Experience</h2>
+    </div>
+
+    <!-- Instructions for screen readers -->
+    <div class="sr-only">
+      The following is a list of my work experience, with details that can be
+      expanded by activating each item.
+    </div>
 
     <ul class="item-list">
       {
-        experiences.map((job, index) => (
-          <li class="list-item" aria-expanded={index === 0 ? 'true' : 'false'}>
-            <div
-              class="item-main"
-              role="button"
-              tabindex="0"
-              aria-controls={`panel-${index}`}
-              id={`accordion-header-${index}`}
+        experiences.map((job, index) => {
+          // Generate unique IDs for labelling within the map function's scope
+          const roleId = `role-${index}`;
+          const companyId = `company-${index}`;
+          const dateDescId = `date-desc-${index}`; // ID for the descriptive date span
+          const headerId = `accordion-header-${index}`;
+          const panelId = `panel-${index}`;
+
+          // Determine the descriptive date text
+          const dateDescription =
+            job.year === '05/25'
+              ? 'from 2005 to 2025'
+              : job.year === '21/22'
+                ? 'from 2021 to 2022'
+                : job.year === '18/19'
+                  ? 'from 2018 to 2019'
+                  : job.year === '16/18'
+                    ? 'from 2016 to 2018'
+                    : job.year; // Fallback if needed
+
+          // Determine the aria-label for the role if it's Lab 829
+          const roleAriaLabel =
+            job.role === 'Lab 829' ? 'Lab eight two nine' : null;
+
+          return (
+            <li
+              class="list-item"
               aria-expanded={index === 0 ? 'true' : 'false'}
             >
-              <div class="item-year font-extralight italic text-4xl tracking-[-0.08em]">
-                {job.year}
-              </div>
-              <div class="item-model font-semibold text-4xl tracking-[-0.08em]">
-                {job.role}
-              </div>
-              <div class="item-country font-medium">
-                {job.company}
-                <span class="sr-only">
-                  . Employment years:{' '}
-                  {job.year === '05/25'
-                    ? '2005 to 2025'
-                    : job.year === '21/22'
-                      ? '2021 to 2022'
-                      : job.year === '18/19'
-                        ? '2018 to 2019'
-                        : job.year === '16/18'
-                          ? '2016 to 2018'
-                          : job.year}
+              <div
+                class="item-main"
+                role="button"
+                tabindex="0"
+                aria-controls={panelId}
+                id={headerId}
+                aria-expanded={index === 0 ? 'true' : 'false'}
+                aria-labelledby={`${dateDescId} ${roleId} ${companyId}`}
+              >
+                <div class="item-year font-extralight italic text-4xl tracking-[-0.08em]">
+                  {job.year}
+                </div>
+                <span id={dateDescId} class="sr-only">
+                  {dateDescription}
                 </span>
-              </div>
-              <span class="sr-only">
-                (Click to {index === 0 ? 'collapse' : 'expand'})
-              </span>
-            </div>
-            <div
-              class="item-expanded"
-              id={`panel-${index}`}
-              role="region"
-              aria-labelledby={`accordion-header-${index}`}
-            >
-              <div class="item-expanded-content">
-                <div class="item-image">
-                  <Image
-                    src={job.imageUrl}
-                    alt={`${job.role} at ${job.company} logo`}
-                    width={350}
-                    height={230}
-                    format="webp"
-                    quality={80}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    fetchpriority={index === 0 ? 'high' : 'auto'}
-                    decoding="async"
-                  />
+
+                <div
+                  id={roleId}
+                  class="item-model font-semibold text-4xl tracking-[-0.08em]"
+                  aria-label={roleAriaLabel}
+                >
+                  {job.role}
                 </div>
-                <div class="expanded-details">
-                  <div class="expanded-header">
-                    <h3>{job.position}</h3>
-                    <p>{job.subtitle}</p>
-                    <div class="header-divider" />
+
+                <div id={companyId} class="item-country font-medium">
+                  {job.company}
+                </div>
+              </div>
+
+              <div
+                class="item-expanded"
+                id={panelId}
+                role="region"
+                aria-labelledby={headerId}
+              >
+                <div class="item-expanded-content">
+                  <div class="item-image">
+                    <Image
+                      src={job.imageUrl}
+                      alt={`${job.role} at ${job.company} logo`}
+                      width={350}
+                      height={230}
+                      format="webp"
+                      quality={80}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchpriority={index === 0 ? 'high' : 'auto'}
+                      decoding="async"
+                    />
                   </div>
-                  <div class="expanded-content">
-                    <div class="description-column">
-                      <p>
-                        A global digital experience design agency specializing
-                        in strategic advisory, design, and marketing solutions.
-                        Key achievements:
-                      </p>
-                      <ul>
-                        {job.description.map((item) => (
-                          <li>{item}</li>
-                        ))}
-                      </ul>
+                  <div class="expanded-details">
+                    <div class="expanded-header">
+                      <h3>{job.position}</h3>
+                      <p>{job.subtitle}</p>
+                      <div class="header-divider" />
                     </div>
-                    <div class="description-column">
-                      <div class="description-column-inner">
-                        <h4>Key Skills:</h4>
+                    <div class="expanded-content">
+                      <div class="description-column">
+                        <p>
+                          A global digital experience design agency specializing
+                          in strategic advisory, design, and marketing
+                          solutions. Key achievements:
+                        </p>
                         <ul>
-                          {job.skills.map((skill) => (
-                            <li>{skill}</li>
+                          {job.description.map((item) => (
+                            <li>{item}</li>
                           ))}
                         </ul>
                       </div>
-                      <div class="description-column-inner">
-                        <h4>Impact:</h4>
-                        <ul>
-                          {job.impact.map((impact) => (
-                            <li>{impact}</li>
-                          ))}
-                        </ul>
+                      <div class="description-column">
+                        <div class="description-column-inner">
+                          <h4>Key Skills:</h4>
+                          <ul>
+                            {job.skills.map((skill) => (
+                              <li>{skill}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div class="description-column-inner">
+                          <h4>Impact:</h4>
+                          <ul>
+                            {job.impact.map((impact) => (
+                              <li>{impact}</li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </li>
-        ))
+            </li>
+          );
+        })
       }
     </ul>
 
@@ -522,36 +555,35 @@ import {
           const header = item.querySelector('.item-main');
           if (header) {
             header.setAttribute('aria-expanded', 'false');
-            // Update screen reader text
-            const srText = header.querySelector('.sr-only');
-            if (srText) srText.textContent = '(Click to expand)';
           }
         }
       });
     };
 
+    // Clean up duplicative messages for screen readers
+    document.querySelectorAll('.duplicate-message').forEach((el) => {
+      el.setAttribute('aria-hidden', 'true');
+    });
+
     // Function to toggle accordion state
-    const toggleAccordion = (accordionHeader) => {
+    const toggleAccordion = (accordionHeader, viaKeyboard = false) => {
       const parentItem = accordionHeader.closest('.list-item');
       const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
       const panelId = accordionHeader.getAttribute('aria-controls');
-      const srText = accordionHeader.querySelector('.sr-only');
       const panel = document.getElementById(panelId);
+      const liveRegion = document.getElementById('accordion-live-region');
 
       // Toggle expanded state
       if (isExpanded) {
         parentItem.setAttribute('aria-expanded', 'false');
         accordionHeader.setAttribute('aria-expanded', 'false');
-        if (srText) srText.textContent = '(Click to expand)';
 
-        // Announce state change to screen readers without moving focus
-        const liveRegion = document.getElementById('accordion-live-region');
+        // Announce state change to screen readers
         if (liveRegion) {
-          liveRegion.textContent = 'Accordion panel collapsed';
-          // Clear after announcement
+          liveRegion.textContent = 'Collapsed';
           setTimeout(() => {
             liveRegion.textContent = '';
-          }, 1000);
+          }, 500);
         }
       } else {
         // Collapse all other items first
@@ -560,16 +592,13 @@ import {
         // Expand this item
         parentItem.setAttribute('aria-expanded', 'true');
         accordionHeader.setAttribute('aria-expanded', 'true');
-        if (srText) srText.textContent = '(Click to collapse)';
 
-        // Announce state change to screen readers without moving focus
-        const liveRegion = document.getElementById('accordion-live-region');
+        // Announce state change to screen readers
         if (liveRegion) {
-          liveRegion.textContent = 'Accordion panel expanded';
-          // Clear after announcement
+          liveRegion.textContent = 'Expanded';
           setTimeout(() => {
             liveRegion.textContent = '';
-          }, 1000);
+          }, 500);
         }
 
         // Scroll the expanded item into view, accounting for header height
@@ -578,26 +607,24 @@ import {
         }, 10);
       }
 
-      // Keep focus on the button that was activated
-      // This is the recommended behavior for accordions
-      accordionHeader.focus();
+      // No programmatic focus needed
     };
 
     // Add click handlers to item-main elements
     itemMains.forEach((itemMain) => {
       itemMain.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent event from bubbling to parent
-        toggleAccordion(itemMain);
+        toggleAccordion(itemMain, false);
       });
     });
 
-    // Keep only the keydown listener
+    // Add keyboard support for accordion headers
     itemMains.forEach((itemMain) => {
       itemMain.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           e.stopPropagation();
-          toggleAccordion(itemMain);
+          toggleAccordion(itemMain, true);
         }
       });
     });

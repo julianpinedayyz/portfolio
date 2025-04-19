@@ -10,51 +10,65 @@ import { services, keyValues } from '../../data/services.ts';
         <h2 class="h2-heading text-gray-800">Services</h2>
       </div>
 
+      <!-- Instructions for screen readers -->
+      <div class="sr-only">
+        The following is a list of services I offer. Select any item to expand
+        and read more details.
+      </div>
+
       <!-- Services list container -->
       <div class="w-full lg:flex-1 -mt-2">
         <div class="space-y-1">
           {
-            services.map((service, index) => (
-              <div class="border-b border-gray-400">
-                <button
-                  class="service-toggle w-full py-5 flex justify-between items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-none"
-                  data-index={index}
-                  role="button"
-                  aria-expanded={index === 0 ? 'true' : 'false'}
-                  aria-controls={`service-content-${index}`}
-                  id={`service-toggle-${index}`}
-                >
-                  <span class="text-lg font-bold tracking-tight text-gray-800">
-                    {service.title}
-                  </span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    class="plus-icon transition-transform text-brand-red"
-                    aria-hidden="true"
+            services.map((service, index) => {
+              // Generate unique IDs
+              const titleId = `service-title-${index}`;
+              const headerId = `service-toggle-${index}`;
+              const panelId = `service-content-${index}`;
+
+              return (
+                <div class="border-b border-gray-400">
+                  <button
+                    class="service-toggle w-full py-5 flex justify-between items-center text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-none"
+                    data-index={index}
+                    role="button"
+                    aria-expanded={index === 0 ? 'true' : 'false'}
+                    aria-controls={panelId}
+                    id={headerId}
+                    aria-labelledby={titleId}
                   >
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                  <span class="sr-only">
-                    (Click to {index === 0 ? 'collapse' : 'expand'})
-                  </span>
-                </button>
-                <div
-                  class="service-content py-2 pb-6 hidden text-gray-800"
-                  id={`service-content-${index}`}
-                  role="region"
-                  aria-labelledby={`service-toggle-${index}`}
-                >
-                  <p>{service.description}</p>
+                    <span
+                      id={titleId}
+                      class="text-lg font-bold tracking-tight text-gray-800"
+                    >
+                      {service.title}
+                    </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="plus-icon transition-transform text-brand-red {index === 0 ? 'rotate-45' : ''}"
+                      aria-hidden="true"
+                    >
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                  <div
+                    class={`service-content py-2 pb-6 text-gray-800 ${index !== 0 ? 'hidden' : ''}`}
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={headerId}
+                  >
+                    <p>{service.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           }
         </div>
       </div>
@@ -96,7 +110,6 @@ import { services, keyValues } from '../../data/services.ts';
       toggle.addEventListener('click', () => {
         const content = toggle.nextElementSibling;
         const icon = toggle.querySelector('.plus-icon');
-        const srText = toggle.querySelector('.sr-only');
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
 
         // Check if elements exist before proceeding
@@ -108,11 +121,6 @@ import { services, keyValues } from '../../data/services.ts';
         // Update ARIA attributes based on new state
         toggle.setAttribute('aria-expanded', !isExpanded);
 
-        // Update screen reader text
-        if (srText) {
-          srText.textContent = `(Click to ${!isExpanded ? 'collapse' : 'expand'})`;
-        }
-
         // Toggle content visibility
         if (isExpanded) {
           // Collapsing this item
@@ -121,10 +129,10 @@ import { services, keyValues } from '../../data/services.ts';
 
           // Announce to screen readers
           if (liveRegion) {
-            liveRegion.textContent = 'Service details collapsed';
+            liveRegion.textContent = 'Collapsed'; // Simplified announcement
             setTimeout(() => {
               liveRegion.textContent = '';
-            }, 1000);
+            }, 500); // Shortened timeout
           }
         } else {
           // Expanding this item - close others first
@@ -132,18 +140,12 @@ import { services, keyValues } from '../../data/services.ts';
             if (otherToggle !== toggle) {
               const otherContent = otherToggle.nextElementSibling;
               const otherIcon = otherToggle.querySelector('.plus-icon');
-              const otherSrText = otherToggle.querySelector('.sr-only');
 
               // Check if other elements exist
               if (otherContent && otherIcon) {
                 otherToggle.setAttribute('aria-expanded', 'false');
                 otherContent.classList.add('hidden');
                 otherIcon.classList.remove('rotate-45');
-
-                // Update other toggle's screen reader text
-                if (otherSrText) {
-                  otherSrText.textContent = '(Click to expand)';
-                }
               }
             }
           });
@@ -154,10 +156,10 @@ import { services, keyValues } from '../../data/services.ts';
 
           // Announce to screen readers
           if (liveRegion) {
-            liveRegion.textContent = 'Service details expanded';
+            liveRegion.textContent = 'Expanded'; // Simplified announcement
             setTimeout(() => {
               liveRegion.textContent = '';
-            }, 1000);
+            }, 500); // Shortened timeout
           }
 
           // Scroll the expanded service into view with header offset
@@ -166,8 +168,7 @@ import { services, keyValues } from '../../data/services.ts';
           }, 10);
         }
 
-        // Keep focus on the button after activation
-        toggle.focus();
+        // No programmatic focus needed
       });
 
       // Add keyboard support for toggles
@@ -180,18 +181,20 @@ import { services, keyValues } from '../../data/services.ts';
       });
     });
 
-    // Open the first accordion item by default
+    // Remove the explicit opening of the first item via JS
+    // The HTML now handles the default expanded state
+    /*
     if (serviceToggles.length > 0) {
       const firstToggle = serviceToggles[0];
       const firstContent = firstToggle.nextElementSibling;
       const firstIcon = firstToggle.querySelector('.plus-icon');
 
-      // Check if first elements exist
       if (firstToggle && firstContent && firstIcon) {
         firstToggle.setAttribute('aria-expanded', 'true');
         firstContent.classList.remove('hidden');
         firstIcon.classList.add('rotate-45');
       }
     }
+    */
   });
 </script>
