@@ -26,24 +26,24 @@ import {
             >
               <div class="item-year font-extralight italic text-4xl tracking-[-0.08em]">
                 {job.year}
-                <span class="sr-only">
-                  {job.year === '05/25'
-                    ? 'From 2005 to 2025'
-                    : job.year === '21/22'
-                      ? 'From 2021 to 2022'
-                      : job.year === '18/19'
-                        ? 'From 2018 to 2019'
-                        : job.year === '16/18'
-                          ? 'From 2016 to 2018'
-                          : job.year}
-                </span>
               </div>
               <div class="item-model font-semibold text-4xl tracking-[-0.08em]">
                 {job.role}
               </div>
               <div class="item-country font-medium">
                 {job.company}
-                <span class="sr-only">. Employment period: {job.period}</span>
+                <span class="sr-only">
+                  . Employment years:{' '}
+                  {job.year === '05/25'
+                    ? '2005 to 2025'
+                    : job.year === '21/22'
+                      ? '2021 to 2022'
+                      : job.year === '18/19'
+                        ? '2018 to 2019'
+                        : job.year === '16/18'
+                          ? '2016 to 2018'
+                          : job.year}
+                </span>
               </div>
               <span class="sr-only">
                 (Click to {index === 0 ? 'collapse' : 'expand'})
