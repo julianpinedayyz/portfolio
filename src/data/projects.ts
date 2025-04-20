@@ -135,6 +135,18 @@ export const projects: Project[] = [
   },
   {
     year: '2018',
+    project: 'CPA Salesforce Integration and Updates',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Salesforce Integration',
+      'Frontend Development',
+    ],
+    link: 'https://www.cpacanada.ca/',
+    authRequired: true,
+  },
+  {
+    year: '2018',
     project: 'Canadian Olympic Committee Website',
     madeAt: 'Deloitte Digital',
     serviceProvided: ['Product Architecture', 'Frontend Development'],
@@ -184,6 +196,61 @@ export const projects: Project[] = [
     authRequired: true,
   },
   {
+    year: '2017',
+    project: 'RBC New Sign In Experience',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'https://www.rbcroyalbank.com/dms/newsignin/'
+  },
+  {
+    year: '2017',
+    project: 'RBC Password Reset',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'https://www.rbcroyalbank.com/ways-to-bank/tutorials/general/online-banking-password-reset.html'
+  },
+  {
+    year: '2017',
+    project: 'RBC Multiple Pay Bills/Payees',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: ''
+  },
+  {
+    year: '2017',
+    project: 'RBC Direct Investing Dashboard',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'https://www.rbcdirectinvesting.com/'
+  },
+  {
+    year: '2017',
+    project: 'RBC Order Foreign Currency',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Advisor',
+      'Product Architecture',
+      'Frontend Development',
+    ],
+    link: 'https://www.rbcroyalbank.com/banking-services/order-foreign-exchange.html'
+  },
+  {
     year: '16/18',
     project: 'RBC Mobile App',
     madeAt: 'RBC',
@@ -196,9 +263,21 @@ export const projects: Project[] = [
     authRequired: true,
   },
   {
-    year: '14/18',
+    year: '16/18',
     project: 'RBC Personal Online Banking',
-    madeAt: 'Lab 829/RBC',
+    madeAt: 'RBC',
+    serviceProvided: [
+      'Tech Direction',
+      'Cross Functional Collaboration',
+      'Frontend Development',
+    ],
+    link: 'https://rbcroyalbank.com/personal.html',
+    authRequired: true,
+  },
+  {
+    year: '14/16',
+    project: 'RBC Personal Online Banking New Image',
+    madeAt: 'Lab 829',
     serviceProvided: [
       'Tech Direction',
       'Cross Functional Collaboration',
@@ -230,6 +309,30 @@ export const projects: Project[] = [
       'a11y',
     ],
     link: 'https://news.ontario.ca/en',
+  },
+  {
+    year: '11/14',
+    project: "Ontario's Premier Website",
+    madeAt: 'Government of Ontario',
+    serviceProvided: [
+      'Product Architecture',
+      'Design System Development',
+      'Frontend Development',
+      'a11y',
+    ],
+    link: '',
+  },
+  {
+    year: '11/14',
+    project: "Ontario's Premier Blog",
+    madeAt: 'Government of Ontario',
+    serviceProvided: [
+      'Product Architecture',
+      'Design System Development',
+      'Frontend Development',
+      'a11y',
+    ],
+    link: '',
   },
 ];
 
