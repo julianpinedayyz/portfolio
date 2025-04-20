@@ -136,7 +136,7 @@ export const projects: Project[] = [
   {
     year: '2018',
     project: 'CPA Salesforce Integration and Updates',
-    madeAt: 'RBC',
+    madeAt: 'Deloitte Digital',
     serviceProvided: [
       'Tech Advisor',
       'Salesforce Integration',
