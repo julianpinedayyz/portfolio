@@ -1,6 +1,6 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: true
 ---
 # Project-Specific Rules (Astro Portfolio)
@@ -57,3 +57,8 @@ alwaysApply: true
 **Notes**:
 - Ensure that any experimental code is thoroughly tested before moving to production directories.
 - Regularly review and clean up the `ui-experiment` folder to remove outdated experiments.
+
+## Version Control (Git)
+
+*   **Commit Messages:** Adhere strictly to the Conventional Commits specification (https://www.conventionalcommits.org/). Use appropriate types (`docs`, `patch`, `fix`, `refactor`, `feat`, `chore`, `enh`, `a11y`, `i18n`, etc.), a concise subject line, and a detailed body explaining the rationale and changes when necessary.
+*   **Commit Granularity:** Ensure commits are atomic and represent a single logical change.
