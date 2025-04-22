@@ -1,0 +1,59 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Project-Specific Rules (Astro Portfolio)
+
+## Structure & Organization
+
+*   **Standard Astro Structure:** Maintain the recommended Astro project structure (`src/components`, `src/layouts`, `src/pages`, `src/styles`, `public`).
+*   **Section Components:** Place reusable page sections within `src/components/sections/`.
+*   **Experimental Code:** All experimental features or components must reside within `src/ui-experiment/` as per the Experimentation Protocol.
+*   **Global Layout Container:** Utilize a global `.site-container` class (defined in `src/styles/global.css`) for consistent maximum width (1480px) and horizontal padding (2rem) across all primary layout elements (Header, Footer) and page sections. Avoid defining local container styles within components.
+
+## Component Design
+
+*   **Modularity:** Ensure components, especially page sections (e.g., Services, Benefits, Pricing), are designed as completely standalone, modular units. They should be movable, removable, or modifiable without causing unintended side effects in other components or the overall layout.
+*   **Reusability:** Create components with reusability in mind, using props for data passing.
+*   **Composition:** Favor clear component composition to maintain separation of concerns.
+
+## Styling & Typography (Tailwind + Outframe Aesthetic)
+
+*   **Tailwind Integration:** Utilize the official `@astrojs/tailwind` integration and rely heavily on utility classes for styling.
+*   **Responsive Design:** Actively use Tailwind's responsive utilities (`sm:`, `md:`, `lg:`, etc.).
+*   **Scoped Styles:** Use scoped `<style>` tags in `.astro` files for component-specific styles. Global styles should be primarily in `src/styles/global.css` or imported into layouts.
+*   **Font Implementation:** Load the Inter font using the `rsms.me` CDN links within the main `src/layouts/Layout.astro` file. Apply the correct base `font-family` and `font-feature-settings` globally via `:root` CSS, including support for `InterVariable`.
+*   **Typographic Consistency (Outframe Style):**
+    *   Apply `font-bold` weight consistently to all major headings (h1, h2) and subheadings (h3, h4).
+    *   Apply `tracking-tight` consistently to all elements styled with `font-bold` to achieve a tighter, more condensed look typical of the Outframe.co aesthetic.
+    *   Ensure this bold + tight tracking style is applied globally across all relevant text elements (section titles, card titles, emphasized text, etc.) for visual uniformity.
+*   **Scrolling Behavior:** Prefer native browser scrolling. Avoid CSS `scroll-behavior: smooth;` or custom scrollbar implementations unless explicitly required for a specific feature.
+
+## Performance
+
+*   **Static Generation:** Prioritize Astro's static generation capabilities.
+*   **Minimize Client JS:** Use client-side JavaScript sparingly. Leverage Astro's partial hydration directives (`client:load`, `client:idle`, `client:visible`) only when necessary.
+*   **Lazy Loading:** Implement lazy loading for images and other non-critical assets.
+
+## Accessibility
+
+*   **Semantic HTML First:** Always prioritize using native, semantic HTML elements before resorting to complex ARIA solutions.
+*   **ARIA Implementation:** Use ARIA attributes thoughtfully where semantic HTML is insufficient.
+*   **Keyboard Navigation:** Ensure all interactive elements are fully navigable and operable via keyboard.
+
+## Routing and Pages
+- Utilize Astro's file-based routing system within the src/pages/ directory.
+- Implement dynamic routes using the `[...slug].astro` syntax and use `getStaticPaths()` for generating static pages with dynamic routes.
+
+## Experimentation Protocol
+
+**Description**: All experimental features and components must reside within the `ui-experiment` directory to maintain project organization and stability. If the user asks for a new experiment, you will create a new folder inside `ui-experiment` with the corresponding name of the artifact (e.g., `src/ui-experiment/minimal-dashboard`)
+
+**Enforcement**:
+- **Path**: `src/ui-experiment/**`
+- **Action**: Allow
+
+**Notes**:
+- Ensure that any experimental code is thoroughly tested before moving to production directories.
+- Regularly review and clean up the `ui-experiment` folder to remove outdated experiments.

@@ -1,0 +1,16 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Self-Improvement Guidelines
+
+## Workflow & Interaction
+
+*   **Strict Adherence to Instructions:** Follow user instructions precisely, especially regarding potentially disruptive actions like running build commands (`npm run build`), development servers, or Git operations (`git add`, `git commit`). Always wait for explicit confirmation before performing such actions.
+*   **Approval Before Action:** Do not proactively implement new features, major refactors, or significant changes without discussing the proposal with the user and obtaining their approval first. If potential improvements are identified, follow the agreed-upon protocol: think, research, plan, propose, and await confirmation.
+*   **Controlled Commits:** Avoid committing changes automatically or after every minor modification. Commits should be deliberate actions, typically performed only when a feature or fix is complete, verified, and the user requests the commit. Always seek explicit user confirmation before executing `git commit` commands.
+*   **Adherence to Commit Pattern:** When requested to generate commits, strictly follow the specified `git add ... && git commit ...` pattern if provided in the user's rules or instructions.
+*   **Track All Necessary Files:** Ensure all necessary project files, including content placeholders (e.g., `.txt` files intended for future content population), are tracked in Git when requested or when they are logically part of the project's state.
+*   **Path Specificity:** When interacting with files, especially within configuration directories like `.cursor/rules/`, always use paths relative to the workspace root (e.g., `.cursor/rules/file.mdc`) rather than assuming the current directory or using `./`.
+*   **Simplicity First:** Consistently prioritize simple, clear, and reliable solutions over unnecessarily complex ones. When faced with multiple approaches, lean towards the one that is easiest to understand, maintain, and debug.
