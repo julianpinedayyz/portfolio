@@ -52,6 +52,7 @@ import {
               class="list-item"
               aria-expanded={index === 0 ? 'true' : 'false'}
             >
+              <div class="item-expander"></div>
               <div
                 class="item-main"
                 role="button"
@@ -109,11 +110,7 @@ import {
                     </div>
                     <div class="expanded-content">
                       <div class="description-column">
-                        <p>
-                          A global digital experience design agency specializing
-                          in strategic advisory, design, and marketing
-                          solutions. Key achievements:
-                        </p>
+                        <p>{job.intro}</p>
                         <ul>
                           {job.description.map((item) => (
                             <li>{item}</li>
@@ -201,12 +198,20 @@ import {
   .list-item:focus {
     outline: none;
   }
-
+  .item-expander {
+    width: 350px;
+    height: 89px;
+    display: flex;
+    float: left;
+    background-color: #1a1a1a;
+  }
+  .item-expander:focus {
+    outline: none;
+  }
   /* Item Main */
   .item-main {
     display: flex;
     align-items: center;
-    margin-left: 350px;
     padding: var(--spacing-lg) var(--spacing-md);
     transition: background-color var(--transition-speed);
     width: calc(100% - 350px);
@@ -233,7 +238,7 @@ import {
   /* Focus styling for accessibility */
   .item-main:focus {
     outline: 2px solid white;
-    outline-offset: 2px;
+    outline-offset: -2px;
   }
 
   .item-year {
@@ -286,23 +291,20 @@ import {
   }
 
   .item-image {
-    width: 25%;
     height: 230px;
     max-width: 350px;
-    overflow: hidden;
+    width: 100%;
+    float: left;
   }
 
   .item-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .expanded-details {
-    display: flex;
-    flex-direction: column;
-    width: 75%;
     padding: var(--spacing-lg);
+    float: left; /* Added float property */
+    width: 100%;
   }
 
   .expanded-header {
@@ -385,11 +387,6 @@ import {
 
   /* Responsive Adjustments */
   @media (max-width: 1280px) {
-    .item-main {
-      margin-left: 250px;
-      width: calc(100% - 250px);
-    }
-
     .item-year {
       width: 15%;
     }
@@ -405,9 +402,12 @@ import {
   }
 
   @media (max-width: 992px) {
+    .item-expander {
+      display: none;
+    }
     .item-main {
-      margin-left: 150px;
-      width: calc(100% - 150px);
+      margin-left: 0px;
+      width: 100%;
     }
 
     .item-model {
@@ -455,7 +455,6 @@ import {
     :global(.h2-heading) {
       margin-bottom: 1.5rem;
     }
-
     .item-main {
       flex-wrap: wrap;
       margin-left: 0;
