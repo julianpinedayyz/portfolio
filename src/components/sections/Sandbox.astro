@@ -3,9 +3,9 @@ import Contact from './Contact.astro';
 import Hero from './Hero.astro';
 // Remove experiment imports
 // import Pricing from '../../experiments/Pricing.astro';
-// import StatsCards from '../../experiments/StatsCards.astro';
+import StatsCards from '../../experiments/StatsCards.astro';
 // import DualCards from '../../experiments/DualCards.astro';
-// import Palette from '../../experiments/Palette.astro';
+import Palette from '../../experiments/Palette.astro';
 ---
 
 <!-- Fixed Toggle Button -->
@@ -393,8 +393,7 @@ import Hero from './Hero.astro';
         </div>
         <div class="rounded-lg overflow-hidden">
           {/* Remove unused experiment component */}
-          {/* <Palette /> */}
-          <p class="p-4 text-gray-500 italic">Palette component removed.</p>
+          <Palette />
         </div>
       </div>
     </div>
@@ -416,8 +415,7 @@ import Hero from './Hero.astro';
         </div>
         <div class="rounded-lg overflow-hidden">
           {/* Remove unused experiment component */}
-          {/* <StatsCards /> */}
-          <p class="p-4 text-gray-500 italic">StatsCards component removed.</p>
+          <StatsCards />
         </div>
       </div>
     </div>
@@ -601,7 +599,7 @@ import Hero from './Hero.astro';
     sandboxSection.classList.add(
       'transition-all',
       'duration-300',
-      'ease-in-out',
+      'ease-in-out'
     );
 
     // Function to update button icon based on state
@@ -660,7 +658,7 @@ import Hero from './Hero.astro';
           'hidden',
           'transition-opacity',
           'duration-200',
-          'ease-in-out',
+          'ease-in-out'
         );
       });
 
@@ -677,7 +675,7 @@ import Hero from './Hero.astro';
     tabs.forEach((tab) => {
       tab.addEventListener('click', (e) => {
         const currentTab = document.querySelector(
-          '[role="tab"][aria-selected="true"]',
+          '[role="tab"][aria-selected="true"]'
         );
         if (e.currentTarget !== currentTab) {
           switchTab(currentTab, e.currentTarget);
@@ -702,7 +700,7 @@ import Hero from './Hero.astro';
         }
 
         const currentTab = document.querySelector(
-          '[role="tab"][aria-selected="true"]',
+          '[role="tab"][aria-selected="true"]'
         );
         switchTab(currentTab, tabs[newIndex]);
         e.preventDefault(); // Prevent page scroll on arrow keys
