@@ -28,7 +28,8 @@ export interface Experience {
 // LinkedIn URL and resume file path
 export const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
 // Hardcode the full GitHub Pages URL for the resume with the new filename
-export const resumeFilePath = 'https://julianpinedayyz.github.io/portfolio/Julian_Pineda.pdf';
+export const resumeFilePath =
+  'https://julianpinedayyz.github.io/portfolio/Julian_Pineda.pdf';
 
 // Experiences data array with type annotation
 export const experiences: Experience[] = [
@@ -40,6 +41,8 @@ export const experiences: Experience[] = [
     position: 'Director of Technology',
     subtitle: 'Formerly Miroamarillo Studio',
     status: { type: 'active', label: 'Active' },
+    intro:
+      'A global digital transformation consultancy specializing in tailored development and activation strategies.',
     description: [
       'Partnered with clients worldwide, including leading fintech and retail organizations, to deliver transformative digital solutions tailored to their business needs.',
       'Spearheaded projects such as marketing data-driven personalization initiatives, enrollment wizards for fintech platforms, and the seamless integration of innovative AI-based solutions into existing client infrastructures.',
@@ -72,6 +75,8 @@ export const experiences: Experience[] = [
     position: 'Director of Technology',
     subtitle: '',
     status: { type: 'previous', label: 'Previous' },
+    intro:
+      'A global digital experience design agency specializing in strategic advisory, design, and marketing solutions.',
     description: [
       'Directed high-impact personalization and lease renewal projects for Nissan and Infiniti, engaging over 1 million customers and driving brand loyalty.',
       'Led the successful launch of the Nissan Ariya campaign, orchestrating cross-functional teams of 50 members across the UK, Central America, Canada, and the US.',
@@ -106,6 +111,8 @@ export const experiences: Experience[] = [
       'Director of Front End Engineering, Accessibility Strategy and Digital Integration',
     subtitle: '',
     status: { type: 'previous', label: 'Previous' },
+    intro:
+      'Collaborated with industry leaders, including Loblaws, PcExpress, Shoppers Drug Mart, Honda, Coca-Cola, and TD Canada Trust to deliver transformative digital solutions.',
     description: [
       'Directed the launch of PcExpress, a digital platform that reached over 4 million users monthly, driving significant engagement and customer retention.',
       'Led TD Canada Trust personalization initiative designed to connect with over 6 million users across Canada.',
@@ -138,6 +145,8 @@ export const experiences: Experience[] = [
       'Director of Front-End Development - Online Banking & Omnichannel',
     subtitle: '',
     status: { type: 'previous', label: 'Previous' },
+    intro:
+      'As the Director of Front-End Development - Online Banking and Omnichannel, I:',
     description: [
       'Scaled the front-end development team from 2 to 20 members, managing 18 concurrent projects for over 8 million users.',
       'Delivered a strategic front-end roadmap that improved development efficiency, integrating multiple technology platforms.',
