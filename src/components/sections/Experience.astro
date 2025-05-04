@@ -52,7 +52,7 @@ import {
               class="list-item"
               aria-expanded={index === 0 ? 'true' : 'false'}
             >
-              <div class="item-expander"></div>
+              <div class="item-expander" />
               <div
                 class="item-main"
                 role="button"
@@ -89,18 +89,28 @@ import {
                 aria-labelledby={headerId}
               >
                 <div class="item-expanded-content">
-                  <div class="item-image">
-                    <Image
-                      src={job.imageUrl}
-                      alt={`${job.role} at ${job.company} logo`}
-                      width={350}
-                      height={230}
-                      format="webp"
-                      quality={80}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      fetchpriority={index === 0 ? 'high' : 'auto'}
-                      decoding="async"
-                    />
+                  <div class="left-column">
+                    <div class="item-image">
+                      <Image
+                        src={job.imageUrl}
+                        alt={`${job.role} at ${job.company} logo`}
+                        width={350}
+                        height={230}
+                        format="webp"
+                        quality={80}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        fetchpriority={index === 0 ? 'high' : 'auto'}
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="impact-section">
+                      <h4>Impact:</h4>
+                      <ul>
+                        {job.impact.map((impact) => (
+                          <li>{impact}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                   <div class="expanded-details">
                     <div class="expanded-header">
@@ -123,14 +133,6 @@ import {
                           <ul>
                             {job.skills.map((skill) => (
                               <li>{skill}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div class="description-column-inner">
-                          <h4>Impact:</h4>
-                          <ul>
-                            {job.impact.map((impact) => (
-                              <li>{impact}</li>
                             ))}
                           </ul>
                         </div>
@@ -290,15 +292,54 @@ import {
     min-height: 230px;
   }
 
+  .left-column {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+  }
+
   .item-image {
     height: 230px;
     max-width: 350px;
     width: 100%;
-    float: left;
   }
 
   .item-image img {
     width: 100%;
+  }
+
+  .impact-section {
+    background-color: #333333;
+    color: #ffffff;
+    padding: var(--spacing-md);
+    width: 350px;
+    min-height: 100px;
+  }
+
+  .impact-section h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+  }
+
+  .impact-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .impact-section ul li {
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .impact-section ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ffffff;
   }
 
   .expanded-details {
@@ -337,22 +378,28 @@ import {
   }
 
   .description-column {
-    flex: 1;
     padding-right: var(--spacing-md);
   }
 
+  .description-column:nth-child(1) {
+    width: 60%;
+    flex: 0 0 70%;
+  }
+
+  .description-column:nth-child(2) {
+    width: 40%;
+    flex: 0 0 30%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .description-column-inner {
-    width: 50%;
+    width: 100%;
     padding-right: var(--spacing-md);
     float: inline-start;
   }
 
   /* Additional styles to maintain side-by-side layout */
-  .description-column:nth-child(2) {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .description-column p {
     font-size: 0.95rem;
     line-height: 1.6;
@@ -421,8 +468,16 @@ import {
       padding-left: var(--spacing-md);
     }
 
+    .left-column {
+      width: 100%;
+    }
+
     .item-image {
       display: none;
+    }
+
+    .impact-section {
+      width: 100%;
     }
 
     .expanded-details {
@@ -433,20 +488,13 @@ import {
       flex-direction: column;
     }
 
-    .expanded-content {
-      flex-direction: column;
-    }
-
-    .description-column {
+    .description-column,
+    .description-column:nth-child(1),
+    .description-column:nth-child(2) {
       width: 100%;
+      flex: 0 0 100%;
       padding-right: 0;
       margin-bottom: 1rem;
-    }
-
-    /* Keep skills and impact side by side */
-    .description-column:nth-child(2) {
-      display: flex;
-      flex-wrap: wrap;
     }
   }
 
@@ -495,8 +543,10 @@ import {
       flex-direction: column;
     }
 
+    .left-column,
     .item-image,
-    .expanded-details {
+    .expanded-details,
+    .impact-section {
       width: 100%;
     }
 
