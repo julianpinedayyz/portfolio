@@ -5,6 +5,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Enhanced impact section in Experience component with visually distinct stat cards for each metric type
+- Implemented different visualizations based on impact type:
+  - Users: Donut chart with centered value and label below
+  - Revenue: Value with line graph visualization
+  - Percentage: Large percentage display with "+" prefix for positive values
+  - Standard: Basic card with value and label
+
+### Changed
+- Repositioned the impact section below the image in the Experience component's left column
+- Created a parent container "left-column" to encapsulate both the image and impact section
+- Optimized impact card layout for different screen sizes with responsive grids
+
+### Fixed
+- Modified item-expander tag from self-closing `<div />` to properly closed `<div></div>`
+- Fixed item-expanded CSS by removing `position: absolute` property for better cross-browser compatibility
+- Enhanced responsive layout for impact cards with bottom-aligned labels on smaller screens
+- Improved Chrome rendering consistency by refining HTML structure
 
 ## [1.5.5] - 2025-04-19
 ### Fixed
