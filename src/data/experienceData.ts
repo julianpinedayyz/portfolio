@@ -4,6 +4,14 @@ import deloitteImage from '../assets/experience/deloittedigital.png';
 import rbcImage from '../assets/experience/rbc.jpg';
 import type { ImageMetadata } from 'astro:assets'; // Import the type
 
+// Define the type for each impact metric
+export interface ImpactMetric {
+  value: string;
+  label: string;
+  type: 'users' | 'revenue' | 'percentage' | 'standard';
+  details?: string;
+}
+
 // Define the type for the status object
 interface Status {
   type: 'active' | 'previous';
@@ -21,7 +29,7 @@ export interface Experience {
   status: Status;
   description: string[];
   skills: string[];
-  impact: string[];
+  impact: ImpactMetric[];
   imageUrl: ImageMetadata;
 }
 
@@ -60,10 +68,30 @@ export const experiences: Experience[] = [
       'Solution Deployment',
     ],
     impact: [
-      '5M+ Users Reached',
-      '$10M+ Revenue Generated',
-      'Multiple Global Markets',
-      'Enhanced Customer Retention',
+      {
+        value: '5M+',
+        label: 'Users Reached',
+        type: 'users',
+        details: 'Global impact across multiple markets'
+      },
+      {
+        value: '$10M+',
+        label: 'Revenue Generated',
+        type: 'revenue',
+        details: 'New annual revenue streams'
+      },
+      {
+        value: '3+',
+        label: 'Global Markets',
+        type: 'standard',
+        details: 'International reach and impact'
+      },
+      {
+        value: '18%',
+        label: 'Customer Retention',
+        type: 'percentage',
+        details: 'Increased retention rate'
+      }
     ],
     imageUrl: lab829Image,
   },
@@ -95,10 +123,30 @@ export const experiences: Experience[] = [
       'Revenue Growth',
     ],
     impact: [
-      '1M+ Customers Engaged',
-      '50% Reduced Onboarding Time',
-      '50+ Team Members Led',
-      'Multiple Global Regions',
+      {
+        value: '1M+',
+        label: 'Customers Engaged',
+        type: 'users',
+        details: 'Through personalization initiatives'
+      },
+      {
+        value: '50%',
+        label: 'Reduced Onboarding',
+        type: 'percentage',
+        details: 'Faster team integration'
+      },
+      {
+        value: '50+',
+        label: 'Team Members Led',
+        type: 'standard',
+        details: 'Across global regions'
+      },
+      {
+        value: '4',
+        label: 'Global Regions',
+        type: 'standard',
+        details: 'UK, Central America, Canada, US'
+      }
     ],
     imageUrl: criticalmassImage,
   },
@@ -129,10 +177,30 @@ export const experiences: Experience[] = [
       'Digital Platforms',
     ],
     impact: [
-      '4M+ Monthly Users',
-      '6M+ Canadians Reached',
-      '2M+ Campaign Reach',
-      '$2.5M Budget Managed',
+      {
+        value: '4M+',
+        label: 'Monthly Users',
+        type: 'users',
+        details: 'PcExpress platform engagement'
+      },
+      {
+        value: '6M+',
+        label: 'Canadians Reached',
+        type: 'users',
+        details: 'TD Canada Trust personalization'
+      },
+      {
+        value: '2M+',
+        label: 'Campaign Reach',
+        type: 'users',
+        details: 'Per marketing campaign'
+      },
+      {
+        value: '$2.5M',
+        label: 'Budget Managed',
+        type: 'revenue',
+        details: 'Annual portfolio value'
+      }
     ],
     imageUrl: deloitteImage,
   },
@@ -164,10 +232,30 @@ export const experiences: Experience[] = [
       'Budget Optimization',
     ],
     impact: [
-      '8M+ Users Impacted',
-      '90% Fewer Accessibility Bugs',
-      '18 Concurrent Projects',
-      '$2.5M Budget Managed',
+      {
+        value: '8M+',
+        label: 'Users Impacted',
+        type: 'users',
+        details: 'Online banking customers'
+      },
+      {
+        value: '90%',
+        label: 'Fewer A11y Bugs',
+        type: 'percentage',
+        details: 'Improved accessibility'
+      },
+      {
+        value: '18',
+        label: 'Concurrent Projects',
+        type: 'standard',
+        details: 'Managed simultaneously'
+      },
+      {
+        value: '$2.5M',
+        label: 'Budget Managed',
+        type: 'revenue',
+        details: 'Annual allocation'
+      }
     ],
     imageUrl: rbcImage,
   },

@@ -105,11 +105,92 @@ import {
                     </div>
                     <div class="impact-section">
                       <h4>Impact:</h4>
-                      <ul>
+                      <div class="impact-stats-grid">
                         {job.impact.map((impact) => (
-                          <li>{impact}</li>
+                          <div
+                            class={`impact-stat-card impact-type-${impact.type}`}
+                          >
+                            {impact.type === 'users' ? (
+                              <>
+                                <div class="donut-container">
+                                  <div class="donut-background" />
+                                  <div class="donut-fill" />
+                                  <div class="donut-center">{impact.value}</div>
+                                </div>
+                                <div class="impact-details">{impact.label}</div>
+                              </>
+                            ) : impact.type === 'revenue' ? (
+                              <>
+                                <div class="revenue-container">
+                                  <div class="revenue-value">
+                                    {impact.value}
+                                  </div>
+                                  <div class="revenue-graph">
+                                    <svg
+                                      viewBox="0 0 100 30"
+                                      preserveAspectRatio="none"
+                                    >
+                                      <line
+                                        x1="0"
+                                        y1="10"
+                                        x2="100"
+                                        y2="10"
+                                        stroke="#444"
+                                        stroke-width="0.5"
+                                        stroke-opacity="0.2"
+                                      />
+                                      <line
+                                        x1="0"
+                                        y1="20"
+                                        x2="100"
+                                        y2="20"
+                                        stroke="#444"
+                                        stroke-width="0.5"
+                                        stroke-opacity="0.2"
+                                      />
+                                      <path
+                                        d="M0,25 C10,28 20,15 30,20 C40,25 50,18 60,10 C70,5 80,12 90,5 L90,5 L100,2"
+                                        fill="none"
+                                        stroke="#F7F48B"
+                                        stroke-width="1.5"
+                                      />
+                                      <circle
+                                        cx="100"
+                                        cy="2"
+                                        r="1.5"
+                                        fill="#F7F48B"
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
+                                <div class="impact-details">{impact.label}</div>
+                              </>
+                            ) : impact.type === 'percentage' ? (
+                              <>
+                                <div class="percentage-container">
+                                  <div class="percentage-value">
+                                    {impact.value.startsWith('-') ? '' : '+'}
+                                    {impact.value}
+                                  </div>
+                                </div>
+                                <div class="impact-details">{impact.label}</div>
+                              </>
+                            ) : (
+                              <>
+                                <div class="impact-card-header">
+                                  <span class="impact-label">
+                                    {impact.label}
+                                  </span>
+                                </div>
+                                <div class="impact-value">{impact.value}</div>
+                                <div class="impact-details">
+                                  {impact.details}
+                                </div>
+                              </>
+                            )}
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </div>
                   </div>
                   <div class="expanded-details">
@@ -309,36 +390,166 @@ import {
   }
 
   .impact-section {
-    background-color: #333333;
-    color: #ffffff;
     padding: var(--spacing-md);
     width: 350px;
-    min-height: 100px;
   }
 
   .impact-section h4 {
-    color: #ffffff;
+    color: #1a1a1a;
     font-size: 1.1rem;
     margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+  }
+
+  .impact-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .impact-stat-card {
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .impact-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .impact-label {
+    font-size: 0.9rem;
     font-weight: 500;
   }
 
-  .impact-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .impact-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
   }
 
-  .impact-section ul li {
-    margin-bottom: var(--spacing-sm);
+  .impact-details {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  /* Impact card types */
+  .impact-type-users {
+    background-color: #f7f48b;
+    color: #262626;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+
+  .donut-container {
     position: relative;
-    padding-left: 20px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
   }
 
-  .impact-section ul li::before {
-    content: '•';
+  .donut-background {
     position: absolute;
-    left: 0;
+    inset: 0;
+    border-radius: 50%;
+    border: 14px solid rgba(38, 38, 38, 0.1);
+  }
+
+  .donut-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 14px solid #262626;
+    border-left-color: transparent;
+    transform: rotate(-45deg);
+  }
+
+  .donut-center {
+    font-size: 1.76rem;
+    font-weight: 700;
+    color: #262626;
+    position: relative;
+    z-index: 2;
+  }
+
+  .impact-type-users .impact-details {
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .impact-type-revenue {
+    background-color: #333333;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .revenue-container {
+    margin-bottom: 8px;
+  }
+
+  .revenue-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #f7f48b;
+    margin-bottom: 8px;
+  }
+
+  .revenue-graph {
+    height: 30px;
+    width: 100%;
+  }
+
+  .impact-type-revenue .impact-details {
+    color: #ffffff;
+    margin-top: 8px;
+    font-size: 0.9rem;
+  }
+
+  .impact-type-percentage {
+    background-color: #e8e8e8;
+    color: #262626;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .percentage-container {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .percentage-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #262626;
+    line-height: 1;
+    margin: 12px 0;
+  }
+
+  .impact-type-percentage .impact-details {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .impact-type-standard {
+    background-color: #313134;
     color: #ffffff;
   }
 
@@ -498,6 +709,10 @@ import {
       width: 100%;
     }
 
+    .impact-stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .expanded-details {
       width: 100%;
     }
@@ -513,6 +728,32 @@ import {
       flex: 0 0 100%;
       padding-right: 0;
       margin-bottom: 1rem;
+    }
+
+    .donut-container {
+      width: 90px;
+      height: 90px;
+    }
+
+    .donut-background,
+    .donut-fill {
+      border-width: 12px;
+    }
+
+    .donut-center {
+      font-size: 1.44rem;
+    }
+
+    .revenue-value {
+      font-size: 1.5rem;
+    }
+
+    .revenue-graph {
+      height: 25px;
+    }
+
+    .percentage-value {
+      font-size: 2rem;
     }
   }
 
@@ -567,6 +808,35 @@ import {
     .item-expanded-content {
       min-height: auto;
     }
+
+    .impact-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .impact-type-users {
+      padding: 12px;
+    }
+
+    .donut-container {
+      width: 100px;
+      height: 100px;
+    }
+
+    .donut-center {
+      font-size: 1.6rem;
+    }
+
+    .revenue-value {
+      font-size: 2rem;
+    }
+
+    .revenue-graph {
+      height: 30px;
+    }
+
+    .percentage-value {
+      font-size: 2.8rem;
+    }
   }
 
   @media (max-width: 576px) {
@@ -598,6 +868,38 @@ import {
       width: 100%;
       float: none;
       margin-bottom: var(--spacing-md);
+    }
+
+    .impact-stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .donut-container {
+      width: 120px;
+      height: 120px;
+    }
+
+    .donut-background,
+    .donut-fill {
+      border-width: 16px;
+    }
+
+    .donut-center {
+      font-size: 1.92rem;
+    }
+
+    .revenue-value {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+    }
+
+    .revenue-graph {
+      height: 35px;
+    }
+
+    .percentage-value {
+      font-size: 3.2rem;
+      margin: 16px 0;
     }
   }
 </style>
