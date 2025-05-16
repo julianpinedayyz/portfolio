@@ -1,4 +1,5 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
@@ -7,19 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Apple touch icon precomposed variant for better compatibility with older iOS versions (8ab97c1).
 - Utility functions for safer DOM manipulation (12caf99).
 
 ### Fixed
+
 - **Security:**
   - Added Cross-Origin-Opener-Policy header to prevent clickjacking (e1f2e76).
   - Implemented Content-Security-Policy with frame-ancestors directive for enhanced security (e1f2e76).
   - Fixed CSP configuration to properly allow external fonts (12caf99).
   - Removed frame-ancestors directive from meta tag CSP (only works in HTTP headers) (12caf99).
+  - Updated CSP to allow font-src with data: URI scheme for better font loading (6de83e0).
+
 - **Performance:**
   - Implemented efficient cache policy for static assets with long TTL values (e1f2e76).
   - Optimized font loading to eliminate render-blocking resources (e1f2e76).
   - Removed render-blocking Google Fonts import from global CSS (e1f2e76).
+
 - **Accessibility:**
   - Fixed H1UserAgentFontSizeInSection warning by using Tailwind classes instead of pixel values (12caf99).
 - **JavaScript Robustness:**
