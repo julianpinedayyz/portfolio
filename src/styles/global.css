@@ -24,6 +24,21 @@
     /* Override browser default focus ring */
     @apply focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-0 focus-visible:rounded-sm;
   }
+
+  /* Navigation text style */
+  .nav-text-style {
+    @apply text-[0.88rem] text-[#262626] hover:text-[#262626] relative pb-[2px] border-none;
+  }
+
+  /* Mobile navigation text style */
+  .mobile-nav-text-style {
+    @apply text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] transition-transform duration-200 ease-in-out translate-x-0;
+  }
+
+  /* Mobile navigation link utilities */
+  .mobile-nav-link-utilities {
+    @apply text-5xl tracking-[-0.25rem] font-bold text-gray-300 hover:text-gray-300 relative pb-[2px] transition-transform duration-200 ease-in-out translate-x-0;
+  }
 }
 
 :root {
