@@ -26,7 +26,61 @@ const {
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="author" content="Julian Pineda" />
+    <meta name="keywords" content="digital transformation, technology leadership, UI/UX strategy, web accessibility, enterprise architecture, legacy system modernization, technical project management, strategic technology planning, team building, mentorship, agile development, product strategy, client relationship management, director of technology, Lab 829, frontend development, Julian Pineda" />
     <title>{title}</title>
+
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:site_name" content="Julian Pineda" />
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url.href} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Julian Pineda",
+        "url": "https://julianpineda.com",
+        "jobTitle": "Director of Technology",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Lab 829",
+          "description": "A global digital transformation consultancy specializing in tailored development and activation strategies"
+        },
+        "sameAs": [
+          "https://github.com/julianpinedayyz",
+          "https://linkedin.com/in/julianpinedayyz"
+        ],
+        "knowsAbout": [
+          "Digital Transformation",
+          "Technology Leadership",
+          "UI/UX Strategy",
+          "Web Accessibility",
+          "Enterprise Architecture",
+          "Legacy System Modernization",
+          "Technical Project Management",
+          "Strategic Technology Planning",
+          "Team Building & Mentorship",
+          "Agile Development",
+          "Product Strategy",
+          "Client Relationship Management"
+        ],
+        "description": "With a strong track record of aligning strategic initiatives with business goals, I drive innovation and deliver meaningful impact across government, retail, consulting, fintech, and marketing sectors."
+      }
+    </script>
 
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://rsms.me/" crossorigin />
