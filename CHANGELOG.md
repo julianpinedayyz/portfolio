@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Apple touch icon precomposed variant for better compatibility with older iOS versions (8ab97c1).
+
+### Fixed
+- **Security:**
+  - Added Cross-Origin-Opener-Policy header to prevent clickjacking (e1f2e76).
+  - Implemented Content-Security-Policy with frame-ancestors directive for enhanced security (e1f2e76).
+- **Performance:**
+  - Implemented efficient cache policy for static assets with long TTL values (e1f2e76).
+  - Optimized font loading to eliminate render-blocking resources (e1f2e76).
+  - Removed render-blocking Google Fonts import from global CSS (e1f2e76).
+- **JavaScript Robustness:**
+  - Added defensive null checks to prevent potential errors in component scripts (d61b6c8).
+  - Optimized accordion functionality in Experience component (d61b6c8).
+  - Improved scrolling behavior with proper offset calculations (d61b6c8).
+  - Enhanced accessibility for interactive elements (d61b6c8).
+
+
 ## [1.5.6] - 2025-04-20
 ### Added
 - Enhanced impact section in Experience component with visually distinct stat cards for each metric type
