@@ -27,13 +27,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Removed render-blocking Google Fonts import from global CSS (e1f2e76).
 
 - **Accessibility:**
-  - Fixed H1UserAgentFontSizeInSection warning by using Tailwind classes instead of pixel values (12caf99).
+  - Fixed H1UserAgentFontSizeInSection warning by using Tailwind classes instead of pixel values in Hero component (12caf99).
+  - Fixed H1UserAgentFontSizeInSection warning by using responsive font sizes in 404 page (8188eb6).
 - **JavaScript Robustness:**
   - Added defensive null checks to prevent potential errors in component scripts (d61b6c8).
   - Optimized accordion functionality in Experience component (d61b6c8).
   - Improved scrolling behavior with proper offset calculations (d61b6c8).
   - Enhanced accessibility for interactive elements (d61b6c8).
-
+  - Added comprehensive null checks to Sandbox component to prevent classList errors (7c51f57).
 
 ## [1.5.6] - 2025-04-20
 ### Added
