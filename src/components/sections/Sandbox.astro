@@ -594,6 +594,9 @@ import Palette from '../../experiments/Palette.astro';
     // Toggle Sandbox Visibility with smooth transition
     const toggleButton = document.getElementById('sandbox-toggle');
     const sandboxSection = document.getElementById('sandbox-section');
+    
+    // Check if elements exist before proceeding
+    if (!toggleButton || !sandboxSection) return;
 
     // Add transition classes to sandbox section
     sandboxSection.classList.add(
@@ -604,6 +607,8 @@ import Palette from '../../experiments/Palette.astro';
 
     // Function to update button icon based on state
     const updateToggleButton = (isVisible) => {
+      if (!toggleButton || !sandboxSection) return;
+      
       toggleButton.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
 
       // Apply transition before changing visibility
@@ -616,7 +621,9 @@ import Palette from '../../experiments/Palette.astro';
       } else {
         sandboxSection.style.opacity = '0';
         setTimeout(() => {
-          sandboxSection.classList.add('hidden');
+          if (sandboxSection) { // Check again inside setTimeout
+            sandboxSection.classList.add('hidden');
+          }
         }, 300); // Match transition duration
       }
 
@@ -638,6 +645,8 @@ import Palette from '../../experiments/Palette.astro';
 
     // Function to switch tabs
     const switchTab = (oldTab, newTab) => {
+      if (!oldTab || !newTab) return;
+      
       newTab.focus();
       newTab.setAttribute('aria-selected', 'true');
       oldTab.setAttribute('aria-selected', 'false');
@@ -649,17 +658,19 @@ import Palette from '../../experiments/Palette.astro';
       newTab.classList.add('text-gray-800', 'border-gray-800');
 
       const newPanelId = newTab.getAttribute('aria-controls');
-      const newPanel = document.getElementById(newPanelId);
+      const newPanel = newPanelId ? document.getElementById(newPanelId) : null;
 
       // Hide all panels initially with transition
       panels.forEach((panel) => {
-        panel.style.opacity = '0';
-        panel.classList.add(
-          'hidden',
-          'transition-opacity',
-          'duration-200',
-          'ease-in-out'
-        );
+        if (panel) {
+          panel.style.opacity = '0';
+          panel.classList.add(
+            'hidden',
+            'transition-opacity',
+            'duration-200',
+            'ease-in-out'
+          );
+        }
       });
 
       // Show the new panel with transition
@@ -673,17 +684,21 @@ import Palette from '../../experiments/Palette.astro';
 
     // Add click events to tabs
     tabs.forEach((tab) => {
+      if (!tab) return;
+      
       tab.addEventListener('click', (e) => {
         const currentTab = document.querySelector(
           '[role="tab"][aria-selected="true"]'
         );
-        if (e.currentTarget !== currentTab) {
+        if (e.currentTarget && currentTab && e.currentTarget !== currentTab) {
           switchTab(currentTab, e.currentTarget);
         }
       });
 
       // Add keyboard navigation
       tab.addEventListener('keydown', (e) => {
+        if (!tabs.length) return;
+        
         let index = Array.from(tabs).indexOf(e.currentTarget);
         let newIndex;
 
@@ -702,8 +717,12 @@ import Palette from '../../experiments/Palette.astro';
         const currentTab = document.querySelector(
           '[role="tab"][aria-selected="true"]'
         );
-        switchTab(currentTab, tabs[newIndex]);
-        e.preventDefault(); // Prevent page scroll on arrow keys
+        const newTab = tabs[newIndex];
+        
+        if (currentTab && newTab) {
+          switchTab(currentTab, newTab);
+          e.preventDefault(); // Prevent page scroll on arrow keys
+        }
       });
     });
 
@@ -716,6 +735,8 @@ import Palette from '../../experiments/Palette.astro';
 
     // Function to load preference
     const loadSandboxPreference = () => {
+      if (!sandboxSection) return false;
+      
       if (typeof localStorage !== 'undefined') {
         const isVisible = localStorage.getItem('sandboxVisible') === 'true';
 
@@ -740,6 +761,8 @@ import Palette from '../../experiments/Palette.astro';
 
     // Toggle functionality
     toggleButton.addEventListener('click', () => {
+      if (!sandboxSection) return;
+      
       const isCurrentlyVisible = !sandboxSection.classList.contains('hidden');
       const newVisibility = !isCurrentlyVisible;
 
