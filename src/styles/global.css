@@ -12,6 +12,18 @@
     @apply text-4xl font-bold tracking-[-0.06em];
     /* You can add other shared styles here later if needed */
   }
+
+  /* Rounded focus style */
+  .rounded-focus {
+    @apply focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-0 focus-visible:rounded-sm;
+  }
+
+  /* New utility class for focus styles */
+  .focus-style {
+    @apply focus-visible:bg-white focus-visible:text-black rounded-focus p-1 transition-colors;
+    /* Override browser default focus ring */
+    @apply focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-0 focus-visible:rounded-sm;
+  }
 }
 
 :root {
