@@ -591,6 +591,7 @@
 
     document.addEventListener('click', (e) => {
       if (
+        contactDropdown && contactDropdownToggle &&
         !contactDropdown.contains(e.target) &&
         !contactDropdownToggle.contains(e.target)
       ) {
@@ -605,6 +606,9 @@
   const navLinks = document.querySelectorAll('.nav-link');
 
   function highlightActiveLink() {
+    // Skip if elements don't exist
+    if (sections.length === 0 || navLinks.length === 0) return;
+    
     const scrollY = window.scrollY;
 
     sections.forEach((section) => {
