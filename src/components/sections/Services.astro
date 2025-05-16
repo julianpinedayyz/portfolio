@@ -81,12 +81,15 @@ import { services, keyValues } from '../../data/services.ts';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Get all service toggle buttons
     const serviceToggles = document.querySelectorAll('.service-toggle');
-    // Get the header element to calculate its height
-    const header = document.querySelector('header');
     const liveRegion = document.getElementById('services-live-region');
+    const header = document.querySelector('header');
 
-    // Calculate offset (header height plus some padding)
+    // Exit early if no service toggles exist on this page
+    if (!serviceToggles || serviceToggles.length === 0) return;
+
+    // Function to calculate header offset for scrolling
     const getHeaderOffset = () => {
       const headerHeight = header ? header.offsetHeight : 0;
       return headerHeight + 16; // Add some extra padding
@@ -94,10 +97,11 @@ import { services, keyValues } from '../../data/services.ts';
 
     // Function to scroll element into view with header offset
     const scrollWithOffset = (element) => {
+      if (!element) return;
+      
       const headerOffset = getHeaderOffset();
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -105,48 +109,45 @@ import { services, keyValues } from '../../data/services.ts';
       });
     };
 
-    // Toggle service details with improved accessibility
+    // Add click handler to each toggle
     serviceToggles.forEach((toggle) => {
+      if (!toggle) return;
+      
+      const content = toggle.nextElementSibling;
+      const icon = toggle.querySelector('.plus-icon');
+
+      // Skip if any required element is missing
+      if (!toggle || !content || !icon) return;
+
       toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const icon = toggle.querySelector('.plus-icon');
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-
-        // Check if elements exist before proceeding
-        if (!content || !icon) {
-          console.error('Service toggle content or icon missing', toggle);
-          return;
-        }
-
-        // Update ARIA attributes based on new state
         toggle.setAttribute('aria-expanded', !isExpanded);
 
-        // Toggle content visibility
         if (isExpanded) {
-          // Collapsing this item
+          // Close this item
           content.classList.add('hidden');
           icon.classList.remove('rotate-45');
 
           // Announce to screen readers
           if (liveRegion) {
-            liveRegion.textContent = 'Collapsed'; // Simplified announcement
+            liveRegion.textContent = 'Collapsed';
             setTimeout(() => {
-              liveRegion.textContent = '';
-            }, 500); // Shortened timeout
+              if (liveRegion) liveRegion.textContent = '';
+            }, 500);
           }
         } else {
-          // Expanding this item - close others first
+          // Open this item - close others first
           serviceToggles.forEach((otherToggle) => {
-            if (otherToggle !== toggle) {
-              const otherContent = otherToggle.nextElementSibling;
-              const otherIcon = otherToggle.querySelector('.plus-icon');
+            if (!otherToggle || otherToggle === toggle) return;
+            
+            const otherContent = otherToggle.nextElementSibling;
+            const otherIcon = otherToggle.querySelector('.plus-icon');
 
-              // Check if other elements exist
-              if (otherContent && otherIcon) {
-                otherToggle.setAttribute('aria-expanded', 'false');
-                otherContent.classList.add('hidden');
-                otherIcon.classList.remove('rotate-45');
-              }
+            // Check if other elements exist
+            if (otherContent && otherIcon) {
+              otherToggle.setAttribute('aria-expanded', 'false');
+              otherContent.classList.add('hidden');
+              otherIcon.classList.remove('rotate-45');
             }
           });
 
@@ -158,7 +159,7 @@ import { services, keyValues } from '../../data/services.ts';
           if (liveRegion) {
             liveRegion.textContent = 'Expanded'; // Simplified announcement
             setTimeout(() => {
-              liveRegion.textContent = '';
+              if (liveRegion) liveRegion.textContent = '';
             }, 500); // Shortened timeout
           }
 

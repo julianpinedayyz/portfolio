@@ -957,22 +957,27 @@ import {
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const listItems = document.querySelectorAll('.list-item');
+    // Get DOM elements
     const itemMains = document.querySelectorAll('.item-main');
-    // Get the header element to calculate its height
+    const listItems = document.querySelectorAll('.list-item');
     const header = document.querySelector('header');
-    // Calculate offset (header height plus some padding)
+    const liveRegion = document.getElementById('accordion-live-region');
+
+    // Exit early if no item-main elements exist on this page
+    if (!itemMains || itemMains.length === 0) return;
+    
+    // Calculate header offset for scrolling
     const getHeaderOffset = () => {
       const headerHeight = header ? header.offsetHeight : 0;
       return headerHeight + 16; // Add some extra padding
     };
-
+    
     // Function to scroll element into view with header offset
     const scrollWithOffset = (element) => {
+      if (!element) return;
       const headerOffset = getHeaderOffset();
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -980,9 +985,14 @@ import {
       });
     };
 
-    // Function to collapse all items except the one we want to keep expanded
+    // Function to collapse all items except the current one
     const collapseOtherItems = (currentItem) => {
-      listItems.forEach((item) => {
+      if (!currentItem) return;
+      
+      const expandedItems = document.querySelectorAll('.list-item[aria-expanded="true"]');
+      if (!expandedItems || expandedItems.length === 0) return;
+      
+      expandedItems.forEach((item) => {
         if (item !== currentItem) {
           item.setAttribute('aria-expanded', 'false');
           const header = item.querySelector('.item-main');
@@ -993,18 +1003,16 @@ import {
       });
     };
 
-    // Clean up duplicative messages for screen readers
-    document.querySelectorAll('.duplicate-message').forEach((el) => {
-      el.setAttribute('aria-hidden', 'true');
-    });
-
-    // Function to toggle accordion state
-    const toggleAccordion = (accordionHeader, viaKeyboard = false) => {
+    // Toggle accordion function
+    const toggleAccordion = (accordionHeader, isKeyboardEvent) => {
+      if (!accordionHeader) return;
+      
       const parentItem = accordionHeader.closest('.list-item');
+      if (!parentItem) return;
+      
       const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
       const panelId = accordionHeader.getAttribute('aria-controls');
-      const panel = document.getElementById(panelId);
-      const liveRegion = document.getElementById('accordion-live-region');
+      const panel = panelId ? document.getElementById(panelId) : null;
 
       // Toggle expanded state
       if (isExpanded) {
@@ -1015,7 +1023,7 @@ import {
         if (liveRegion) {
           liveRegion.textContent = 'Collapsed';
           setTimeout(() => {
-            liveRegion.textContent = '';
+            if (liveRegion) liveRegion.textContent = '';
           }, 500);
         }
       } else {
@@ -1030,7 +1038,7 @@ import {
         if (liveRegion) {
           liveRegion.textContent = 'Expanded';
           setTimeout(() => {
-            liveRegion.textContent = '';
+            if (liveRegion) liveRegion.textContent = '';
           }, 500);
         }
 
@@ -1039,12 +1047,12 @@ import {
           scrollWithOffset(accordionHeader);
         }, 10);
       }
-
-      // No programmatic focus needed
     };
 
     // Add click handlers to item-main elements
     itemMains.forEach((itemMain) => {
+      if (!itemMain) return;
+      
       itemMain.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent event from bubbling to parent
         toggleAccordion(itemMain, false);
@@ -1053,6 +1061,8 @@ import {
 
     // Add keyboard support for accordion headers
     itemMains.forEach((itemMain) => {
+      if (!itemMain) return;
+      
       itemMain.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
