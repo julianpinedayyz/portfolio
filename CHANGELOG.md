@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Accessibility:**
   - Fixed H1UserAgentFontSizeInSection warning by using Tailwind classes instead of pixel values in Hero component (12caf99).
   - Fixed H1UserAgentFontSizeInSection warning by using responsive font sizes in 404 page (8188eb6).
+  - Updated Hero component to use responsive leading values instead of fixed leading-[1.1] to fix persistent H1UserAgentFontSizeInSection warning (28ae13c).
 - **JavaScript Robustness:**
   - Added defensive null checks to prevent potential errors in component scripts (d61b6c8).
   - Optimized accordion functionality in Experience component (d61b6c8).
