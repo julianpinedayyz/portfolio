@@ -1,0 +1,33 @@
+/*
+  Cross-Origin-Opener-Policy: same-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: frame-ancestors 'none'; default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none';
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS files
+/_astro/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+# JavaScript files
+/_astro/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Image files
+/_astro/*.jpg
+/_astro/*.jpeg
+/_astro/*.png
+/_astro/*.gif
+/_astro/*.webp
+/_astro/*.avif
+/_astro/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Font files
+/_astro/*.woff
+/_astro/*.woff2
+/_astro/*.ttf
+/_astro/*.otf
+  Cache-Control: public, max-age=31536000, immutable

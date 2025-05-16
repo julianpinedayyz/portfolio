@@ -19,6 +19,8 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://placehold.co; font-src 'self'; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';" />
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -35,14 +37,14 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Julian+Pineda" />
     <meta property="og:site_name" content="Julian Pineda" />
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Julian+Pineda" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={Astro.url.href} />
@@ -84,8 +86,7 @@ const {
 
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://rsms.me/" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-
+    
     <!-- Preload the Inter font CSS asynchronously -->
     <link
       rel="preload"
@@ -99,6 +100,22 @@ const {
         href="https://rsms.me/inter/inter.css"
       /></noscript
     >
+    
+    <!-- Optimized Google Fonts loading (non-blocking) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      />
+    </noscript>
   </head>
   <body class="text-gray-900 bg-white font-sans antialiased">
     <a href="#main-content" class="skip-to-content focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#0E0E2C]">Skip to content</a>
