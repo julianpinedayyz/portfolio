@@ -1,8 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const metaTags = {
+  noindex: true,
+  title: 'Page Not Found | Julian Pineda',
+  description: 'The page you are looking for could not be found.'
+};
 ---
 
-<Layout title="Page Not Found | Julian Pineda">
+<Layout title={metaTags.title} description={metaTags.description} noindex={metaTags.noindex}>
   <div class="container flex flex-col items-center justify-center min-h-screen py-16 text-center">
     <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">404</h1>
     <h2 class="text-2xl font-semibold mb-8">Page Not Found</h2>
