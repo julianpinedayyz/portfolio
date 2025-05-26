@@ -35,9 +35,8 @@ export interface Experience {
 
 // LinkedIn URL and resume file path
 export const linkedInUrl = 'https://linkedin.com/in/julianpinedayyz';
-// Hardcode the full GitHub Pages URL for the resume with the new filename
-export const resumeFilePath =
-  'https://julianpinedayyz.github.io/portfolio/Julian_Pineda.pdf';
+// Use the local path for the resume file
+export const resumeFilePath = '/Julian_Pineda.pdf';
 
 // Experiences data array with type annotation
 export const experiences: Experience[] = [
