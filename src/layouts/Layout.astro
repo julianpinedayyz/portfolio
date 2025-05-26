@@ -49,8 +49,8 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://placehold.co/1200x630/1a1a1a/ffffff?text=Julian+Pineda" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href={Astro.url.href} />
+    <!-- Canonical URL - Always pointing to primary domain -->
+    <link rel="canonical" href={`https://julianpineda.com${Astro.url.pathname}`} />
 
     <!-- Structured Data -->
     <script type="application/ld+json">

@@ -8,6 +8,28 @@ const metaTags = {
 };
 ---
 
+<script>
+  // Only run this script on GitHub Pages or www subdomain
+  const url = window.location.href;
+  
+  // Check if we're on GitHub Pages domain
+  if (url.includes('julianpinedayyz.github.io')) {
+    // Get the path after /portfolio/
+    const path = url.split('/portfolio/')[1] || '';
+    
+    // Redirect to the main domain with the same path
+    window.location.href = 'https://julianpineda.com/' + path;
+  }
+  // Check if we're on www subdomain
+  else if (url.includes('www.julianpineda.com')) {
+    // Get the path
+    const path = url.split('www.julianpineda.com')[1] || '';
+    
+    // Redirect to the non-www domain with the same path
+    window.location.href = 'https://julianpineda.com' + path;
+  }
+</script>
+
 <Layout title={metaTags.title} description={metaTags.description} noindex={metaTags.noindex}>
   <div class="container flex flex-col items-center justify-center min-h-screen py-16 text-center">
     <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">404</h1>
