@@ -103,8 +103,8 @@ const longestSentence = sentences.reduce(
     showStopButton,
   }}
 >
-  // Wait for document to be fully loaded
-  window.addEventListener('load', () => {
+  // Use a more efficient approach to initialize after critical content is loaded
+  const initScrambleEffect = () => {
     const targetElement = document.getElementById(targetId);
     const statusElement = document.getElementById(`${targetId}-status`);
 
@@ -339,5 +339,16 @@ const longestSentence = sentences.reduce(
       // Start the animation
       transitionToNextSentence();
     }, rotationDelay);
-  });
+  };
+  
+  // Defer initialization to improve LCP performance
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      // Further defer initialization to after DOM is ready
+      setTimeout(initScrambleEffect, 100);
+    });
+  } else {
+    // Page already loaded, still defer slightly
+    setTimeout(initScrambleEffect, 100);
+  }
 </script>

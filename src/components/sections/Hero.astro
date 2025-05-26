@@ -26,7 +26,7 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
           </div>
 
           <div
-            class="absolute top-0 left-0 w-full hidden"
+            class="absolute top-0 left-0 w-full opacity-0 transition-opacity duration-1000"
             id="dynamic-container"
           >
             <ScramblingTextScript
@@ -81,16 +81,42 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  // Use requestIdleCallback or setTimeout to defer non-critical work
+  const deferredInit = (callback) => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(callback, { timeout: 2000 });
+    } else {
+      setTimeout(callback, 1000); // Fallback for browsers without requestIdleCallback
+    }
+  };
+
+  // Main initialization function
+  const initDynamicTagline = () => {
     const staticTagline = document.getElementById('static-tagline');
     const dynamicContainer = document.getElementById('dynamic-container');
 
     if (staticTagline && dynamicContainer) {
-      dynamicContainer.classList.remove('hidden');
-
+      // First make the dynamic container visible but with opacity 0
+      dynamicContainer.style.opacity = '0';
+      
+      // Wait for LCP to complete (approximately 3-4s after load)
+      // This ensures the static tagline is used for LCP measurement
       setTimeout(() => {
-        staticTagline.classList.add('hidden');
-      }, 2000);
+        // Fade in the dynamic container
+        dynamicContainer.style.opacity = '1';
+        
+        // After the transition completes, hide the static tagline
+        setTimeout(() => {
+          staticTagline.classList.add('hidden');
+        }, 1000); // Match this with the duration in the CSS transition
+      }, 3000);
     }
-  });
+  };
+
+  // Register our deferred initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => deferredInit(initDynamicTagline));
+  } else {
+    deferredInit(initDynamicTagline);
+  }
 </script>
