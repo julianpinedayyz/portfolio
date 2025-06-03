@@ -2,7 +2,7 @@
 import { services, keyValues } from '../../data/services.ts';
 ---
 
-<section id="services" class="py-24 bg-gray-300">
+<section id="services" class="py-20 bg-gray-300">
   <div class="site-container">
     <div class="lg:flex lg:flex-wrap">
       <!-- Title container with fixed width -->
@@ -98,7 +98,7 @@ import { services, keyValues } from '../../data/services.ts';
     // Function to scroll element into view with header offset
     const scrollWithOffset = (element) => {
       if (!element) return;
-      
+
       const headerOffset = getHeaderOffset();
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
@@ -112,7 +112,7 @@ import { services, keyValues } from '../../data/services.ts';
     // Add click handler to each toggle
     serviceToggles.forEach((toggle) => {
       if (!toggle) return;
-      
+
       const content = toggle.nextElementSibling;
       const icon = toggle.querySelector('.plus-icon');
 
@@ -139,7 +139,7 @@ import { services, keyValues } from '../../data/services.ts';
           // Open this item - close others first
           serviceToggles.forEach((otherToggle) => {
             if (!otherToggle || otherToggle === toggle) return;
-            
+
             const otherContent = otherToggle.nextElementSibling;
             const otherIcon = otherToggle.querySelector('.plus-icon');
 
