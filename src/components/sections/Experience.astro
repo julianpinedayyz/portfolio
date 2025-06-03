@@ -9,7 +9,7 @@ import {
 ---
 
 <section id="experience" class="bg-[#1A1A1A] py-10 text-white">
-  <div class="max-w-[1480px] mx-auto px-6 my-[40px]">
+  <div class="site-container my-[40px]">
     <!-- Title container with fixed width -->
     <div class="w-full lg:w-[400px] mb-12 lg:mb-0">
       <h2 class="h2-heading text-[#DCDCDC]">Experience</h2>
@@ -965,13 +965,13 @@ import {
 
     // Exit early if no item-main elements exist on this page
     if (!itemMains || itemMains.length === 0) return;
-    
+
     // Calculate header offset for scrolling
     const getHeaderOffset = () => {
       const headerHeight = header ? header.offsetHeight : 0;
       return headerHeight + 16; // Add some extra padding
     };
-    
+
     // Function to scroll element into view with header offset
     const scrollWithOffset = (element) => {
       if (!element) return;
@@ -988,10 +988,12 @@ import {
     // Function to collapse all items except the current one
     const collapseOtherItems = (currentItem) => {
       if (!currentItem) return;
-      
-      const expandedItems = document.querySelectorAll('.list-item[aria-expanded="true"]');
+
+      const expandedItems = document.querySelectorAll(
+        '.list-item[aria-expanded="true"]',
+      );
       if (!expandedItems || expandedItems.length === 0) return;
-      
+
       expandedItems.forEach((item) => {
         if (item !== currentItem) {
           item.setAttribute('aria-expanded', 'false');
@@ -1006,10 +1008,10 @@ import {
     // Toggle accordion function
     const toggleAccordion = (accordionHeader, isKeyboardEvent) => {
       if (!accordionHeader) return;
-      
+
       const parentItem = accordionHeader.closest('.list-item');
       if (!parentItem) return;
-      
+
       const isExpanded = parentItem.getAttribute('aria-expanded') === 'true';
       const panelId = accordionHeader.getAttribute('aria-controls');
       const panel = panelId ? document.getElementById(panelId) : null;
@@ -1052,7 +1054,7 @@ import {
     // Add click handlers to item-main elements
     itemMains.forEach((itemMain) => {
       if (!itemMain) return;
-      
+
       itemMain.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevent event from bubbling to parent
         toggleAccordion(itemMain, false);
@@ -1062,7 +1064,7 @@ import {
     // Add keyboard support for accordion headers
     itemMains.forEach((itemMain) => {
       if (!itemMain) return;
-      
+
       itemMain.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
