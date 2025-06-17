@@ -20,13 +20,13 @@ const metaTags = {
     // Redirect to the main domain with the same path
     window.location.href = 'https://julianpineda.com/' + path;
   }
-  // Check if we're on www subdomain
-  else if (url.includes('www.julianpineda.com')) {
-    // Get the path
-    const path = url.split('www.julianpineda.com')[1] || '';
-    
-    // Redirect to the non-www domain with the same path
-    window.location.href = 'https://julianpineda.com' + path;
+  // Check if we're on the non-www domain
+  else if (url.includes('julianpineda.com') && !url.includes('www.julianpineda.com')) {
+    // Get the path after the apex domain
+    const path = url.split('julianpineda.com')[1] || '';
+
+    // Redirect to the canonical www domain with the same path
+    window.location.href = 'https://www.julianpineda.com' + path;
   }
 </script>
 
