@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import react from "@astrojs/react";
 
 export default defineConfig({
-  site: 'https://julianpineda.com',
+  site: 'https://www.julianpineda.com',
   // base: '/portfolio',
   output: 'static',
   integrations: [tailwind(), react()],
