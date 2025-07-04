@@ -4,119 +4,142 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
 
 <section
   id="hero"
-  class="pt-[80px] pb-16 md:pt-[120px] md:pb-24"
+  class="pt-[60px] pb-0 md:pt-[80px] md:pb-0"
   aria-labelledby="hero-title"
 >
   <div class="site-container">
-    <div class="max-w-4xl">
-      <h1
-        id="hero-title"
-        class="font-bold tracking-tight leading-normal sm:leading-normal md:leading-normal text-gray-900"
-      >
-        <span
-          class="text-5xl sm:text-6xl md:text-8xl block font-extra-black tracking-tighter mb-2 sm:mb-2 leading-tight sm:leading-tight md:leading-tight"
-          >Julian<br class="inline sm:hidden" /> Pineda</span
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+      <div class="max-w-4xl pt-20">
+        <h1
+          id="hero-title"
+          class="font-bold tracking-tight leading-normal sm:leading-normal md:leading-normal text-gray-900"
         >
-        <div
-          id="tagline-parent-container"
-          class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tighter leading-tight relative"
-        >
-          <div id="static-tagline" class="block">
-            Transformative leader in digital ecosystems and technology strategy.
-          </div>
-
-          <div
-            class="absolute top-0 left-0 w-full opacity-0 transition-opacity duration-1000"
-            id="dynamic-container"
+          <span
+            class="text-5xl sm:text-6xl md:text-8xl block font-extra-black tracking-tighter mb-2 sm:mb-2 leading-tight sm:leading-tight md:leading-tight"
+            >Julian<br class="inline sm:hidden" /> Pineda</span
           >
-            <ScramblingTextScript
-              id="hero-tagline"
-              text="Transformative leader in digital ecosystems and technology strategy."
-              delay={800}
-              rotationDelay={10000}
-            />
+          <div
+            id="tagline-parent-container"
+            class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tighter leading-tight relative"
+          >
+            <div id="static-tagline" class="block">
+              Transformative leader in digital ecosystems and technology
+              strategy.
+            </div>
+
+            <div
+              class="absolute top-0 left-0 w-full opacity-0 transition-opacity duration-1000"
+              id="dynamic-container"
+            >
+              <ScramblingTextScript
+                id="hero-tagline"
+                text="Transformative leader in digital ecosystems and technology strategy."
+                delay={800}
+                rotationDelay={10000}
+              />
+            </div>
           </div>
+        </h1>
+      </div>
+      <!-- Chat iframe -->
+      <div class="w-full lg:w-[400px] ml-auto relative mb-20">
+        <div
+          class="absolute -left-3 -top-2 bg-sky-500 text-white text-xs font-semibold px-2 py-0.5 rounded shadow-lg"
+        >
+          Beta
         </div>
-      </h1>
+        <iframe
+          src="https://bridge-backend-555908964503.us-central1.run.app/static/"
+          title="Chat Widget Iframe"
+          frameBorder="0"
+          allow="clipboard-write"
+          sandbox="allow-scripts allow-same-origin"
+          loading="lazy"
+          class="w-full h-[400px] sm:h-[450px] md:h-[500px] rounded-lg shadow-lg"
+        ></iframe>
+      </div>
+      <!-- end grid -->
     </div>
   </div>
-</section>
 
-<!-- Decorative element with more obvious tech theme -->
-<div class="py-16 overflow-hidden border-t border-gray-100" aria-hidden="true">
-  <div class="site-container">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-      <div class="text-gray-700 text-xs font-mono text-center sm:text-left">
-        Digital Strategy • Technology Leadership • AI
-      </div>
-      <div class="text-gray-500 text-xs text-center font-mono">
-        Toronto, Canada
-      </div>
-      <div class="text-gray-700 text-xs text-center sm:text-right font-mono">
-        Accessibility • Innovation • Digital Transformation
+  <!-- Decorative element with more obvious tech theme -->
+  <div class="py-8 overflow-hidden border-t border-gray-100" aria-hidden="true">
+    <div class="site-container">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div class="text-gray-700 text-xs font-mono text-center sm:text-left">
+          Digital Strategy • Technology Leadership • AI
+        </div>
+        <div class="text-gray-500 text-xs text-center font-mono">
+          Toronto, Canada
+        </div>
+        <div class="text-gray-700 text-xs text-center sm:text-right font-mono">
+          Accessibility • Innovation • Digital Transformation
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<style>
-  #tagline-parent-container {
-    min-height: 6em;
-  }
-  @media (min-width: 640px) {
+  <style>
     #tagline-parent-container {
-      min-height: 5em;
+      min-height: 6em;
     }
-  }
-  @media (min-width: 768px) {
-    #tagline-parent-container {
-      min-height: 4em;
+    @media (min-width: 640px) {
+      #tagline-parent-container {
+        min-height: 5em;
+      }
     }
-  }
-  @media (min-width: 1024px) {
-    #tagline-parent-container {
-      min-height: 3.5em;
+    @media (min-width: 768px) {
+      #tagline-parent-container {
+        min-height: 4em;
+      }
     }
-  }
-</style>
+    @media (min-width: 1024px) {
+      #tagline-parent-container {
+        min-height: 3.5em;
+      }
+    }
+  </style>
 
-<script>
-  // Use requestIdleCallback or setTimeout to defer non-critical work
-  const deferredInit = (callback) => {
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(callback, { timeout: 2000 });
-    } else {
-      setTimeout(callback, 1000); // Fallback for browsers without requestIdleCallback
-    }
-  };
+  <script>
+    // Use requestIdleCallback or setTimeout to defer non-critical work
+    const deferredInit = (callback) => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(callback, { timeout: 2000 });
+      } else {
+        setTimeout(callback, 1000); // Fallback for browsers without requestIdleCallback
+      }
+    };
 
-  // Main initialization function
-  const initDynamicTagline = () => {
-    const staticTagline = document.getElementById('static-tagline');
-    const dynamicContainer = document.getElementById('dynamic-container');
+    // Main initialization function
+    const initDynamicTagline = () => {
+      const staticTagline = document.getElementById('static-tagline');
+      const dynamicContainer = document.getElementById('dynamic-container');
 
-    if (staticTagline && dynamicContainer) {
-      // First make the dynamic container visible but with opacity 0
-      dynamicContainer.style.opacity = '0';
-      
-      // Wait for LCP to complete (approximately 3-4s after load)
-      // This ensures the static tagline is used for LCP measurement
-      setTimeout(() => {
-        // Fade in the dynamic container
-        dynamicContainer.style.opacity = '1';
-        
-        // After the transition completes, hide the static tagline
+      if (staticTagline && dynamicContainer) {
+        // First make the dynamic container visible but with opacity 0
+        dynamicContainer.style.opacity = '0';
+
+        // Wait for LCP to complete (approximately 3-4s after load)
+        // This ensures the static tagline is used for LCP measurement
         setTimeout(() => {
-          staticTagline.classList.add('hidden');
-        }, 1000); // Match this with the duration in the CSS transition
-      }, 3000);
-    }
-  };
+          // Fade in the dynamic container
+          dynamicContainer.style.opacity = '1';
 
-  // Register our deferred initialization
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => deferredInit(initDynamicTagline));
-  } else {
-    deferredInit(initDynamicTagline);
-  }
-</script>
+          // After the transition completes, hide the static tagline
+          setTimeout(() => {
+            staticTagline.classList.add('hidden');
+          }, 1000); // Match this with the duration in the CSS transition
+        }, 3000);
+      }
+    };
+
+    // Register our deferred initialization
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () =>
+        deferredInit(initDynamicTagline),
+      );
+    } else {
+      deferredInit(initDynamicTagline);
+    }
+  </script>
+</section>

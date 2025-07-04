@@ -32,7 +32,7 @@ const longestSentence = sentences.reduce(
     {
       showStopButton && (
         <div
-          class="absolute -top-10 right-10 flex space-x-2 text-gray-400 transition-opacity duration-300 opacity-0"
+          class="absolute -top-10 lg:-right-12 right-0 flex space-x-2 text-gray-400 transition-opacity duration-300 opacity-0"
           id={`${id}-controls`}
         >
           <button
@@ -340,7 +340,7 @@ const longestSentence = sentences.reduce(
       transitionToNextSentence();
     }, rotationDelay);
   };
-  
+
   // Defer initialization to improve LCP performance
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
