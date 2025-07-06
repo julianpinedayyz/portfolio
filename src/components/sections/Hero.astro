@@ -1,50 +1,46 @@
 ---
-import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
+// Define multiple sentences to rotate through
+const taglines = [
+  'Transformative leader in digital ecosystems and technology strategy.',
+  'Strategic architect shaping AI-driven products and intelligent digital ecosystems.',
+  'Innovating at the intersection of AI, product architecture, and digital strategy.',
+  'Driving product innovation through AI systems, accessible design, and digital architecture.',
+  'Transforming digital strategy through AI innovation and system-level design.',
+];
+
+// Select a random tagline
+const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
 ---
 
 <section
   id="hero"
-  class="pt-[60px] pb-0 md:pt-[80px] md:pb-0"
+  class="pt-[40px] sm:pt-[50px] md:pt-[60px] lg:pt-[80px] pb-0"
   aria-labelledby="hero-title"
 >
   <div class="site-container">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
       <div class="max-w-4xl pt-0 lg:pt-20">
         <h1
           id="hero-title"
           class="font-bold tracking-tight leading-normal sm:leading-normal md:leading-normal text-gray-900"
         >
           <span
-            class="text-5xl sm:text-6xl md:text-8xl block font-extra-black tracking-tighter mb-2 sm:mb-2 leading-tight sm:leading-tight md:leading-tight"
-            >Julian<br class="inline sm:hidden" /> Pineda</span
+            class="text-2xl sm:text-3xl md:text-6xl lg:text-8xl block font-extra-black tracking-tighter mb-2 sm:mb-3 leading-tight sm:leading-tight md:leading-tight"
+            >Julian Pineda</span
           >
           <div
-            id="tagline-parent-container"
-            class="text-2xl sm:text-3xl md:text-4xl font-light tracking-tighter leading-tight relative"
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-tighter leading-tight mb-6 sm:mb-8 lg:mb-0 md:max-w-[85%]"
           >
-            <div id="static-tagline" class="block">
-              Transformative leader in digital ecosystems and technology
-              strategy.
-            </div>
-
-            <div
-              class="absolute top-0 left-0 w-full opacity-0 transition-opacity duration-1000"
-              id="dynamic-container"
-            >
-              <ScramblingTextScript
-                id="hero-tagline"
-                text="Transformative leader in digital ecosystems and technology strategy."
-                delay={800}
-                rotationDelay={10000}
-              />
-            </div>
+            {randomTagline}
           </div>
         </h1>
       </div>
       <!-- Chat iframe -->
-      <div class="w-full lg:w-[400px] ml-auto relative mb-20">
+      <div
+        class="w-full lg:w-[400px] mx-auto md:ml-auto md:mr-0 relative mb-8 lg:mb-20"
+      >
         <div
-          class="absolute -left-3 -top-2 bg-sky-500 text-white text-xs font-semibold px-2 py-0.5 rounded shadow-lg"
+          class="absolute -left-2 sm:-left-3 -top-2 bg-sky-500 text-white text-xs font-semibold px-2 py-0.5 rounded shadow-lg"
         >
           Beta
         </div>
@@ -63,9 +59,12 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
   </div>
 
   <!-- Decorative element with more obvious tech theme -->
-  <div class="py-8 overflow-hidden border-t border-gray-100" aria-hidden="true">
+  <div
+    class="py-4 sm:py-6 md:py-8 overflow-hidden border-t border-gray-100"
+    aria-hidden="true"
+  >
     <div class="site-container">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-6">
         <div class="text-gray-700 text-xs font-mono text-center sm:text-left">
           Digital Strategy • Technology Leadership • AI
         </div>
@@ -78,68 +77,14 @@ import ScramblingTextScript from '../scripts/ScramblingTextScript.astro';
       </div>
     </div>
   </div>
-
-  <style>
-    #tagline-parent-container {
-      min-height: 6em;
-    }
-    @media (min-width: 640px) {
-      #tagline-parent-container {
-        min-height: 5em;
-      }
-    }
-    @media (min-width: 768px) {
-      #tagline-parent-container {
-        min-height: 4em;
-      }
-    }
-    @media (min-width: 1024px) {
-      #tagline-parent-container {
-        min-height: 3.5em;
-      }
-    }
-  </style>
-
-  <script>
-    // Use requestIdleCallback or setTimeout to defer non-critical work
-    const deferredInit = (callback) => {
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(callback, { timeout: 2000 });
-      } else {
-        setTimeout(callback, 1000); // Fallback for browsers without requestIdleCallback
-      }
-    };
-
-    // Main initialization function
-    const initDynamicTagline = () => {
-      const staticTagline = document.getElementById('static-tagline');
-      const dynamicContainer = document.getElementById('dynamic-container');
-
-      if (staticTagline && dynamicContainer) {
-        // First make the dynamic container visible but with opacity 0
-        dynamicContainer.style.opacity = '0';
-
-        // Wait for LCP to complete (approximately 3-4s after load)
-        // This ensures the static tagline is used for LCP measurement
-        setTimeout(() => {
-          // Fade in the dynamic container
-          dynamicContainer.style.opacity = '1';
-
-          // After the transition completes, hide the static tagline
-          setTimeout(() => {
-            staticTagline.classList.add('hidden');
-          }, 1000); // Match this with the duration in the CSS transition
-        }, 3000);
-      }
-    };
-
-    // Register our deferred initialization
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () =>
-        deferredInit(initDynamicTagline),
-      );
-    } else {
-      deferredInit(initDynamicTagline);
-    }
-  </script>
 </section>
+
+<style>
+  /* iPad portrait mode specific adjustments */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    #hero .site-container {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+</style>
