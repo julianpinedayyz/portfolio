@@ -37,7 +37,7 @@ const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
       </div>
       <!-- Chat iframe -->
       <div
-        class="w-full lg:w-[400px] mx-auto md:ml-auto md:mr-0 relative mb-8 lg:mb-20"
+        class="w-full lg:w-[400px] mx-auto md:ml-auto md:mr-0 relative mb-8 lg:mb-20 bg-white"
       >
         <div
           class="absolute -left-2 sm:-left-3 -top-2 bg-sky-500 text-white text-xs font-semibold px-2 py-0.5 rounded shadow-lg"
@@ -49,7 +49,7 @@ const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
           title="Julian's AI Agent"
           frameborder="0"
           allow="clipboard-write"
-          sandbox="allow-scripts allow-forms"
+          sandbox="allow-scripts allow-same-origin allow-forms"
           loading="lazy"
           class="w-full h-[500px] rounded-lg shadow-lg"
         >
