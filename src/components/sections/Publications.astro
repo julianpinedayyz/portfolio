@@ -5,41 +5,84 @@ import a11yDevImage from '../../assets/publications/a11y-dev-roll.jpg';
 import euA11yImage from '../../assets/publications/EU-a11y.jpg';
 import semanticImage from '../../assets/publications/semantic.jpg';
 
+// inline SVG icons (black)
+const linkedinIcon = `<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' fill='currentColor'><path d="M473.305 0c20.88 0 37.885 16.533 37.885 36.926v438.251c0 20.393-17.005 36.954-37.885 36.954H36.846C15.997 512 0 495.439 0 475.146V36.895C0 16.502 15.997 0 36.846 0h436.459Zm-37.829 436.389V302.355c0-65.822-14.212-116.427-91.12-116.427-36.955 0-61.739 20.263-71.867 39.476h-1.04v-33.411h-72.811v244.396h75.866V315.511c0-31.883 6.031-62.773 45.554-62.773 38.981 0 39.468 36.461 39.468 64.802v118.849h75.95Zm-284.489-244.396h-76.034v244.396h76.034V192.0Zm-37.997-121.489c-24.395 0-44.066 19.735-44.066 44.047 0 24.318 19.671 44.052 44.066 44.052 24.299 0 44.026-19.734 44.026-44.052 0-24.312-19.727-44.047-44.026-44.047Z"/></svg>`;
+
+const mediumIcon = `<svg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' fill='currentColor'><path d='M512 62.747C512 28.116 483.884 0 449.253 0H62.747C28.116 0 0 28.116 0 62.747v386.506C0 483.884 28.116 512 62.747 512h386.506C483.884 512 512 483.884 512 449.253V62.747ZM283.546 256.002c0 67.436-54.297 122.103-121.271 122.103S41 323.438 41 256.002 95.296 133.895 162.275 133.895 283.546 188.566 283.546 256.002Zm133.038 0c0 63.476-27.148 114.955-60.637 114.955-33.49 0-60.638-51.479-60.638-114.955 0-63.476 27.144-114.954 60.633-114.954 33.49 0 60.638 51.461 60.638 114.954Zm54.416 0c0 56.859-9.547 102.981-21.326 102.981s-21.323-46.109-21.323-102.981 9.547-103.0 21.323-103.0c11.775 0 21.326 46.105 21.326 102.981Z'/></svg>`;
+
+const iconMap = { Medium: mediumIcon, LinkedIn: linkedinIcon };
+
 // Placeholder data for four publications
 const publications = [
   {
     title: 'AI-Powered Coding: Into the Rabbit Hole?',
-    url: 'https://www.linkedin.com/pulse/ai-powered-coding-rabbit-hole-how-some-standards-human-julian-pineda-btn2e',
     image: rabbitHoleImage,
     description:
       'Exploring the need for standards and human oversight in AI-driven coding.',
     date: 'March 21, 2025',
+    links: [
+      {
+        label: 'Medium',
+        url: 'https://medium.com/@julianpinedayyz/ai-powered-coding-into-the-rabbit-hole-how-about-some-standards-and-human-oversight-5521430501a4',
+      },
+      {
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/pulse/ai-powered-coding-rabbit-hole-how-some-standards-human-julian-pineda-btn2e',
+      },
+    ],
   },
 
   {
     title: 'AI & Accessibility: The Evolving Role of Developers',
-    url: 'https://www.linkedin.com/pulse/ai-accessibility-evolving-role-developers-julian-pineda-ji9je',
     image: a11yDevImage,
     description:
       'Discussing how developers can champion accessibility in the age of AI.',
     date: 'February 27, 2025',
+    links: [
+      {
+        label: 'Medium',
+        url: 'https://medium.com/@julianpinedayyz/ai-accessibility-and-the-evolving-role-of-developers-c141dca0f286',
+      },
+      {
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/pulse/ai-accessibility-evolving-role-developers-julian-pineda-ji9je',
+      },
+    ],
   },
   {
     title: 'European Accessibility Act 2025: Challenge or Opportunity?',
-    url: 'https://www.linkedin.com/pulse/european-accessibility-act-2025-challenge-opportunity-julian-pineda-w8ske',
     image: euA11yImage,
     description:
       'Analyzing the impact of the upcoming European Accessibility Act on businesses and developers.',
     date: 'February 7, 2025',
+    links: [
+      {
+        label: 'Medium',
+        url: 'https://medium.com/@julianpinedayyz/the-european-accessibility-act-2025-a-challenge-and-an-opportunity-for-businesses-8db29f230b1a',
+      },
+      {
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/pulse/european-accessibility-act-2025-challenge-opportunity-julian-pineda-w8ske',
+      },
+    ],
   },
   {
     title:
       'Why Accessibility & Semantic HTML Matter for the Future of AI Tools',
-    url: 'https://www.linkedin.com/pulse/why-accessibility-semantic-html-matter-future-ai-tools-julian-pineda-bys9e',
     image: semanticImage,
     description:
       'Exploring how semantic markup boosts accessibility and enhances AI-powered tooling.',
     date: 'January 23, 2025',
+    links: [
+      {
+        label: 'Medium',
+        url: 'https://medium.com/@julianpinedayyz/why-accessibility-and-semantic-html-matter-for-the-future-of-ai-tools-like-openais-operator-1c1c90678ec4',
+      },
+      {
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/pulse/why-accessibility-semantic-html-matter-future-ai-tools-julian-pineda-bys9e',
+      },
+    ],
   },
 ];
 ---
@@ -85,18 +128,38 @@ const publications = [
                 {pub.title}
               </h3>
               {pub.date && (
-                <p class="text-xs text-gray-500 mb-2 hidden sm:block pt-4">
+                <p class="text-xs text-[#C22929] mb-2 hidden sm:block pt-4">
                   {pub.date}
                 </p>
               )}
               <p class="text-sm flex-grow hidden sm:block">{pub.description}</p>
-              <p class="pt-4 sm:mt-6 sm:pt-0 sm:pb-0 absolute right-2.5 bottom-2.5 sm:relative text-right">
-                <a
-                  href={pub.url}
-                  class="text-xs sm:text-base text-[#C80F2E] font-semibold hover:text-black hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black sm:ml-auto"
-                >
-                  Read More →
-                </a>
+              <p class="pt-4 sm:mt-6 sm:pt-0 sm:pb-0 absolute right-2.5 bottom-2.5 sm:relative text-right space-x-1">
+                {pub.links ? (
+                  <>
+                    <span class="text-xs sm:text-base text-gray-600 mr-1">
+                      Read&nbsp;@
+                    </span>
+                    {pub.links.map((l, idx) => (
+                      <>
+                        <a
+                          href={l.url}
+                          title={l.label}
+                          aria-label={`Read on ${l.label}`}
+                          class="inline-flex items-center justify-center w-6 h-6 text-black leading-none align-middle relative -top-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                        >
+                          <span class="sr-only">{`Read on ${l.label}`}</span>
+                          <span
+                            class="inline-block w-6 h-6 text-black align-middle"
+                            set:html={iconMap[l.label]}
+                          />
+                        </a>
+                        {idx < pub.links.length - 1 && (
+                          <span class="text-gray-400 mx-1">|</span>
+                        )}
+                      </>
+                    ))}
+                  </>
+                ) : null}
               </p>
             </div>
           </article>
