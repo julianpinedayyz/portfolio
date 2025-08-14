@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import rabbitHoleImage from '../../assets/publications/down-the-rabbit-hole.jpg';
+
+// Placeholder data for four publications
+const publications = [
+  {
+    title:
+      'AI-Powered Coding: Into the Rabbit Hole? How about some Standards and Human Oversight',
+    url: 'https://www.linkedin.com/pulse/ai-powered-coding-rabbit-hole-how-some-standards-human-julian-pineda-btn2e',
+    image: rabbitHoleImage,
+    description:
+      'Exploring the need for standards and human oversight in AI-driven coding.',
+  },
+
+  {
+    title: 'Publication One',
+    url: '#',
+    description: 'Brief description of publication one.',
+  },
+  {
+    title: 'Publication Two',
+    url: '#',
+    description: 'Brief description of publication two.',
+  },
+  {
+    title: 'Publication Three',
+    url: '#',
+    description: 'Brief description of publication three.',
+  },
+  {
+    title: 'Publication Four',
+    url: '#',
+    description: 'Brief description of publication four.',
+  },
+];
+---
+
+<section id="publications" class="py-20 bg-[#C80F2E] text-white">
+  <div class="site-container">
+    <!-- Title -->
+    <div class="w-full lg:w-[400px] mb-12 lg:mb-0">
+      <h2 class="h2-heading text-white">Publications</h2>
+    </div>
+
+    <!-- Publications grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      {
+        publications.map((pub) => (
+          <article
+            class="bg-white text-[#24272B] rounded-lg shadow-md flex flex-col overflow-hidden"
+            aria-labelledby={`${pub.title}-title`}
+          >
+            {pub.image && (
+              typeof pub.image === 'object' ? (
+                <Image
+                src={pub.image}
+                alt={pub.title}
+                width={640}
+                quality={85}
+                format="webp"
+                class="w-full h-48 object-cover"
+              />
+              ) : (
+                <img src={pub.image} alt={pub.title} class="w-full h-40 object-cover" loading="lazy" />
+              )
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 id={`${pub.title}-title`} class="text-lg font-bold mb-2">
+                {pub.title}
+              </h3>
+              <p class="text-sm flex-grow">{pub.description}</p>
+              <a
+                href={pub.url}
+                class="mt-4 inline-block text-[#C80F2E] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#C80F2E]"
+              >
+                Read More →
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
