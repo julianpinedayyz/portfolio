@@ -1,0 +1,107 @@
+---
+import { Image } from 'astro:assets';
+import rabbitHoleImage from '../../assets/publications/down-the-rabbit-hole.jpg';
+import a11yDevImage from '../../assets/publications/a11y-dev-roll.jpg';
+import euA11yImage from '../../assets/publications/EU-a11y.jpg';
+import semanticImage from '../../assets/publications/semantic.jpg';
+
+// Placeholder data for four publications
+const publications = [
+  {
+    title: 'AI-Powered Coding: Into the Rabbit Hole?',
+    url: 'https://www.linkedin.com/pulse/ai-powered-coding-rabbit-hole-how-some-standards-human-julian-pineda-btn2e',
+    image: rabbitHoleImage,
+    description:
+      'Exploring the need for standards and human oversight in AI-driven coding.',
+    date: 'March 21, 2025',
+  },
+
+  {
+    title: 'AI & Accessibility: The Evolving Role of Developers',
+    url: 'https://www.linkedin.com/pulse/ai-accessibility-evolving-role-developers-julian-pineda-ji9je',
+    image: a11yDevImage,
+    description:
+      'Discussing how developers can champion accessibility in the age of AI.',
+    date: 'February 27, 2025',
+  },
+  {
+    title: 'European Accessibility Act 2025: Challenge or Opportunity?',
+    url: 'https://www.linkedin.com/pulse/european-accessibility-act-2025-challenge-opportunity-julian-pineda-w8ske',
+    image: euA11yImage,
+    description:
+      'Analyzing the impact of the upcoming European Accessibility Act on businesses and developers.',
+    date: 'February 7, 2025',
+  },
+  {
+    title:
+      'Why Accessibility & Semantic HTML Matter for the Future of AI Tools',
+    url: 'https://www.linkedin.com/pulse/why-accessibility-semantic-html-matter-future-ai-tools-julian-pineda-bys9e',
+    image: semanticImage,
+    description:
+      'Exploring how semantic markup boosts accessibility and enhances AI-powered tooling.',
+    date: 'January 23, 2025',
+  },
+];
+---
+
+<section id="publications" class="py-20 bg-[#C8102E] text-white">
+  <div class="site-container">
+    <!-- Title -->
+    <div class="w-full lg:w-[400px] mb-12 lg:mb-0">
+      <h2 class="h2-heading text-[#E7DFD0]">Publications</h2>
+    </div>
+
+    <!-- Publications grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      {
+        publications.map((pub) => (
+          <article
+            class="bg-white text-[#24272B] rounded-lg shadow-md flex gap-4 flex-row sm:flex-col overflow-hidden relative"
+            aria-labelledby={`${pub.title}-title`}
+          >
+            {pub.image &&
+              (typeof pub.image === 'object' ? (
+                <Image
+                  src={pub.image}
+                  alt={pub.title}
+                  width={640}
+                  quality={85}
+                  format="webp"
+                  class="w-24 h-24 sm:w-full sm:h-48 object-cover flex-shrink-0"
+                />
+              ) : (
+                <img
+                  src={pub.image}
+                  alt={pub.title}
+                  class="w-full h-40 object-cover"
+                  loading="lazy"
+                />
+              ))}
+            <div class="flex flex-col flex-grow pr-2 sm:p-6 pb-2 sm:pb-8">
+              <h3
+                id={`${pub.title}-title`}
+                class="text-sm sm:text-lg font-bold my-[10px] sm:my-0 leading-tight sm:leading-snug text-[#0E0E2C]"
+              >
+                {pub.title}
+              </h3>
+              {pub.date && (
+                <p class="text-xs text-gray-500 mb-2 hidden sm:block pt-4">
+                  {pub.date}
+                </p>
+              )}
+              <p class="text-sm flex-grow hidden sm:block">{pub.description}</p>
+              <p class="pt-4 sm:mt-6 sm:pt-0 sm:pb-0 absolute right-2.5 bottom-2.5 sm:relative text-right">
+                <a
+                  href={pub.url}
+                  class="text-xs sm:text-base text-[#C80F2E] font-semibold hover:text-black hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black sm:ml-auto"
+                >
+                  Read More →
+                </a>
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
